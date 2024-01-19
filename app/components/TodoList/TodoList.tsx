@@ -30,14 +30,16 @@ const TodoList = () => {
 
   return (
     <>
-      <input
-        type="text"
-        placeholder="Enter task"
-        value={value}
-        onChange={handleChange}
-        onKeyDown={handleKeyEnter}
-      />
-      <button onClick={() => dispatch(addTask())}>Add</button>
+      <div style={{ border: '2px solid gray', padding: '10px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <input
+          type="text"
+          placeholder="Enter task"
+          value={value}
+          onChange={handleChange}
+          onKeyDown={handleKeyEnter}
+        />
+        <button onClick={() => dispatch(addTask())}>Add</button>
+      </div>
       <div
         style={{
           display: "flex",

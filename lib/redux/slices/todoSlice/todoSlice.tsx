@@ -1,17 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 } from "uuid";
 
+
+interface TaskState {
+  id: any,
+  label: string,
+}
+
+export interface TodoSliceState {
+  todos: Array<TaskState>
+  inputTaskValue: string,
+  selectedEditTask: TaskState | undefined,
+}
+
+const initialState: TodoSliceState = {
+  todos: [
+    { id: v4(), label: "TypeScript" },
+    { id: v4(), label: "React" },
+    { id: v4(), label: "Redux-toolkit" }
+  ],
+  inputTaskValue: "",
+  selectedEditTask: undefined
+}
+
 export const todoSlice = createSlice({
   name: "todo",
-  initialState: {
-    todos: [
-      { id: v4(), label: "TypeScript" },
-      { id: v4(), label: "React" },
-      { id: v4(), label: "Redux-toolkit" }
-    ],
-    inputTaskValue: "",
-    selectedEditTask: undefined
-  },
+  initialState,
   reducers: {
     addTask: (state) => {
       const newTask = {
@@ -28,7 +42,6 @@ export const todoSlice = createSlice({
         (task) => task.id === action.payload
       );
       state.todos.splice(idxTask, 1);
-      // state.todos.filter((task, i) => i !== action.payload);
     },
     editTask: (state, action) => {
       const currentTask = {
@@ -50,7 +63,7 @@ export const {
   deleteTask,
   updateValue,
   editTask,
-  editAddTask
+  // editAddTask
 } = todoSlice.actions;
 
 export default todoSlice.reducer;

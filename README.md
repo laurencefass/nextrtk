@@ -9,7 +9,7 @@ This might break from time to time. Feel free to fork it so you can do the same 
 
 [Syntapse Next RTK](https://nextrtk.syntapse.co.uk)
 
-or fork on run on localhost:3000
+or fork and run on localhost:3000
 
 # Docker notes
 

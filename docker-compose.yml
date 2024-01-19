@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  node-app:
+    image: node:18.17.0
+    hostname: nextrtk
+    container_name: nextrtk
+    environment:
+    - VIRTUAL_HOST=nextrtk.syntapse.co.uk
+    - LETSENCRYPT_HOST=nextrtk.syntapse.co.uk
+    - LETSENCRYPT_EMAIL=laurencefass@syntapse.co.uk
+    expose:
+      - "3000"
+    volumes:
+      - .:/app
+    working_dir: /app
+    # note on installing new packages: always install or do anything npm related
+    # from inside the container as it is running a higher version than the host
+    # command: tail -f /dev/null
+    command: "npm run dev"
+    networks:
+      main-net: 
+
+networks:
+  main-net:
+    external:
+      name: proxy_main-net

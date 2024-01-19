@@ -3,6 +3,19 @@
 
 Incubator to enable me to get up to speed and test Next JS 14.0, Redux Toolkit 2.0, Redux core 5.0, Reselect 5.0, and Redux Thunk 3.0. i.e. latest versions at time of testing. I will try to keep this updated with minor version changes, but will probably create new repos for any major version changes.
 
+# Features
+
+## Completed
+
+* Counter Actions 
+* Asynchronous Thunks
+* Todo List Actions
+
+## Planned
+
+* Nested Suspense and Error handling demo
+* Streaming data from sockets to client components
+
 # Live example
 
 This might break from time to time. Feel free to fork it so you can do the same at your leisure.

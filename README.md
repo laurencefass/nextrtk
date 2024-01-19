@@ -34,7 +34,7 @@ docker-compose.yml contains environment variables to route to app using my speci
 
 Always run npm commands inside the container as it is running a higher version  of node and npm than the host. trying to install anything from the host will break the package-lock file so always run npm in the container
 
-# vercel blurb
+# (Inherited vercel README blurb)
 
 This example shows how to integrate Next.js with [Redux Toolkit](https://redux-toolkit.js.org).
 

@@ -3,11 +3,19 @@
 
 Incubator to enable me to get up to speed and test Next JS 14.0, Redux Toolkit 2.0, Redux core 5.0, Reselect 5.0, and Redux Thunk 3.0. i.e. latest versions at time of testing. I will try to keep this updated with minor version changes, but will probably create new repos for any major version changes.
 
+# Live example
+
+This might break from time to time. Feel free to fork it so you can do the same at your leisure.
+
+[Syntapse Next RTK](https://nextrtk.syntapse.co.uk)
+
+or fork on run on localhost:3000
+
 # Docker notes
 
 To run in a container: docker-compose up -d
 
-To run locally: npm i, npm run dev
+To run locally: npm i, npm run dev, then visit localhost:3000
 
 docker-compose.yml contains environment variables to route to app using my specific docker setup. Change environment variables according to your own system setup.
 

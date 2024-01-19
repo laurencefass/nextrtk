@@ -7,13 +7,14 @@ Incubator to enable me to get up to speed and test Next JS 14.0, Redux Toolkit 2
 
 ## Completed
 
-* Counter Actions 
+* Counter Actions
 * Asynchronous Thunks
 * Todo List Actions
 
 ## Planned
 
 * Nested Suspense and Error handling demo
+* Parallel routes demo
 * Streaming data from sockets to client components
 
 # Live example

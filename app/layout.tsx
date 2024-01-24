@@ -1,5 +1,5 @@
 /* Components */
-import { Providers } from "@/lib/providers";
+import { Providers } from "@/lib/redux/providers";
 import { Nav } from "./components/Nav";
 import 'dotenv/config';
 
@@ -8,7 +8,7 @@ import styles from "@styles/layout.module.css";
 import "@styles/globals.css";
 
 export default function RootLayout(props: React.PropsWithChildren) {
-  console.log("process.env.SECRET_KEY", process.env.SECRET_KEY);
+  console.log("root layout re-rendered", process.env.SECRET_KEY);
   return (
     <Providers>
       <html lang="en">

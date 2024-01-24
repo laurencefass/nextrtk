@@ -13,6 +13,8 @@ import {
 import List from "./List"
 import React from "react";
 
+import "@styles/globals.css";
+
 const TodoList = () => {
   const value = useSelector(selectTodoTaskValue);
   const todos = useSelector(selectTodos);

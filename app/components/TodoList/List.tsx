@@ -3,6 +3,8 @@
 import { useDispatch } from "react-redux";
 import { deleteTask, editTask } from "@/lib/redux";
 
+import "@styles/globals.css";
+
 type ListType = {
   id: any;
   label: string;

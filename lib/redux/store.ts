@@ -19,7 +19,6 @@ export const reduxStore = configureStore({
   reducer,
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware().concat(middleware);
-    // return new Tuple(getDefaultMiddleware().concat(middleware))
   },
 });
 export const useDispatch = () => useReduxDispatch<ReduxDispatch>();

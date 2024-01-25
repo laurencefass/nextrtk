@@ -51,7 +51,7 @@ function counterStop() {
         io?.emit("counter", { value: count })
         return ("counter stop (noop) - counter not started");
     }
-    return "counterStop noop. socket is off"
+    return "counterStop noop. socket is off."
 }
 
 function counterReset() {
@@ -67,7 +67,14 @@ function counterReset() {
 
 function socketOff(res: NextApiResponseWithSocket) {
     if (io) {
+        io?.emit("socket.status", { 
+            status: "socket off",
+        });
+    }
+
+    if (io) {
         io.removeAllListeners();
+        io.closeAllConnections();
         counterStop();
         // io.close();
         io = undefined; 
@@ -93,8 +100,9 @@ function socketOn(res: NextApiResponseWithSocket) {
     }
 
     if (io) {
-        console.log("initialising res.socket.server", res.socket.server);
-        // append SocketIO server to Next.js socket server response
+        console.log("initialising res.socket.server");
+
+        // append SocketIO server to exposed Next.js socket server
         res.socket.server.io = io as any;
 
         io.on("connection", (socket: Socket) => {
@@ -105,8 +113,12 @@ function socketOn(res: NextApiResponseWithSocket) {
             });
 
             socket.on('socket.ping', (data: any, callback: Function) => {
-                console.log("socket.ping", data);
-                callback({ status: 200, type: 'socket.ping', data: data });
+                console.log("emitting socket.pong", data);
+                // this will transmit to all connected clients
+                io?.emit("socket.pong", { type: 'socket.pong', data: "pong" })
+
+                // this will only be returned to the emitting client
+                // callback({ status: 200, type: 'socket.ping', data: "pong" });
             });
 
         })
@@ -143,12 +155,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponseWithSocket) => {
         break;
     }
 
-    // if (io) {
-    //     io?.emit("socket.status", { 
-    //         status: status,
-    //         count: count          
-    //     });
-    // }
+    if (io) {
+        console.log("emitting socket status", status);
+        io?.emit("socket.status", { 
+            status: status,
+        });
+    }
 
     res.status(200).json({ 
         status: status,

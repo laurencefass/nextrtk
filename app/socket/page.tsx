@@ -32,9 +32,9 @@ export default function SocketController() {
 
     const handleSocketPing = () => {
         if (socket.current) {
-            socket.current.emit('socket.ping', {data: "client data"}, (response: any) => {
+            socket.current.emit('socket.ping', {data: "ping"}, (response: any) => {
                 console.log('Response from server:', response);
-                setStatus(JSON.stringify(response, null, 2));
+                setStatus(response.data);
             });    
         } else {
             setStatus("noop: socket not connected");
@@ -53,12 +53,16 @@ export default function SocketController() {
                         console.log("socket.counter", message.value);
                         setCount(count => message.value);
                     });    
-
-                    // socket.current.on('socket.status', (message:any) => {
-                    //     console.log("socket.status", message.status);
-                    //     setStatus(status => message.status);
-                    // });    
-
+                    socket.current.on('socket.pong', (message:any) => {
+                        console.log("socket.pong", message);
+                        setStatus(status => message.data);
+                    }); 
+                    socket.current.on('socket.status', (message:any) => {
+                        console.log("socket.status", message);
+                        setTimeout(()=> {                        
+                            setStatus(status => message.status);
+                        }, 500)
+                    });    
                 }
                 break;
             case "socket off":

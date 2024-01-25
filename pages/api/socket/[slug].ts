@@ -48,7 +48,7 @@ function counterStop() {
             counterHandle = null;
             return "counter stopped"    
         }
-        io?.emit("counter", { value: count })
+        io?.emit("socket.counter", { value: count })
         return ("counter stop (noop) - counter not started");
     }
     return "counterStop noop. socket is off."
@@ -59,8 +59,10 @@ function counterReset() {
     if (handle) counterStop();
     count = 0;
     if (handle) counterStart();
+    console.log("counterReset", io ? true : false);
     if (io) {
-        io?.emit("counter", { value: count })
+        console.log("emit counter=0")
+        io?.emit("socket.counter", { value: 0 })
     }
     return "counter reset"
 }

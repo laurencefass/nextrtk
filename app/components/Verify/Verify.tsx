@@ -6,7 +6,6 @@ import {
   selectTodos,
   useSelector,
 } from "@/lib/redux";
-import List from "../TodoList/List";
 
 export const Verify = () => {
   const count = useSelector(selectCount);
@@ -18,12 +17,11 @@ export const Verify = () => {
         page navigations.
       </h3>
       <h3>Counter: { count }</h3>
-      <h3>Todo list
-      </h3>
+      <h3>Redux state Todo list</h3>
       {todos.length ? (
-          todos.map((todo) => <div>{todo.label}</div>)
+          todos.map((todo) => <div className='todo-list-item'>{todo.label}</div>)
         ) : (
-          <h3>No todos...</h3>
+          <h3>No todos</h3>
         )}
   </>
 };

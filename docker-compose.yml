@@ -6,9 +6,10 @@ services:
     hostname: nextrtk
     container_name: nextrtk
     environment:
-    - VIRTUAL_HOST=nextrtk.syntapse.co.uk
-    - LETSENCRYPT_HOST=nextrtk.syntapse.co.uk
-    - LETSENCRYPT_EMAIL=laurencefass@syntapse.co.uk
+    # ${VAR_XXX} are required system env vars - add them to ~./bashrc
+    - VIRTUAL_HOST=nextrtk.${LETSENCRYPT_HOST}
+    - LETSENCRYPT_HOST=nextrtk.${LETSENCRYPT_HOST}
+    - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
     expose:
       - "3000"
     volumes:

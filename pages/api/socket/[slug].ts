@@ -1,10 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { Server as ServerIO } from "socket.io";
 import { Server as NetServer } from "http";
-import type { Socket as NetSocket } from "net"
+import { type Socket as NetSocket } from "net"
 import type { Server as HTTPServer } from "http"
 import type { Server as IOServer } from "socket.io"
-import { Socket } from "socket.io-client";
+import { Socket } from "socket.io";
 
 export const config = {
   api: {
@@ -12,7 +12,7 @@ export const config = {
   },
 };
 
-export var io : NetServer | undefined = undefined;
+export var io : IOServer | undefined = undefined;
 var counterHandle: NodeJS.Timeout | null = null;
 var count = 0;
 var status = "socket off";
@@ -69,18 +69,16 @@ function counterReset() {
 
 function socketOff(res: NextApiResponseWithSocket) {
     if (io) {
-        io?.emit("socket.status", { 
+        console.log("socketOff");
+        io.emit("socket.status", { 
             status: "socket off",
         });
-    }
 
-    if (io) {
         io.removeAllListeners();
-        io.closeAllConnections();
         counterStop();
-        // io.close();
         io = undefined; 
     }
+
     return "socket off"; 
 }
 
@@ -118,11 +116,7 @@ function socketOn(res: NextApiResponseWithSocket) {
                 console.log("emitting socket.pong", data);
                 // this will transmit to all connected clients
                 io?.emit("socket.pong", { type: 'socket.pong', data: "pong" })
-
-                // this will only be returned to the emitting client
-                // callback({ status: 200, type: 'socket.ping', data: "pong" });
             });
-
         })
     } else {
         return "socketOn - error creating socket"

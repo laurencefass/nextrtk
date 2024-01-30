@@ -1,5 +1,5 @@
 
-# Next JS + Redux Toolkit TypeScript Example
+# Next JS + Redux Toolkit TypeScript Playground
 
 Incubator to to get me up to speed and test Next JS 14.0, Redux Toolkit 2.0, Redux core 5.0, Reselect 5.0, and Redux Thunk 3.0. i.e. all the latest versions at time of testing. I will try to keep this updated with minor version package changes, but will create a new repo for Next major version changes.
 

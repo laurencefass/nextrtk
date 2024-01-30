@@ -10,7 +10,7 @@ import {
   selectTodoTaskValue,
 } from "@/lib/redux";
 
-import List from "./List"
+import ListItem from "./List"
 import React from "react";
 
 import "@styles/globals.css";
@@ -51,7 +51,7 @@ const TodoList = () => {
         }}
       >
         {todos.length ? (
-          todos.map((todo) => <List key={todo.id} {...todo} />)
+          todos.map((todo) => <ListItem key={todo.id} {...todo} />)
         ) : (
           <h3>No todos...</h3>
         )}

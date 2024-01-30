@@ -3,14 +3,31 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { io, Socket } from 'socket.io-client';
 
+import {
+    // socketSlice,
+    useSelector,
+    useDispatch,
+    selectSocketCounter,
+    setCounter,
+  } from "@/lib/redux";
+
 const SOCKET_PATH = "/socketio";
 const BASE_SERVER_URL = "https://nextrtk.syntapse.co.uk";
 
+function ReduxStateConsumer() {
+    const counter = useSelector(selectSocketCounter);
+    return <>
+        <h3>Redux Socket Counter Consumer</h3>
+        { counter }
+    </>
+}
+
 export default function SocketController() {
-    const [count, setCount] = useState("loading...");
     const [status, setStatus] = useState("initialising...");
     const socket =  useRef<Socket | null>(null);
-
+    const dispatch = useDispatch();
+    const counter = useSelector(selectSocketCounter);
+ 
     const serverFetch = async (url:string) => {
         try {
             let response = await(fetch(url));
@@ -51,7 +68,8 @@ export default function SocketController() {
 
                     socket.current.on('socket.counter', (message:any) => {
                         console.log("socket.counter", message.value);
-                        setCount(count => message.value);
+                        // setCount(count => message.value);
+                        dispatch(setCounter(message.value));
                     });    
                     socket.current.on('socket.pong', (message:any) => {
                         console.log("socket.pong", message);
@@ -94,7 +112,7 @@ export default function SocketController() {
     return <>
         <div>
             <h1>Socket Controller</h1>
-            <h1>counter: { count } </h1>
+            <h1>counter: { counter } </h1>
         </div>                
         <div>
             <button onClick={() => handleButtonClick('/api/socket/on')}>Socket On</button>
@@ -105,5 +123,6 @@ export default function SocketController() {
             <button onClick={() => handleSocketPing()}>Ping</button>
         </div>
         <h1>server status: {status}</h1>
+        <ReduxStateConsumer />
     </>
 };

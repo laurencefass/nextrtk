@@ -10,7 +10,7 @@ type ListType = {
   label: string;
 }
 
-const List = ({ id, label } : ListType) => {
+const ListItem = ({ id, label } : ListType) => {
   const dispatch = useDispatch();
 
   return (
@@ -31,4 +31,4 @@ const List = ({ id, label } : ListType) => {
   );
 };
 
-export default List;
+export default ListItem;

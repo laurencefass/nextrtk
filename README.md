@@ -7,20 +7,21 @@ Incubator to to get me up to speed and test Next JS 14.0, Redux Toolkit 2.0, Red
 
 ## Completed
 
-* Counter Actions
+* Simple Counter Actions with thunks
 * EntityAdapter CRUD UI and persistence
 * Asynchronous Thunks (including entity save & fetch with placeholders)
-* Todo List Actions
+* Streaming data from sockets to client components
+* Todo List with Redux Actions
 
 ## Up next
 
+* EntityAdapater CRUD for relational data (Author - Article relationship) 
 * Port EntityAdapter CRUD asynchronous React Server Components and server actions
   
 ## Planned
 
-* Nested Suspense and Error handling demo
+* Deeply Nested Suspense and Error handling demo
 * Parallel routes demo
-* Streaming data from sockets to client components
 
 # Live example
 

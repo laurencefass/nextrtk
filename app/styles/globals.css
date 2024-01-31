@@ -6,6 +6,27 @@ body {
   font-family: system-ui, sans-serif;
 }
 
+h1 {
+  margin-block-end: 5vh;
+}
+
+.bold-on-hover:hover {
+  font-weight: bold;
+}
+
+.article {
+  border: 2px solid gray;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+.library-container > div {
+  max-width: 100%;
+  border: 2px solid gray;
+  padding: 1vw;
+  margin: 1vw;
+  margin-bottom: 1vh;
+}
+
 .todo-list-item {
   width: 200px;
   border: 2px solid gray;

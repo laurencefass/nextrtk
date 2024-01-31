@@ -6,27 +6,22 @@
   },
   {
     "id": "2",
-    "firstName": "Jane",
-    "lastName": "Doe"
+    "firstName": "Norman",
+    "lastName": "Bates"
   },
   {
     "id": "3",
     "firstName": "Freddy",
-    "lastName": "Kay"
+    "lastName": "Kreuger"
   },
   {
     "id": "4",
-    "firstName": "Mark",
-    "lastName": "Emm"
+    "firstName": "Michael",
+    "lastName": "Myers"
   },
   {
     "id": "5",
-    "firstName": "Laurence ",
-    "lastName": "King"
-  },
-  {
-    "id": "6",
-    "firstName": "Sharon ",
-    "lastName": "Davies"
+    "firstName": "Jason",
+    "lastName": "Vorhees"
   }
 ]

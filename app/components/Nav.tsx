@@ -30,6 +30,7 @@ export const Nav = () => {
       <Navlink href = '/todo' label = 'Todo list' />
       <Navlink href = '/socket' label = 'Socket demo' />
       <Navlink href = '/users' label = 'Entity CRUD' />
+      <Navlink href = '/library' label = 'Library CRUD' />
       <Navlink href = '/verify' label = 'Verify state' />
     </nav>
   );

@@ -8,7 +8,6 @@ import {
     addUser,
     updateUser,
     removeUser,
-    addUsers,
     fetchUsers,
     saveUsers,
 } from "@/lib/redux";

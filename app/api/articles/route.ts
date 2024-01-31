@@ -4,11 +4,42 @@ import path from "path";
 import { readFromFile, writeToFile } from "../utils/utils";
 
 let initialState = [
-  { id: '1', firstName: 'John', lastName: 'Doe' },
-  { id: '2', firstName: 'Norman', lastName: 'Bates' },
-  { id: '3', firstName: 'Freddy', lastName: 'Kreuger' },
-  { id: '4', firstName: 'Michael', lastName: 'Myers' },
-  { id: '5', firstName: 'Jason', lastName: 'Vorhees' },
+  {
+    id: "1",
+    title: "forward of skill",
+    content: "health word involve town you",
+    authorId: "1"
+  },
+  {
+    id: "2",
+    title: "second media meeting",
+    content: "us individual interview number only",
+    authorId: "2"
+  },
+  {
+    id: "3",
+    title: "after ago sit",
+    content: "vote ability need power sing",
+    authorId: "1"
+  },
+  {
+    id: "4",
+    title: "cell section coach",
+    content: "task instead he north skin",
+    authorId: "2"
+  },
+  {
+    id: "5",
+    title: "clear everybody take",
+    content: "into subject himself PM hotel",
+    authorId: "1"
+  },
+  {
+    id: "5",
+    title: "some thing else",
+    content: "the quick red fox jumped",
+    authorId: "3"
+  }
 ]
 
 export async function GET(req:Request) {

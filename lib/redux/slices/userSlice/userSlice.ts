@@ -10,7 +10,7 @@ export interface User {
 
 const userAdapter = createEntityAdapter<User>();
 const initialState = userAdapter.getInitialState({
-    loading: false, // Add a loading flag
+    loading: false, 
     saving: false,
 });
 
@@ -29,7 +29,8 @@ export const userSlice = createSlice({
             state.loading = true;
         })
         .addCase(fetchUsers.fulfilled, (state, action) => {
-            userAdapter.setAll(state, action.payload);
+            console.log("fetchUsers.fulfilled", action.payload)
+            userAdapter.setAll(state, action.payload.data);
             state.loading = false;
         })
         .addCase(fetchUsers.rejected, (state) => {

@@ -4,16 +4,24 @@ import path from "path";
 import { readFromFile, writeToFile } from "../utils/utils";
 
 let initialState = [
-  { id: '1', firstName: 'John', lastName: 'Doe' },
-  { id: '2', firstName: 'Norman', lastName: 'Bates' },
-  { id: '3', firstName: 'Freddy', lastName: 'Kreuger' },
-  { id: '4', firstName: 'Michael', lastName: 'Myers' },
-  { id: '5', firstName: 'Jason', lastName: 'Vorhees' },
+  {
+    id: "1",
+    name: "Wiliam Shakespeare"
+  },
+  {
+    id: "2",
+    name: "Jane Austen"
+  },
+  {
+    id: "3",
+    name: "Leo Tolstoy"
+  },
 ]
 
 export async function GET(req:Request) {
   const filename = path.basename(__dirname) + ".json";
   let data = readFromFile(filename);
+  console.log('authors.GET', FormData);
   if (!data)
     writeToFile(filename, initialState);
   return NextResponse.json({ 
@@ -27,8 +35,8 @@ export async function POST(req: Request) {
     const { data } = await req.json();
     writeToFile(filename, data);
     initialState = data;
-    return NextResponse.json({ message: 'Users updated successfully' });
+    return NextResponse.json({ message: 'Authors updated successfully' });
   } catch (error) {
-    return NextResponse.json({ error: 'Error updating users' });
+    return NextResponse.json({ error: 'Error updating authors' });
   }
 }

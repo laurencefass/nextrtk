@@ -51,7 +51,7 @@ export const AuthorList: React.FC<AuthorListProps> = ({ onSelectAuthor }) => {
                 ) : (
                     Object.values(entities).map((author) => (
                         <div
-                            className="bold-on-hover"
+                            className="library-item bold-on-hover"
                             key={author.id} 
                             style={{ cursor: 'pointer' }} 
                             onClick={() => onSelectAuthor(author)}

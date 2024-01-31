@@ -56,6 +56,7 @@ export const { addArticle, removeArticle, updateArticle, addArticles } = article
 export const {
     selectById: selectArticleById,
     selectAll: selectAllArticles,
+    selectEntities: selectArticleEntities,
   } = articlesAdapter.getSelectors<ReduxState>((state) => state.article);
 
 export const selectArticles = (state: ReduxState) => state.article;

@@ -11,8 +11,11 @@ import {
     selectArticles,
     useDispatch,
     selectAllAuthors,
+    selectAllArticles,
     selectAuthors,
     Article,
+    selectArticleEntities,
+    selectAuthorEntities,
 } from "@/lib/redux"; // Update imports to match articles' actions and selectors
 import "@styles/globals.css"
 
@@ -27,10 +30,21 @@ interface ArticleListProps {
     onSelectArticle: (article: Article) => void;
 }
   
+export const ArticlesTest = () => {
+    const articles = useSelector(selectAllArticles);
+    const entities = useSelector(selectArticleEntities);
+    return <>
+        <h1>Article Array</h1>
+        <pre>{ JSON.stringify(articles, null, 2) }</pre>
+        <h1>Article lookup</h1>
+        <pre>{ JSON.stringify(entities, null, 2) }</pre>
+    </>
+}
+
 export const ArticleList: React.FC<ArticleListProps> = ({ onSelectArticle }) => {
     const { entities, loading, saving } = useSelector(selectArticles);
-    // const authors = useSelector(selectAllAuthors);
-    let authors = useSelector(selectAuthors).entities;
+
+    let authors = useSelector(selectAuthorEntities);
 
     if (saving) {
         return <>
@@ -39,7 +53,7 @@ export const ArticleList: React.FC<ArticleListProps> = ({ onSelectArticle }) => 
         </>
     }
 
-    if (loading) {
+    if (!entities || loading) {
         return <>
             <Header/>
             <p>Loading...</p>
@@ -55,7 +69,7 @@ export const ArticleList: React.FC<ArticleListProps> = ({ onSelectArticle }) => 
                 ) : (
                     Object.values(entities).map((article) => (
                         <div 
-                            className="article bold-on-hover"
+                            className="library-item bold-on-hover"
                             key={article.id} 
                             onClick={() => onSelectArticle(article)}
                             style={{ cursor: 'pointer' }}
@@ -81,7 +95,7 @@ const ArticleCRUD: React.FC<ArticleCRUDProps> = ({ selectedArticle }) => {
     const [authorId, setAuthorId] = useState('');
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-    const articles = useSelector(selectArticles).entities;
+    const articles = useSelector(selectArticleEntities);
     const authors = useSelector(selectAllAuthors); // Use the selector to get all authors
     const dispatch = useDispatch();
 
@@ -194,11 +208,11 @@ const __ArticleCRUD = () => {
     const [authorId, setAuthorId] = useState('');
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-    let articles = useSelector(selectArticles).entities; // Updated selector
+    let articles = useSelector(selectArticleEntities);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchArticles()); // Updated action
+        dispatch(fetchArticles()); 
     }, []);
 
     const handleFetchArticles = () => {
@@ -300,6 +314,7 @@ const ArticleManager = () => {
         <h1>ArticleManager</h1>
         <ArticleCRUD selectedArticle={selectedArticle} />
         <ArticleList onSelectArticle={handleSelectArticle} />
+        {/* <ArticlesTest /> */}
       </div>
     );
   };

@@ -7,20 +7,24 @@ body {
 }
 
 h1 {
-  margin-block-end: 5vh;
+  margin-block-start: 1vh;
+  margin-block-end: 1vh;
 }
 
 .bold-on-hover:hover {
   font-weight: bold;
 }
 
-.article {
+.library-item {
   border: 2px solid gray;
   margin-bottom: 5px;
   padding: 5px;
 }
-.library-container > div {
-  max-width: 100%;
+.library-container {
+  width:800px;
+}
+.library-container > * {
+  width: 100%;
   border: 2px solid gray;
   padding: 1vw;
   margin: 1vw;

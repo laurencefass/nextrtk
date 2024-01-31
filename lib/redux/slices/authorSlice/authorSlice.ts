@@ -53,6 +53,7 @@ export const { addAuthor, removeAuthor, updateAuthor, addAuthors } = authorSlice
 export const {
     selectById: selectAuthorById,
     selectAll: selectAllAuthors,
+    selectEntities: selectAuthorEntities,
   } = authorsAdapter.getSelectors<ReduxState>((state) => state.author);
 export const selectAuthors = (state: ReduxState) => state.author;
 export default authorSlice.reducer;

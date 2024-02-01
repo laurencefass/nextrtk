@@ -1,7 +1,7 @@
 /* Core */
 import { NextResponse } from "next/server";
 import path from "path";
-import { readFromFile, writeToFile } from "../utils/utils";
+import { readFromFile, writeToFile } from "@utils";
 
 let initialState = [
   {

@@ -5,7 +5,10 @@
     "paths": { 
       "@/*": ["./*"], 
       "@components/*": ["./app/components/*"],
-      "@styles/*": ["./app/styles/*"]
+      "@styles/*": ["./app/styles/*"],
+      "@utils/*": ["./app/utils/*"],
+      // this one supports inclusion of index.ts to aggregate exports
+      "@utils": ["./app/utils"],
     },
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],

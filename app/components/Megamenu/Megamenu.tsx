@@ -1,10 +1,10 @@
 import React from 'react';
 import './styles.css'; // Assuming this file contains your CSS styles
-import { siteMap } from './sitemap';
+import { siteMap, MenuItem, MenuSection } from './sitemap';
 import ReactMarkdown from 'react-markdown';
 
 // Function to render menu items (recursive to handle nesting)
-const renderMenuItems = (items) => {
+const renderMenuItems: React.FC<MenuSection> = (items) => {
   return (
     <ul className="dropdown">
       {Object.entries(items).map(([key, item]) => (
@@ -35,18 +35,20 @@ const markdownText = `
 const MegaMenu = () => {
     return <>
         <div className="block-container">
-        <nav className="megaMenu">
-        <ul className="topLevelMenu">
-            {Object.entries(siteMap).map(([section, items]) => (
-            <li key={section}>
-                <a href="#">{section.charAt(0).toUpperCase() + section.slice(1)}</a>
-                {renderMenuItems(items)}
-            </li>
-            ))}
-        </ul>
-        </nav>
+          <nav className="megaMenu">
+          <ul className="topLevelMenu">
+              {Object.entries(siteMap).map(([section, items]) => (
+              <li key={section}>
+                  <a href="#">{section.charAt(0).toUpperCase() + section.slice(1)}</a>
+                  {renderMenuItems(items)}
+              </li>
+              ))}
+          </ul>
+          </nav>
         </div>
-        <ReactMarkdown className="text-container">{markdownText}</ReactMarkdown>
+        <div>
+          <ReactMarkdown className="text-container">{markdownText}</ReactMarkdown>
+        </div>
   </> 
 };
 

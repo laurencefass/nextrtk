@@ -50,5 +50,11 @@ export const userSlice = createSlice({
 });
 
 export const { addUser, removeUser, updateUser, addUsers } = userSlice.actions;
+
+export const {
+    selectById: selectUserById,
+    selectAll: selectAllUsers, // array
+    selectEntities: selectUserEntities, // object lookup
+  } = userAdapter.getSelectors<ReduxState>((state) => state.user);
 export const selectUsers = (state: ReduxState) => state.user;
 export default userSlice.reducer;

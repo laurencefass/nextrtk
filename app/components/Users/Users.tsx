@@ -10,6 +10,10 @@ import {
     removeUser,
     fetchUsers,
     saveUsers,
+    selectUserEntities,
+    User,
+    selectAllUsers,
+    addUsers,
 } from "@/lib/redux";
 
 const Header = () => {
@@ -54,20 +58,12 @@ export const UserList = () => {
     );
 };
 
-const UserCRUD = () => {
+export const UserCRUD = () => {
     const [userId, setUserId] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    let users = useSelector(selectUsers).entities;
+    let users = useSelector(selectUserEntities);
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(fetchUsers());
-    }, []);
-
-    const handleFetchUsers = () => {
-        dispatch(fetchUsers());    
-    }
 
     const handleShowUser = () => {
         const user = users[userId];
@@ -78,11 +74,6 @@ const UserCRUD = () => {
             console.log("User not found");
             resetForm();
         }
-    };
-
-    const handleSaveChanges = () => {
-        const allUsers = Object.values(users);
-        dispatch(saveUsers(allUsers));
     };
 
     const handleAddUser = () => {
@@ -109,7 +100,6 @@ const UserCRUD = () => {
     return (
         <div className="pad-bottom-10">
             <h2>User details (enter id and Select to highlight and CRUD)</h2>
-            <p>Save Changes to persist to backend (max 10 records)</p>
             <div>
                 <input
                     type="text"
@@ -135,20 +125,55 @@ const UserCRUD = () => {
                 <button onClick={handleAddUser}>Add User</button>
                 <button onClick={handleUpdateUser}>Update User</button>
                 <button onClick={handleRemoveUser}>Remove User</button>
-                <button onClick={handleSaveChanges}>Save users</button>
-                <button onClick={handleFetchUsers}>Fetch users</button>
             </div>
-            {/* <div>id: { userId }, first: { firstName}, last: { lastName } </div> */}
         </div>
     );
 };
 
-const UserManager = () => {
+// Define the props for the component, including an optional array of users
+interface UserListProps {
+    userList?: User[];
+}
+
+const UserManager: React.FC<UserListProps> = ({ userList }) => {
+    const dispatch = useDispatch();
+    let users = useSelector(selectUserEntities);
+    console.log("userList", userList);
+    
+    useEffect(() => {
+        if (userList) {
+            console.log("adding props.userList to store")
+            dispatch(addUsers(userList));
+        }
+        else {
+            console.log("fetching users from store")
+            dispatch(fetchUsers());
+        }
+    }, []);
+
+    const handleFetchUsers = () => {
+        dispatch(fetchUsers());    
+    }
+
+    const handleSaveUsers = () => {
+        const allUsers = Object.values(users);
+        dispatch(saveUsers(allUsers));
+    };
+
     return (
         <div className="block-container">
             <div>
                 <h1>Entity CRUD with server persistence</h1>
-                <p>This is using <a href="https://redux-toolkit.js.org/api/createEntityAdapter">RTK EntityAdapters</a> to manage collections, see <a href="/library">library manager </a> for relational data demo</p>
+                <p>Component uses <a href="https://redux-toolkit.js.org/api/createEntityAdapter">RTK EntityAdapters</a> to manage collections, see <a href="/library">library manager </a> for relational data demo</p>
+                <p>This component can be initialised using Redux in the browser, or mounted and populated by a React Server Component</p>
+                {userList && <div className="bordered">
+                    <h2>This component was initialised by React Server Component props injection!</h2>
+                    <p>Data fetching on the server has many advtanges including improved security</p>
+                </div>}
+                <p>Save changes to persist to backend (max 10 records)</p>
+
+                <button onClick={handleFetchUsers}>Re-fetch users</button>
+                <button onClick={handleSaveUsers}>Save users</button>
             </div>
             <UserCRUD />
             <UserList />

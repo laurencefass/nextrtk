@@ -1,4 +1,3 @@
-
 # Next JS + Redux Toolkit TypeScript Playground
 
 Incubator to to get me up to speed and test Next JS 14.0, Redux Toolkit 2.0, Redux core 5.0, Reselect 5.0, and Redux Thunk 3.0. i.e. all the latest versions at time of testing. I will try to keep this updated with minor version package changes, but will create a new repo for Next major version changes.
@@ -7,21 +6,21 @@ Incubator to to get me up to speed and test Next JS 14.0, Redux Toolkit 2.0, Red
 
 ## Completed
 
-* Simple Counter Actions with thunks
-* EntityAdapter CRUD UI and persistence
-* Asynchronous Thunks (including entity save & fetch with placeholders)
-* Streaming data from sockets to client components
-* Todo List with Redux Actions
+- Simple Counter Actions with thunks
+- EntityAdapter CRUD UI and persistence
+- Asynchronous Thunks (including entity save & fetch with placeholders)
+- Streaming data from sockets to client components
+- Todo List with Redux Actions
+- Relational EntityAdapater CRUD (Simple library feature with Author - Article updates)
 
 ## Up next
 
-* EntityAdapater CRUD for relational data (Author - Article relationship) 
-* Port EntityAdapter CRUD asynchronous React Server Components and server actions
-  
+- Port EntityAdapter CRUD asynchronous React Server Components and server actions
+
 ## Planned
 
-* Deeply Nested Suspense and Error handling demo
-* Parallel routes demo
+- Deeply Nested Suspense and Error handling demo
+- Parallel routes demo
 
 # Live example
 
@@ -39,7 +38,7 @@ To run locally: npm i, npm run dev, then visit localhost:3000
 
 docker-compose.yml contains environment variables to route to app using my specific docker setup. Change environment variables according to your own system setup.
 
-Always run npm commands inside the container as it is running a higher version  of node and npm than the host. trying to install anything from the host will break the package-lock file so always run npm in the container
+Always run npm commands inside the container as it is running a higher version of node and npm than the host. trying to install anything from the host will break the package-lock file so always run npm in the container
 
 # (Inherited vercel README blurb)
 

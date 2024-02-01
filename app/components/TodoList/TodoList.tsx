@@ -30,8 +30,7 @@ const TodoList = () => {
     }
   };
 
-  return (
-    <>
+  return <div className="todos">
       <div style={{ border: '2px solid gray', padding: '10px', display: 'flex', alignItems: 'center', gap: '10px' }}>
         <input
           type="text"
@@ -56,8 +55,7 @@ const TodoList = () => {
           <h3>No todos...</h3>
         )}
       </div>
-    </>
-  );
+    </div>
 };
 
 export default TodoList;

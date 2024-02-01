@@ -12,7 +12,19 @@ h1 {
 }
 
 .bold-on-hover:hover {
-  font-weight: bold;
+  /* font-weight: bold; */
+  color: #704cb6 !important;
+  background: lightgray;
+}
+
+a {
+  color: #704cb6 !important;
+  text-decoration: underline !important;
+}
+
+.library-container {
+  width:95vw;
+  max-width:1000px;
 }
 
 .library-item {
@@ -20,19 +32,16 @@ h1 {
   margin-bottom: 5px;
   padding: 5px;
 }
-.library-container {
-  width:800px;
-}
 .library-container > * {
   width: 100%;
   border: 2px solid gray;
   padding: 1vw;
-  margin: 1vw;
   margin-bottom: 1vh;
 }
 
 .todo-list-item {
-  width: 200px;
+  width: 100%;
+  max-width: 300px;
   border: 2px solid gray;
   display: flex;
   align-items: center;

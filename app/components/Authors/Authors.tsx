@@ -10,7 +10,13 @@ import {
     saveAuthors,
     selectAuthors,
     useDispatch,
-    Author
+    Author,
+    selectAuthorEntities,
+    selectAllArticles,
+    Article,
+    selectArticleEntities,
+    selectArticles,
+    fetchArticles
 } from "@/lib/redux"; // Ensure these actions and selector are properly defined for authors
 import "@styles/globals.css"
 
@@ -27,6 +33,37 @@ interface AuthorListProps {
 
 export const AuthorList: React.FC<AuthorListProps> = ({ onSelectAuthor }) => {
     const { entities, loading, saving } = useSelector(selectAuthors);
+    const articles = useSelector(selectAllArticles);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchArticles());
+        dispatch(fetchAuthors());
+    }, []);
+
+    const renderArticlesByAuthor = (authorId: string) => {
+        const filteredArticles = articles.filter((article: Article) => article.authorId === authorId);
+
+        if (filteredArticles.length > 0) {
+            return (
+                <>
+                    <h4>Articles by this author</h4>
+                    <ul>
+                        {filteredArticles.map((article: Article) => (
+                            <li key={article.id}>{article.title}</li>
+                        ))}
+                    </ul>
+                </>
+            );
+        } else {
+            return (
+                <>
+                    <h4>Articles by this author</h4>
+                    <p>No articles</p>
+                </>
+            );
+        }
+    };
 
     if (saving) {
         return <>
@@ -46,6 +83,10 @@ export const AuthorList: React.FC<AuthorListProps> = ({ onSelectAuthor }) => {
         <div>
             <Header/>
             <div>
+                {/* <pre>
+                    <h1>Articles</h1>
+                    { JSON.stringify(articles, null, 2) }
+                </pre> */}
                 {Object.keys(entities).length === 0 ? (
                     <p>No authors available</p>
                 ) : (
@@ -56,7 +97,8 @@ export const AuthorList: React.FC<AuthorListProps> = ({ onSelectAuthor }) => {
                             style={{ cursor: 'pointer' }} 
                             onClick={() => onSelectAuthor(author)}
                         >
-                            {author.name} ({author.id})
+                            <h3>{author.name} ({author.id})</h3>
+                            {renderArticlesByAuthor(author.id)}
                         </div>
                     ))
                 )}
@@ -72,7 +114,7 @@ interface AuthorCRUDProps {
 const AuthorCRUD: React.FC<AuthorCRUDProps> = ({ selectedAuthor }) => {
     const [authorId, setAuthorId] = useState('');
     const [name, setName] = useState('');
-    let authors = useSelector(selectAuthors).entities;
+    let authors = useSelector(selectAuthorEntities);
     const dispatch = useDispatch();
 
     useEffect(() => {

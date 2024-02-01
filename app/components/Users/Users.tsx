@@ -149,6 +149,7 @@ const UserManager = () => {
         <div>
             <h1>UserManager</h1>
             <h3>Entity CRUD with server persistence</h3>
+            <p>This is using <a href="https://redux-toolkit.js.org/api/createEntityAdapter">RTK EntityAdapters</a> to manage collections</p>
             <UserCRUD />
             <UserList />
         </div>

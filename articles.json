@@ -3,7 +3,7 @@
     "id": "1",
     "title": "forward of skill",
     "content": "health word involve town you",
-    "authorId": "1"
+    "authorId": "3"
   },
   {
     "id": "2",
@@ -13,9 +13,9 @@
   },
   {
     "id": "3",
-    "title": "after ago sit",
-    "content": "vote ability need power sing",
-    "authorId": "1"
+    "authorId": "4",
+    "title": "Treatise in logic",
+    "content": "Its highly illogical captain"
   },
   {
     "id": "4",
@@ -31,8 +31,14 @@
   },
   {
     "id": "6",
-    "authorId": "1",
-    "title": "forward of skill (2)",
-    "content": "health word involve town you"
+    "authorId": "5",
+    "title": "To Boldly go",
+    "content": "Where no man has gone before"
+  },
+  {
+    "id": "7",
+    "authorId": "5",
+    "title": "I cant Klingon any longer",
+    "content": "Meet me on the moon"
   }
 ]

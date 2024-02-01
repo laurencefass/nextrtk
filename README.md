@@ -17,7 +17,7 @@ Incubator to to get me up to speed and test Next JS 14.0, Redux Toolkit 2.0, Red
 
 ### Next JS specific
 
-- Deeply Nested Suspense and Error handling demo
+- Deeply Nested (RSC) Suspense and Error handling demo
 
 ### Other fun stuff
 

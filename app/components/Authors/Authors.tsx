@@ -92,7 +92,7 @@ export const AuthorList: React.FC<AuthorListProps> = ({ onSelectAuthor }) => {
                 ) : (
                     Object.values(entities).map((author) => (
                         <div
-                            className="library-item bold-on-hover"
+                            className="block-item highlight-on-hover"
                             key={author.id} 
                             style={{ cursor: 'pointer' }} 
                             onClick={() => onSelectAuthor(author)}
@@ -185,7 +185,6 @@ const AuthorCRUD: React.FC<AuthorCRUDProps> = ({ selectedAuthor }) => {
                     onChange={(e) => setName(e.target.value)}
                 />
             </div>
-            <h2>Author CRUD Operations</h2>
             <div>
                 <button onClick={handleSelectAuthor}>Select Author</button>
                 <button onClick={handleAddAuthor}>Add Author</button>
@@ -207,7 +206,6 @@ const AuthorManager = () => {
     
     return (
         <div>
-            <h1>Author Manager</h1>
             <AuthorCRUD selectedAuthor={selectedAuthor} />
             <AuthorList onSelectAuthor={handleSelectAuthor}/>
         </div>

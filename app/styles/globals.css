@@ -11,28 +11,36 @@ h1 {
   margin-block-end: 1vh;
 }
 
-.bold-on-hover:hover {
-  /* font-weight: bold; */
+.highlight-on-hover:hover {
   color: #704cb6 !important;
   background: lightgray;
+}
+
+button,
+select,
+input {
+  padding: 5px;
+  margin: 5px;
 }
 
 a {
   color: #704cb6 !important;
   text-decoration: underline !important;
+  font-weight: bold;
 }
 
-.library-container {
+.text-container,
+.block-container {
   width:95vw;
   max-width:1000px;
 }
 
-.library-item {
+.block-item {
   border: 2px solid gray;
   margin-bottom: 5px;
   padding: 5px;
 }
-.library-container > * {
+.block-container > * {
   width: 100%;
   border: 2px solid gray;
   padding: 1vw;

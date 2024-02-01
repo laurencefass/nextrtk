@@ -29,9 +29,11 @@ export const Nav = () => {
       <Navlink href ='/' label = 'Home'/>
       <Navlink href = '/todo' label = 'Todo list' />
       <Navlink href = '/socket' label = 'Socket demo' />
-      <Navlink href = '/users' label = 'Entity CRUD' />
+      <Navlink href = '/users/client' label = 'Entity CRUD' />
+      <Navlink href = '/users/server' label = 'RSC CRUD' />
       <Navlink href = '/library' label = 'Library CRUD' />
       <Navlink href = '/verify' label = 'Verify state' />
+      <Navlink href = '/megamenu' label = 'Megamenu' />
     </nav>
   );
 };

@@ -31,14 +31,20 @@
   },
   {
     "id": "6",
-    "authorId": "5",
+    "authorId": "1",
     "title": "To Boldly go",
     "content": "Where no man has gone before"
   },
   {
     "id": "7",
-    "authorId": "5",
+    "authorId": "4",
     "title": "I cant Klingon any longer",
     "content": "Meet me on the moon"
+  },
+  {
+    "id": "8",
+    "authorId": "3",
+    "title": "From Russia with Love",
+    "content": "Putin the time and ye shall reap the rewards!"
   }
 ]

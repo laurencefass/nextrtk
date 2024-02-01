@@ -17,6 +17,7 @@ export default function RootLayout(props: React.PropsWithChildren) {
             <Nav />
             <header className={styles.header}>
               <h1 className={styles.h1}>Syntapse + Next 14 + Redux</h1>
+              <h3>View the code on <a href="https://github.com/laurencefass/nextrtk/blob/main/README.md">github</a></h3>
               <img src="/logo.svg" className={styles.logo} alt="logo" />
             </header>
 

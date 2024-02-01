@@ -5,11 +5,11 @@ import Accordion from '@components/Accordion/Accordion'
 import "@styles/globals.css"
 
 export default function Library() {
-  return <div className = "library-container">
+  return <div className = "block-container">
     <div>
       <h1>Basic Library Feature with server persistence</h1>
-      <p>This is using <a href="https://redux-toolkit.js.org/api/createEntityAdapter">RTK EntityAdapters</a> to manage collections</p>
-      <p>Manage authors and articles with synchronised components</p>
+      <p>Manage complex collections and relational data in components synchronised with memoized <a href="https://redux-toolkit.js.org/api/createEntityAdapter">RTK EntityAdapters</a></p>
+      <p></p>
     </div>
       <Accordion title="Author Manager">
         <AuthorManager />

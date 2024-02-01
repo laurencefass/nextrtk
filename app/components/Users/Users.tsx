@@ -108,7 +108,8 @@ const UserCRUD = () => {
 
     return (
         <div className="pad-bottom-10">
-            <h2>User details (enter id to show details)</h2>
+            <h2>User details (enter id and Select to highlight and CRUD)</h2>
+            <p>Save Changes to persist to backend (max 10 records)</p>
             <div>
                 <input
                     type="text"
@@ -129,8 +130,6 @@ const UserCRUD = () => {
                     onChange={(e) => setLastName(e.target.value)}
                 />
             </div>
-            <h2>User CRUD Operations</h2>
-            <p>Save Changes will persist to backend</p>
             <div>
                 <button onClick={handleShowUser}>Show User</button>
                 <button onClick={handleAddUser}>Add User</button>
@@ -146,10 +145,11 @@ const UserCRUD = () => {
 
 const UserManager = () => {
     return (
-        <div>
-            <h1>UserManager</h1>
-            <h3>Entity CRUD with server persistence</h3>
-            <p>This is using <a href="https://redux-toolkit.js.org/api/createEntityAdapter">RTK EntityAdapters</a> to manage collections</p>
+        <div className="block-container">
+            <div>
+                <h1>Entity CRUD with server persistence</h1>
+                <p>This is using <a href="https://redux-toolkit.js.org/api/createEntityAdapter">RTK EntityAdapters</a> to manage collections, see <a href="/library">library manager </a> for relational data demo</p>
+            </div>
             <UserCRUD />
             <UserList />
         </div>

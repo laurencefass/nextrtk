@@ -69,15 +69,15 @@ export const ArticleList: React.FC<ArticleListProps> = ({ onSelectArticle }) => 
                 ) : (
                     Object.values(entities).map((article) => (
                         <div 
-                            className="library-item bold-on-hover"
+                            className="block-item highlight-on-hover"
                             key={article.id} 
                             onClick={() => onSelectArticle(article)}
                             style={{ cursor: 'pointer' }}
                         >
                           <div> title: {article.title}</div>
+                          <div> article id: {article.id}</div> 
                           <div> author: {authors[article.authorId]?.name || "Unknown Author"}</div>
                           <div> content: {article.content}</div> 
-                          <div> article id: ({article.id})</div> 
                         </div>
                     ))
                 )}
@@ -311,7 +311,6 @@ const ArticleManager = () => {
   
     return (
       <div>
-        <h1>ArticleManager</h1>
         <ArticleCRUD selectedArticle={selectedArticle} />
         <ArticleList onSelectArticle={handleSelectArticle} />
         {/* <ArticlesTest /> */}

@@ -31,13 +31,13 @@ export const TodoWidget: React.FC = () => {
 
     const handleAddTodo = () => {
         if (newTodo.trim() !== '') {
-            dispatch({ type: 'saga/addTodoAsync', payload: newTodo });
+            dispatch({ type: 'sagaTodo/addTodoAsync', payload: newTodo });
             setNewTodo('');
         }
     };
 
     useEffect(() => {
-        dispatch({ type: 'saga/fetchTodos' });
+        dispatch({ type: 'sagaTodo/fetchTodos' });
     }, [dispatch]);
 
     return (

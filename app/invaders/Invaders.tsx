@@ -8,7 +8,7 @@ const Invaders = () => {
   const [playerPosition, setPlayerPosition] = useState({ x: 100 });
 
   useEffect(() => {
-    const handleKeyPress = (e) => {
+    const handleKeyPress = (e: any) => {
       if (e.key === "ArrowLeft") {
         setPlayerPosition(prev => ({ x: prev.x - 500 }));
       } else if (e.key === "ArrowRight") {

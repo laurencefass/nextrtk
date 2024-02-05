@@ -1,0 +1,74 @@
+/* export default function App() {
+    return (
+      <div className="App">
+        <div class="grid-container">
+          <div class="header">Header</div>
+          <div class="sidebar">Left Sidebar</div>
+          <div class="main-content">Main Content</div>
+          <div class="sidebar2">Right Sidebar</div>
+          <div class="footer">Footer</div>
+        </div>
+      </div>
+    );
+} */
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "header"
+    "sidebar"
+    "main-content"
+    "sidebar2"
+    "footer";
+  height: 100vh;
+  grid-template-rows: 1fr 1fr 4fr 1fr 1fr;
+}
+
+/* Adjustments for larger screens */
+@media (min-width: 768px) {
+  .grid-container {
+    grid-template-rows: 1fr 4fr 1fr;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-areas:
+      "header header header"
+      "sidebar main-content sidebar2"
+      "footer footer footer";
+    height: 100vh;
+    border: 2px solid blue;
+  }
+}
+
+.header {
+  grid-area: header;
+  /* Styling for demonstration */
+  background-color: #ffcccc;
+  text-align: center;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  /* Styling for demonstration */
+  background-color: #ccffcc;
+  padding: 10px;
+}
+
+.sidebar2 {
+  grid-area: sidebar2;
+  /* Styling for demonstration */
+  background-color: #ccffcc;
+  padding: 10px;
+}
+.main-content {
+  grid-area: main-content;
+  /* Styling for demonstration */
+  background-color: #ccccff;
+  padding: 10px;
+}
+
+.footer {
+  grid-area: footer;
+  /* Styling for demonstration */
+  background-color: #cccccc;
+  text-align: center;
+}

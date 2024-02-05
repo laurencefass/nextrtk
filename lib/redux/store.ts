@@ -4,46 +4,39 @@ import {
   type ThunkAction,
   type Action,
 } from "@reduxjs/toolkit";
+
 import {
   useSelector as useReduxSelector,
   useDispatch as useReduxDispatch,
   type TypedUseSelectorHook,
 } from "react-redux";
 
-/* Instruments */
 import { reducer } from "./rootReducer";
 import { middleware } from "./middleware";
 
-// this is the default way of configuring store which 
-// leads to state reset on every HMR referesh
-//
-// export const reduxStore = configureStore({
-//   reducer,
-//   middleware: (getDefaultMiddleware) => {
-//     return getDefaultMiddleware().concat(middleware);
-//   },
-// });
-// 
-// export type ReduxStore = typeof reduxStore;
-// export type ReduxState = ReturnType<typeof reduxStore.getState>;
-// export type ReduxDispatch = typeof reduxStore.dispatch;
+import createSagaMiddleware from "redux-saga";
+import { rootSaga } from "@/lib/redux";
+
+const sagaMiddleware = createSagaMiddleware();
 
 // using this method state is restored between HMR reloads
 export const makeStore = () => {
-  return configureStore({
+  const store = configureStore({
     reducer,
     middleware: (getDefaultMiddleware) => {
-      return getDefaultMiddleware().concat(middleware);
+      return getDefaultMiddleware().concat(middleware, sagaMiddleware);
     },
-  })
-}
+  });
+  sagaMiddleware.run(rootSaga);
+  return store;
+};
 
 export const useDispatch = () => useReduxDispatch<ReduxDispatch>();
 export const useSelector: TypedUseSelectorHook<ReduxState> = useReduxSelector;
 
 export type ReduxStore = ReturnType<typeof makeStore>;
-export type ReduxState = ReturnType<ReduxStore['getState']>;
-export type ReduxDispatch = ReduxStore['dispatch'];
+export type ReduxState = ReturnType<ReduxStore["getState"]>;
+export type ReduxDispatch = ReduxStore["dispatch"];
 
 export type ReduxThunkAction<ReturnType = void> = ThunkAction<
   ReturnType,

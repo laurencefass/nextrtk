@@ -112,7 +112,7 @@ export default function SocketController() {
     return <>
         <div>
             <h1>Socket Controller</h1>
-            <h1>counter: { counter } </h1>
+            <h2>counter: { counter } </h2>
         </div>                
         <div>
             <button onClick={() => handleButtonClick('/api/socket/on')}>Socket On</button>

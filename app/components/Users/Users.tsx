@@ -146,8 +146,15 @@ const UserManager: React.FC<UserListProps> = ({ userList }) => {
             dispatch(addUsers(userList));
         }
         else {
-            console.log("fetching users from store")
-            dispatch(fetchUsers());
+            (async () => {
+                console.log("fetching users from store")
+                try {
+                    const result = await dispatch(fetchUsers()).unwrap()
+                    console.log("thunk promise result", result);              
+                } catch (rejectedValueOrSerializedError) {
+                    // handle error here
+                }    
+            })();
         }
     }, []);
 
@@ -168,6 +175,7 @@ const UserManager: React.FC<UserListProps> = ({ userList }) => {
                 <p>This component can be initialised using Redux in the browser, or mounted and populated by a React Server Component</p>
                 {userList && <div className="bordered">
                     <h2>This component was initialised by React Server Component props injection!</h2>
+                    <p>Click <a href="/users/client">here </a> for client side fetching. Once loaded Redux takes over and it works exactly the same!</p>
                     <p>Data fetching on the server has many advtanges including improved security</p>
                 </div>}
                 <p>Save changes to persist to backend (max 10 records)</p>

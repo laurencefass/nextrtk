@@ -7,6 +7,19 @@ import 'dotenv/config';
 import styles from "@styles/layout.module.css";
 import "@styles/globals.css";
 
+// export async function generateMetadata() {
+//   return {
+//     title: "Your Site Title", // Set a default title for all pages using this layout
+//     meta: [
+//       {
+//         name: "viewport",
+//         content: "initial-scale=1.0, width=device-width",
+//       },
+//       // Add other meta tags here as needed
+//     ],
+//   };
+// };
+
 export default function RootLayout(props: React.PropsWithChildren) {
   console.log("root layout re-rendered", process.env.SECRET_KEY);
   return (

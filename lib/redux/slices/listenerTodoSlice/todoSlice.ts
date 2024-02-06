@@ -10,16 +10,9 @@ export const initialState: TodoState = {
 };
 
 export const listenerTodoSlice = createSlice({
-  name: "ListenerTodo",
+  name: "listenerTodo",
   initialState,
   reducers: {
-    loadTodos(state) {
-      state.status = "loading";
-    },
-    receiveTodos(state, action: PayloadAction<Todo[]>) {
-      state.status = "succeeded";
-      state.todos = [...action.payload];
-    },
     addTodo(state, action: PayloadAction<Todo>) {
       state.status = "adding";
     },
@@ -27,13 +20,20 @@ export const listenerTodoSlice = createSlice({
       state.status = "succeeded";
       state.todos.push(action.payload);
     },
+    loadTodos(state) {
+      state.status = "loading";
+    },
+    setTodos(state, action: PayloadAction<Todo[]>) {
+      state.status = "succeeded";
+      state.todos = [...action.payload];
+    },
     deleteTodo(state, action: PayloadAction<number>) {
       state.todos = state.todos.filter((todo) => todo.id !== action.payload);
     },
   },
 });
 
-export const { loadTodos, receiveTodos, addTodo, deleteTodo, addTodoComplete } =
+export const { loadTodos, setTodos, addTodo, deleteTodo, addTodoComplete } =
   listenerTodoSlice.actions;
 
 // the property name is the slice name

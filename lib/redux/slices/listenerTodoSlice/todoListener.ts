@@ -1,5 +1,5 @@
 // app/listenerMiddleware.ts
-import { loadTodos, addTodo, receiveTodos, addTodoComplete } from "./todoSlice";
+import { loadTodos, addTodo, setTodos, addTodoComplete } from "./todoSlice";
 import { listenerMiddleware } from "@/lib/middleware";
 import { Todo } from "./types";
 
@@ -13,7 +13,7 @@ listenerMiddleware.startListening({
       );
       if (!response.ok) throw new Error("Failed to fetch todos");
       const todos: Todo[] = await response.json();
-      listenerApi.dispatch(receiveTodos(todos.slice(0, 3)));
+      listenerApi.dispatch(setTodos(todos.slice(0, 3)));
     } catch (err) {
       listenerApi.dispatch({
         type: "todos/fetchFailed",

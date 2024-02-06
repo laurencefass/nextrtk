@@ -11,6 +11,17 @@ body {
   overflow-x: hidden;
 }
 
+/* simple dark theme
+
+html,
+body {
+  background: rgb(56, 56, 56);
+}
+
+p, div {
+  color: white;
+} */
+
 html {
   min-width: 100vw;
 }

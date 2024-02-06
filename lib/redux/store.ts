@@ -25,9 +25,12 @@ export const makeStore = () => {
   const store = configureStore({
     reducer,
     middleware: (getDefaultMiddleware) => {
-      return getDefaultMiddleware()
-        .prepend(listenerMiddleware.middleware)
-        .concat(appMiddleware, sagaMiddleware);
+      return (
+        getDefaultMiddleware()
+          .prepend(listenerMiddleware.middleware)
+          // .concat(appMiddleware, sagaMiddleware);
+          .concat(sagaMiddleware)
+      );
     },
   });
   sagaMiddleware.run(rootSaga);

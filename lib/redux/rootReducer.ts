@@ -5,8 +5,8 @@ import { socketSlice } from "./slices";
 import { userSlice } from "./slices";
 import { authorSlice } from "./slices";
 import { articleSlice } from "./slices";
-import { sagaTodoSlice } from "./slices";
-import { listenerTodoSlice } from "./slices";
+import { sagaTodoSlice } from "./slices/sagaTodoSlice";
+import { listenerTodoSlice } from "./slices/listenerTodoSlice";
 
 export const reducer = {
   counter: counterSlice.reducer,

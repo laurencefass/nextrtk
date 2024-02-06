@@ -1,6 +1,8 @@
 // todoSaga.ts
 import { PayloadAction } from "@reduxjs/toolkit";
-import { put, takeLatest, call, all, delay } from "redux-saga/effects";
+import { put, takeLatest, call, delay, take } from "redux-saga/effects";
+import { takeEvery, select } from "redux-saga/effects";
+import { SagaIterator } from "redux-saga";
 import {
   setTodos,
   addTodo,
@@ -9,7 +11,9 @@ import {
   Todo,
 } from "./todoSlice";
 
-function* addTodoAsyncSaga(action: PayloadAction<string>) {
+function* addTodoAsyncSaga(
+  action: PayloadAction<string>
+): Generator<any, void, any> {
   try {
     console.log("addTodoAsyncSaga start");
     yield put(setStatus("adding"));
@@ -57,4 +61,24 @@ export function* watchFetchTodos() {
 
 export function* watchAddTodoAsync() {
   yield takeLatest("sagaTodo/addTodoAsync", addTodoAsyncSaga);
+}
+
+export function* __watchAndLog(): SagaIterator {
+  yield takeEvery(
+    "*",
+    function* logger(action: PayloadAction): SagaIterator<void> {
+      const state: ReturnType<typeof select> = yield select();
+      console.log("SAGA LOG: action, state", action, state);
+    }
+  );
+}
+
+export function* watchAndLog(): SagaIterator {
+  while (true) {
+    const action = yield take("*");
+    const state = yield select();
+
+    console.log("action", action);
+    console.log("state after", state);
+  }
 }

@@ -31,7 +31,7 @@ export const sagaTodoSlice = createSlice({
       state.status = "succeeded";
       state.todos.push(action.payload);
     },
-    removeTodo: (state, action: PayloadAction<number>) => {
+    deleteTodo: (state, action: PayloadAction<number>) => {
       state.todos = state.todos.filter((todo) => todo.id !== action.payload);
     },
     setTodos: (state, action: PayloadAction<Todo[]>) => {
@@ -44,7 +44,7 @@ export const sagaTodoSlice = createSlice({
   },
 });
 
-export const { addTodo, addTodoComplete, removeTodo, setTodos, setStatus } =
+export const { addTodo, addTodoComplete, deleteTodo, setTodos, setStatus } =
   sagaTodoSlice.actions;
 export const sagaTodoSelector = (state: ReduxState) => state.sagaTodo;
 export default sagaTodoSlice.reducer;

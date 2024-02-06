@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addTodo, removeTodo, sagaTodoSelector } from '@slices/sagaTodoSlice';
+import { addTodo, deleteTodo, sagaTodoSelector } from '@slices/sagaTodoSlice';
 
 const TodoList: React.FC = () => {
     const { todos, status } = useSelector(sagaTodoSelector);
@@ -18,7 +18,7 @@ const TodoList: React.FC = () => {
             {todos.map((todo) => (
                 <li key={todo.id}>
                     {todo.title}
-                    <button onClick={() => dispatch(removeTodo(todo.id))}>Remove</button>
+                    <button onClick={() => dispatch(deleteTodo(todo.id))}>Remove</button>
                 </li>
             ))}
         </ul>

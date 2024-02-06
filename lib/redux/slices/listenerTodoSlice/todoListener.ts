@@ -1,16 +1,13 @@
 // app/listenerMiddleware.ts
-import { createListenerMiddleware, addListener } from "@reduxjs/toolkit";
 import { loadTodos, addTodo, receiveTodos, addTodoComplete } from "./todoSlice";
 import { listenerMiddleware } from "@/lib/middleware";
 import { Todo } from "./types";
-
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 listenerMiddleware.startListening({
   actionCreator: loadTodos,
   effect: async (_, listenerApi) => {
     try {
-      await sleep(2000);
+      await listenerApi.delay(2000);
       const response = await fetch(
         "https://jsonplaceholder.typicode.com/todos"
       );
@@ -29,7 +26,7 @@ listenerMiddleware.startListening({
 listenerMiddleware.startListening({
   actionCreator: addTodo,
   effect: async (action, listenerApi) => {
-    await sleep(2000);
+    await listenerApi.delay(2000);
     listenerApi.dispatch(addTodoComplete(action.payload));
   },
 });

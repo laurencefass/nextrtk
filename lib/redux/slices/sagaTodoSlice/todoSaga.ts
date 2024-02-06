@@ -1,6 +1,6 @@
 // todoSaga.ts
 import { PayloadAction } from "@reduxjs/toolkit";
-import { put, takeLatest, call, all } from "redux-saga/effects";
+import { put, takeLatest, call, all, delay } from "redux-saga/effects";
 import {
   setTodos,
   addTodo,
@@ -9,15 +9,12 @@ import {
   Todo,
 } from "./todoSlice";
 
-function* sleepGenerator(ms: number) {
-  yield new Promise((resolve) => setTimeout(resolve, ms));
-}
-
 function* addTodoAsyncSaga(action: PayloadAction<string>) {
   try {
     console.log("addTodoAsyncSaga start");
     yield put(setStatus("adding"));
-    yield call(sleepGenerator, 2000);
+
+    yield delay(2000);
 
     const newTodo: Todo = {
       id: Date.now(),
@@ -36,7 +33,8 @@ function* addTodoAsyncSaga(action: PayloadAction<string>) {
 function* fetchTodosSaga(): Generator<any, void, any> {
   try {
     yield put(setStatus("loading"));
-    yield call(sleepGenerator, 2000);
+    yield delay(2000);
+
     const response: Response = yield call(
       fetch,
       "https://jsonplaceholder.typicode.com/todos"

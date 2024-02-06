@@ -2,7 +2,7 @@ import ReactMarkdown from "react-markdown";
 import TodoWidget from "./TodoList";
 
 const markdown = `
-## Wait, what's happening here? ...
+## Wait! what's happening here? ...
 
 # Redux-Saga and the saga design pattern
 Redux-Saga is not a design pattern in itself; rather, it's a library used in conjunction with Redux for managing side effects in applications built using React or any other framework. However, Redux-Saga is inspired by and implements the Saga design pattern, which is indeed a design pattern used for managing and handling long-lived transactions and side effects in a more controlled manner.

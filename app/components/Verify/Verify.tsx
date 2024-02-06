@@ -29,11 +29,8 @@ function Count() {
 
 export const Verify = () => {  
   return <>
-      <h1>Verify page</h1>
-      <h3>
-        This page is intended to verify that Redux state is persisted across
-        page navigations.
-      </h3>
+      <h1>Redux state verification</h1>
+      <h3>This page verifies that Redux state is persisted across page route navigations.</h3>
       <TodoList />
       <UserList/>
   </>

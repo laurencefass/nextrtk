@@ -15,9 +15,9 @@ import { reducer } from "./rootReducer";
 
 import {
   listenerMiddleware,
+  appMiddleware,
   sagaMiddleware,
   rootSaga,
-  appMiddleware,
 } from "@/lib/middleware";
 
 // using this method state is restored between HMR reloads

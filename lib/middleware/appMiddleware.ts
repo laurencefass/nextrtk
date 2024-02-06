@@ -1,8 +1,8 @@
 /* Core */
 import { createLogger } from "redux-logger";
-import { Middleware } from '@reduxjs/toolkit';
+import { Middleware } from "@reduxjs/toolkit";
 
-// not currently using this as it creates a type mismatch 
+// not currently using this as it creates a type mismatch
 // in store.ts though it does still appear to work
 let reduxLogger = createLogger({
   duration: true,
@@ -19,16 +19,14 @@ let reduxLogger = createLogger({
 });
 
 // not currently
-const middleware = [
-  reduxLogger,
-];
+const middleware = [reduxLogger];
 
-const simpleLogger: Middleware = store => next => action => {
-  console.log('dispatching', action);
+const simpleLogger: Middleware = (store) => (next) => (action) => {
+  console.log("dispatching", action);
   let result = next(action);
-  console.log('next state', store.getState());
+  console.log("next state", store.getState());
   return result;
 };
 
 // export { reduxLogger as middleware };
-export { simpleLogger as middleware };
+export { simpleLogger as appMiddleware };

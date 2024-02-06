@@ -18,7 +18,7 @@ html {
 h1 {
   margin-block-start: 1vh;
   margin-block-end: 1vh;
-  font-size: calc(20px + 2vw) !important;  
+  font-size: calc(10px + 2vw) !important;  
 }
 
 .highlight-on-hover:hover {
@@ -50,15 +50,14 @@ a {
 
 .bordered,
 .block-item {
-  border: 2px solid gray;
+  border: 2px solid rgb(204, 204, 204);
   margin-bottom: 5px;
   padding: 5px;
-  /* max-width:90%; */
 }
 
 .block-container > * {
   width: 100%;
-  border: 2px solid gray;
+  border: 2px solid rgb(204, 204, 204);
   padding: 1vw;
   margin-bottom: 1vh;
 }

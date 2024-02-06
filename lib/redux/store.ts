@@ -12,19 +12,22 @@ import {
 } from "react-redux";
 
 import { reducer } from "./rootReducer";
-import { middleware } from "./middleware";
 
-import createSagaMiddleware from "redux-saga";
-import { rootSaga } from "@/lib/redux";
-
-const sagaMiddleware = createSagaMiddleware();
+import {
+  listenerMiddleware,
+  sagaMiddleware,
+  rootSaga,
+  appMiddleware,
+} from "@/lib/middleware";
 
 // using this method state is restored between HMR reloads
 export const makeStore = () => {
   const store = configureStore({
     reducer,
     middleware: (getDefaultMiddleware) => {
-      return getDefaultMiddleware().concat(middleware, sagaMiddleware);
+      return getDefaultMiddleware()
+        .prepend(listenerMiddleware.middleware)
+        .concat(appMiddleware, sagaMiddleware);
     },
   });
   sagaMiddleware.run(rootSaga);

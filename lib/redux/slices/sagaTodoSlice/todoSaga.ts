@@ -1,7 +1,13 @@
 // todoSaga.ts
 import { PayloadAction } from "@reduxjs/toolkit";
 import { put, takeLatest, call, all } from "redux-saga/effects";
-import { setTodos, addTodo, setLoading, Todo } from "./todoSlice";
+import {
+  setTodos,
+  addTodo,
+  addTodoComplete,
+  setStatus,
+  Todo,
+} from "./todoSlice";
 
 function* sleepGenerator(ms: number) {
   yield new Promise((resolve) => setTimeout(resolve, ms));
@@ -10,7 +16,7 @@ function* sleepGenerator(ms: number) {
 function* addTodoAsyncSaga(action: PayloadAction<string>) {
   try {
     console.log("addTodoAsyncSaga start");
-    // Simulate an async delay (e.g., 2 seconds) before adding the todo
+    yield put(setStatus("adding"));
     yield call(sleepGenerator, 2000);
 
     const newTodo: Todo = {
@@ -19,21 +25,17 @@ function* addTodoAsyncSaga(action: PayloadAction<string>) {
       completed: false,
     };
 
-    // Dispatch the addTodo action to add the new todo
-    yield put(addTodo(newTodo));
-
-    console.log("addTodoAsyncSaga end");
-
-    // You can also dispatch other actions if needed
-    // ...
+    yield put(addTodoComplete(newTodo));
   } catch (error) {
     console.error("Error adding todo:", error);
+  } finally {
+    yield put(setStatus("succeeded"));
   }
 }
 
 function* fetchTodosSaga(): Generator<any, void, any> {
   try {
-    yield put(setLoading(true));
+    yield put(setStatus("loading"));
     yield call(sleepGenerator, 2000);
     const response: Response = yield call(
       fetch,
@@ -47,22 +49,14 @@ function* fetchTodosSaga(): Generator<any, void, any> {
   } catch (error) {
     console.error("Error fetching todos:", error);
   } finally {
-    yield put(setLoading(false));
+    yield put(setStatus("succeeded"));
   }
 }
 
-function* watchFetchTodos() {
+export function* watchFetchTodos() {
   yield takeLatest("sagaTodo/fetchTodos", fetchTodosSaga);
 }
 
-function* watchAddTodoAsync() {
+export function* watchAddTodoAsync() {
   yield takeLatest("sagaTodo/addTodoAsync", addTodoAsyncSaga);
-}
-
-export function* rootSaga() {
-  yield all([
-    watchFetchTodos(),
-    watchAddTodoAsync(),
-    // Add other sagas here
-  ]);
 }

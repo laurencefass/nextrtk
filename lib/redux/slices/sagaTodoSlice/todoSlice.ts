@@ -8,21 +8,27 @@ export interface Todo {
   completed: boolean;
 }
 
+export type TodoStatus = "idle" | "loading" | "succeeded" | "failed" | "adding";
+
 interface TodoState {
   todos: Todo[];
-  loading: boolean; // Add a loading state
+  status: TodoStatus;
 }
 
 const initialState: TodoState = {
   todos: [],
-  loading: false, // Initialize loading as false
+  status: "idle",
 };
 
 export const sagaTodoSlice = createSlice({
   name: "sagaTodo",
   initialState,
   reducers: {
-    addTodo: (state, action: PayloadAction<Todo>) => {
+    addTodo: (state) => {
+      state.status = "adding";
+    },
+    addTodoComplete: (state, action: PayloadAction<Todo>) => {
+      state.status = "succeeded";
       state.todos.push(action.payload);
     },
     removeTodo: (state, action: PayloadAction<number>) => {
@@ -30,15 +36,15 @@ export const sagaTodoSlice = createSlice({
     },
     setTodos: (state, action: PayloadAction<Todo[]>) => {
       state.todos = action.payload;
-      state.loading = false; // Set loading to false when todos are loaded
+      state.status = "succeeded";
     },
-    setLoading: (state, action: PayloadAction<boolean>) => {
-      state.loading = action.payload;
+    setStatus: (state, action: PayloadAction<TodoStatus>) => {
+      state.status = action.payload;
     },
   },
 });
 
-export const { addTodo, removeTodo, setTodos, setLoading } =
+export const { addTodo, addTodoComplete, removeTodo, setTodos, setStatus } =
   sagaTodoSlice.actions;
 export const sagaTodoSelector = (state: ReduxState) => state.sagaTodo;
 export default sagaTodoSlice.reducer;

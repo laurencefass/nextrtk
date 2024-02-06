@@ -6,6 +6,7 @@ import { userSlice } from "./slices";
 import { authorSlice } from "./slices";
 import { articleSlice } from "./slices";
 import { sagaTodoSlice } from "./slices";
+import { listenerTodoSlice } from "./slices";
 
 export const reducer = {
   counter: counterSlice.reducer,
@@ -15,4 +16,5 @@ export const reducer = {
   author: authorSlice.reducer,
   article: articleSlice.reducer,
   sagaTodo: sagaTodoSlice.reducer,
+  listenerTodo: listenerTodoSlice.reducer,
 };

@@ -51,7 +51,6 @@ export const todoSlice = createSlice({
       state.inputTaskValue = currentTask.label;
       state.selectedEditTask = currentTask;
     },
-
     updateValue: (state, action) => {
       state.inputTaskValue = action.payload;
     }

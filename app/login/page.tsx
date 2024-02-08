@@ -1,11 +1,18 @@
+import ReactMarkdown from 'react-markdown';
 import Session from "./Session";
 
+const markdownText = `
+# User login and registration
+
+Login, Logout and Registration are easily controlled using powerful primitives for complex state transitions.
+
+- RTK makes it easy to separate code for Redux state, state transitions (with actions) and UI. 
+- Registration and authorised content states are both dependent on login status
+- For comparison implementations are included for [Redux Sagas](https://github.com/laurencefass/nextrtk/blob/main/lib/redux/slices/sessionSlice/sessionSaga.ts) and [RTK listeners](https://github.com/laurencefass/nextrtk/blob/main/lib/redux/slices/sessionSlice/sessionListener.ts) 
+`
 export default function Page() {
   return <>
-    <h1>Redux-Saga
-      login/logout/registration</h1>
-    <p>Check the content and registration tabs before and after logging out</p>
-    <p>Username and password are admin/admin</p>
+    <ReactMarkdown className="text-container">{markdownText}</ReactMarkdown>
     <Session />
   </>
 }

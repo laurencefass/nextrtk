@@ -45,10 +45,11 @@ export const sessionSlice = createSlice({
     registrationRequested(state, action: PayloadAction<User>) {
       console.log("sessionSlice.registrationFailed", action);
       state.status = "registration pending";
+      state.message = undefined;
     },
     registrationSucceeded(state) {
       console.log("sessionSlice.registrationSucceeded");
-      state.message = "registration successful";
+      state.message = "registration complete";
       state.status = "registration complete";
     },
     registrationFailed(state, action: PayloadAction<string>) {
@@ -60,9 +61,12 @@ export const sessionSlice = createSlice({
     },
     loginRequested(state, action: PayloadAction<User>) {
       console.log("sessionSlice.loginRequested", action);
-      state.user.password = action.payload.password;
-      state.user.name = action.payload.name;
+      state.user = {
+        password: action.payload.password,
+        name: action.payload.name,
+      }
       state.status = "login pending";
+      state.message = undefined;
     },
     loginSucceeded(state, action: PayloadAction<SessionToken>) {
       console.log("sessionSlice.loginSucceeded", action);
@@ -73,6 +77,7 @@ export const sessionSlice = createSlice({
     },
     loginCancelled(state) {
       console.log("sessionSlice.loginCancelled");
+      state.message = undefined;
       return initialState;
     },
     loginFailed(state, action: PayloadAction<string>) {
@@ -84,6 +89,7 @@ export const sessionSlice = createSlice({
     },
     logoutRequested(state) {
       console.log("sessionSlice.logoutRequested");
+      state.message = undefined;
       state.status = "logout pending";
     },
     logoutSucceeded(state) {

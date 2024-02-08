@@ -3,6 +3,8 @@ import { loadTodos, addTodo, setTodos, addTodoComplete } from "./todoSlice";
 import { listenerMiddleware } from "@/lib/middleware";
 import { Todo } from "./types";
 
+console.log("todoListener is executing correctly");
+
 listenerMiddleware.startListening({
   actionCreator: loadTodos,
   effect: async (_, listenerApi) => {

@@ -33,6 +33,7 @@ export const makeStore = () => {
       );
     },
   });
+  // sagas are centrally registered, listeners can be added anywhere in the code
   sagaMiddleware.run(rootSaga);
   return store;
 };

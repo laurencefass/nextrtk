@@ -1,0 +1,16 @@
+.tab-container {
+  border: 2px solid gray;
+  min-width: 1000px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.tab-bar {
+  border: 2px solid gray;
+  background: rgb(202, 201, 201);
+}
+
+.tab-content {
+  padding: 1vw;
+  min-height:300px
+}

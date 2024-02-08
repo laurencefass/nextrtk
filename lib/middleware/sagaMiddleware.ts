@@ -5,10 +5,21 @@ import {
   watchAddTodoAsync,
   watchAndLog,
 } from "@slices/sagaTodoSlice";
-
+import {
+  watchLogin,
+  watchLogout,
+  watchRegistration,
+} from "@slices/sessionSlice";
 export const sagaMiddleware = createSagaMiddleware();
 
-// add all app sagas to the root
+// sagas are centrally registered through the rootSaga, which is added to the
 export function* rootSaga() {
-  yield all([watchFetchTodos(), watchAddTodoAsync(), watchAndLog()]);
+  yield all([
+    watchFetchTodos(),
+    watchAddTodoAsync(),
+    watchAndLog(),
+    // watchLogin(),
+    // watchLogout(),
+    // watchRegistration(),
+  ]);
 }

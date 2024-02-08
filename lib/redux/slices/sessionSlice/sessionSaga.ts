@@ -19,9 +19,9 @@ function* handleLogin(action: PayloadAction<User>): Generator<any, any, any> {
     console.log("Login succeeded", token);
     yield put(loginSucceeded(token));
 
-    // Automatically log the user out after 30 seconds
+    // Automatically log the user out after 10 seconds
     yield delay(10000);
-    console.log("Automatically logging out after 30 seconds");
+    console.log("Automatically logging out after 10 seconds");
     yield call(handleLogout);
   } catch (error) {
     console.error("Login failed:", error);

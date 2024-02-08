@@ -33,9 +33,9 @@ listenerMiddleware.startListening({
         console.log("Login succeeded", result);
         listenerApi.dispatch(loginSucceeded(result));
       }
-      // Automatically log the user out after 30 seconds
+      // Automatically log the user out after 10 seconds
       await listenerApi.delay(10000);
-      console.log("Automatically logging out after 30 seconds");
+      console.log("Automatically logging out after 10 seconds");
       await logoutUserApi();
       listenerApi.dispatch(logoutSucceeded());
     } catch (error) {

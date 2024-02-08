@@ -22,6 +22,7 @@ function Navlink({ href, label }: { href: string, label: string }) {
   </Link>
 }
 
+// This is deprecated replaced by Megamap component.
 export const Nav = () => {
   const pathname = usePathname();
 

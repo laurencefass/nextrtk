@@ -28,6 +28,7 @@ export const Nav = () => {
   return (
     <nav className={styles.nav}>
       <Navlink href='/' label='Home' />
+      <Navlink href='/login' label='Login' />
       <Navlink href='/thunk/todo' label='Todo list' />
       <Navlink href='/socket' label='Socket demo' />
       <Navlink href='/users/client' label='Entity CRUD' />

@@ -1,63 +1,75 @@
-.megaMenu, .topLevelMenu {
-    display: flex;
-    justify-content: space-around;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .topLevelMenu > li {
-    position: relative;
-    margin: 10px;
-    font-size: 30px;
-  }
-  
-  .dropdown {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    font-size: 20px;
-  }
-  
-  .topLevelMenu > li:hover .dropdown,
-  .dropdown li:hover > .submenu {
-    display: block;
-  }
-  
-  .submenu {
-    display: none; /* Hide submenu by default */
-    position: absolute;
-    left: 100%;
-    top: 0;
-  }
-  
-  /* Ensure the parent list items are positioned relatively */
+.megaMenu * {
+  text-decoration: none !important;
+  color: #704cb6;
+  font-weight: bold;
+}
+.megaMenu h1 {
+  margin-top: 0px;
+}
+
+.megaMenu,
+.topLevelMenu {
+  display: flex;
+  justify-content: center; /* Adjust to center if you want items closely centered */
+  align-items: center; /* Vertically center items in the nav */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%; /* Ensure the menu takes full width if not already */
+  flex-wrap: wrap; /* Optional: Allows items to wrap if there's not enough space */
+}
+
+.topLevelMenu > li {
+  position: relative;
+  margin: 10px 1vw;
+  font-size: calc(10px + 1vw);
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  font-size: 20px;
+}
+
+.topLevelMenu > li:hover .dropdown,
+.dropdown li:hover > .submenu {
+  display: block;
+}
+
+.submenu {
+  display: none; /* Hide submenu by default */
+  position: absolute;
+  left: 100%;
+  top: 0;
+}
+
+/* Ensure the parent list items are positioned relatively */
 .dropdown li {
-    position: relative;
+  position: relative;
 }
 
 /* Adjust the submenu positioning */
 .submenu {
-    display: none; /* Keep the submenu hidden by default */
-    position: absolute;
-    left: 100%; /* Position the submenu to the right of the parent item */
-    top: 0; /* Align the top of the submenu with the top of the parent item */
-    white-space: nowrap; /* Prevent submenu items from wrapping */
+  display: none; /* Keep the submenu hidden by default */
+  position: absolute;
+  left: 100%; /* Position the submenu to the right of the parent item */
+  top: 0; /* Align the top of the submenu with the top of the parent item */
+  white-space: nowrap; /* Prevent submenu items from wrapping */
 }
 
 .dropdown li a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    pointer-events: auto; /* Ensure links are clickable */
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  pointer-events: auto; /* Ensure links are clickable */
 }
-  
+
 /* Re-enable pointer events for links to make them clickable */
 .dropdown li a {
-    pointer-events: none;
+  pointer-events: auto;
 }
-  

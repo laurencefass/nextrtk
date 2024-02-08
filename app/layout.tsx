@@ -1,6 +1,7 @@
 /* Components */
 import { Providers } from "@/lib/redux/providers";
-import { Nav } from "./components/Nav";
+// import { Nav } from "./components/Nav";
+import Megamenu from '@components/Megamenu/Megamenu';
 import 'dotenv/config';
 
 /* Instruments */
@@ -14,7 +15,7 @@ export default function RootLayout(props: React.PropsWithChildren) {
       <html lang="en">
         <body>
           <section className={styles.container}>
-            <Nav />
+            <Megamenu />
             <header className={styles.header}>
               <h1 className={styles.h1}>Syntapse + Next 14 + Redux</h1>
               <h3>View the code on <a target="_blank" rel="noopener noreferrer" href="https://github.com/laurencefass/nextrtk/blob/main/README.md">github</a></h3>

@@ -21,14 +21,14 @@ export const siteMap: MenuData = {
     title: "Login test",
     url: "/login",
   },
-  verify: {
-    title: "Verify state",
-    url: "/verify",
-  },
   "Entity CRUD": {
     entity: {
       title: "Simple CRUD",
-      url: "/users",
+      url: "/users/client",
+    },
+    "rsc entity": {
+      title: "RSC CRUD",
+      url: "/users/server",
     },
     relational: {
       title: "Relational CRUD",
@@ -48,6 +48,10 @@ export const siteMap: MenuData = {
       title: "RTK listener todo",
       url: "/listener/todo",
     },
+  },
+  verify: {
+    title: "Verify state",
+    url: "/verify",
   },
 };
 

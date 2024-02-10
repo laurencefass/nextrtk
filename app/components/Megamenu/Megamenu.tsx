@@ -1,5 +1,6 @@
 import React from 'react';
-import './styles.css'; // Assuming this file contains your CSS styles
+import './styles.css'; 
+import '@styles/grids.css';
 import { siteMap, MenuItem, MenuSection } from './sitemap';
 
 // Render a single menu item (leaf)
@@ -25,22 +26,27 @@ const MegaMenu: React.FC = () => {
   return (
     <div className="block-container">
       <nav className="megaMenu">
-        <ul className="topLevelMenu">
-          <h1>Syntapse</h1>
-          {Object.entries(siteMap).map(([section, items]) => {
-            // Check if the item is a direct MenuItem (leaf)
-            if ('url' in items && 'title' in items) {
-              return renderLeafItem(items);
-            }
-            // If it's a MenuSection, render the section with potential nested items
-            return (
-              <li key={section}>
-                <span>{section.charAt(0).toUpperCase() + section.slice(1)}</span>
-                {renderNestedItems(items)}
-              </li>
-            );
-          })}
-        </ul>
+        <div className="grid-menu">
+          <div>
+            <h2>Syntapse + Next 14 + Redux</h2>
+            <h4>View the code on <a target="_blank" rel="noopener noreferrer" href="https://github.com/laurencefass/nextrtk/blob/main/README.md">github</a></h4>          
+          </div>
+          <ul className="topLevelMenu">
+              {Object.entries(siteMap).map(([section, items]) => {
+                // Check if the item is a direct MenuItem (leaf)
+                if ('url' in items && 'title' in items) {
+                  return renderLeafItem(items);
+                }
+                // If it's a MenuSection, render the section with potential nested items
+                return (
+                  <li key={section}>
+                    <span>{section.charAt(0).toUpperCase() + section.slice(1)}</span>
+                    {renderNestedItems(items)}
+                  </li>
+                );
+              })}            
+          </ul>
+        </div>
       </nav>
     </div>
   );

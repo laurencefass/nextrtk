@@ -35,6 +35,12 @@
   font-size: 20px;
 }
 
+@media (max-width: 768px) {
+  .dropdown {
+    right: 0;
+  }
+}
+
 .topLevelMenu > li:hover .dropdown,
 .dropdown li:hover > .submenu {
   display: block;

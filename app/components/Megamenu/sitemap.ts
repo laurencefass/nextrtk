@@ -21,6 +21,16 @@ export const siteMap: MenuData = {
     title: "Login test",
     url: "/login",
   },
+  Components: {
+    carousel: {
+      title: "Image Carousel",
+      url: "/carousel",
+    },  
+    infinite: {
+      title: "Infinite Scroll",
+      url: "/infinite",
+    },  
+  },
   "Entity CRUD": {
     entity: {
       title: "Simple CRUD",

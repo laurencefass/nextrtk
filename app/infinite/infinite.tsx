@@ -1,20 +1,42 @@
 'use client'
 
+import { title } from 'process';
 import React, { useState, useEffect, useRef } from 'react';
-import { paragraph } from 'txtgen';
+import { sentence, paragraph, lorem } from 'txtgen';
+
+import '@styles/grids.css'
+
+type Section = {
+  title?: string,
+  body?: string
+}
+
+type Article = {
+  title: string,
+  header: string,
+  sidebar: Section,
+  body: string
+}
 
 // Dummy fetch function
-const fetchRandomWords = (): Promise<string> => {
+const fetchRandomWords = (): Promise<Article> => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      const text = paragraph(10);
-      resolve(text);
-    }, 500); // Delay of 1000ms (1 second)
+      resolve({
+        title: lorem(2,5),
+        sidebar: {
+          title: lorem (5,10),
+          body: lorem (50,75),
+        },
+        header: lorem(7,12),
+        body: paragraph(20)
+      })
+    }, 1000); // Delay of 1000ms (1 second)
   });
 };
 
 export const InfiniteScroll: React.FC = () => {
-  const [texts, setTexts] = useState<string[]>([]);
+  const [texts, setTexts] = useState<Article[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const loaderRef = useRef<HTMLDivElement | null>(null);
 
@@ -43,9 +65,19 @@ export const InfiniteScroll: React.FC = () => {
 
   return (
     <div>
-      {texts.map((textBlock, index) => (
+      {texts.map((article, index) => (
         <article key={index} style={{border: '1px solid #ccc', padding: '20px', margin: '10px 0', borderRadius: '5px'}}>
-          <p>{textBlock}</p>
+        <div className="grid-container">
+          <div className="sidebar">
+            <h1>{article.sidebar.title}</h1>
+            <div>{article.sidebar.body}</div>
+          </div>
+          <div className="content">
+            <div className="title"><h1>{article.title}</h1></div>
+            <div className="header"><h2>{article.header}</h2></div>
+            <div className="body">{article.body}</div>
+          </div>
+        </div>
         </article>
       ))}
       <div ref={loaderRef} style={{ height: '20px', margin: '10px 0' }}>

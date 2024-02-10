@@ -1,8 +1,9 @@
-import { InfiniteScroll } from "./infinite";
+import { InfiniteScroll } from './infinite'
 
 export default function Page() {
-    return <>
+  return (
+    <>
       <InfiniteScroll />
     </>
-  }
-  
+  );
+}

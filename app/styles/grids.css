@@ -1,0 +1,41 @@
+.grid-menu {
+  display: grid;
+  grid-template-columns: auto 1fr; /* Adjusted to 15% for the sidebar as per your code */
+  width: 100%; /* Ensures the grid container does not shrink below 800px */
+}
+
+.grid-menu > :first-child {
+  padding: 20px;
+  text-align: left; /* Ensures content within the sidebar is left-aligned */
+  height: 100%;
+}
+
+.grid-menu > :nth-child(2) {
+  text-align: right; /* Ensures content within the content area is left-aligned */
+  height: 100%;
+}
+
+.grid-menu .topLevelMenu {
+  display: flex;
+  justify-content: flex-end; /* Align items to the right */
+  list-style: none; /* Remove default list styling */
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap; /* Ensure items wrap if there's not enough space */
+}
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 30% 1fr; /* 20% for the sidebar and the remainder for the content */
+    min-width: 800px;
+  }
+  
+  .sidebar {
+    padding: 20px; /* Padding around the content */
+  }
+  
+  .content {
+    padding: 20px; /* Padding around the content */
+    background-color: #fff; /* White background for the content area */
+  }

@@ -17,8 +17,6 @@ export default function RootLayout(props: React.PropsWithChildren) {
           <section className={styles.container}>
             <Megamenu />
             <header className={styles.header}>
-              <h1 className={styles.h1}>Syntapse + Next 14 + Redux</h1>
-              <h3>View the code on <a target="_blank" rel="noopener noreferrer" href="https://github.com/laurencefass/nextrtk/blob/main/README.md">github</a></h3>
               <img src="/logo.svg" className={styles.logo} alt="logo" />
             </header>
 

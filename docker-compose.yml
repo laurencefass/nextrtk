@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   node-app:
@@ -6,10 +6,10 @@ services:
     hostname: nextrtk
     container_name: nextrtk
     environment:
-    # ${VAR_XXX} are required system env vars - add them to ~./bashrc
-    - VIRTUAL_HOST=nextrtk.${LETSENCRYPT_HOST}
-    - LETSENCRYPT_HOST=nextrtk.${LETSENCRYPT_HOST}
-    - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+      # ${VAR_XXX} are required system env vars - add them to ~./bashrc
+      - VIRTUAL_HOST=nextrtk.${LETSENCRYPT_HOST}
+      - LETSENCRYPT_HOST=nextrtk.${LETSENCRYPT_HOST}
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
     expose:
       - "3000"
     volumes:
@@ -17,10 +17,10 @@ services:
     working_dir: /app
     # note on installing new packages: always install or do anything npm related
     # from inside the container as it is running a higher version than the host
-    # command: tail -f /dev/null
-    command: "npm run dev"
+    command: tail -f /dev/null
+    # command: "npm run dev"
     networks:
-      main-net: 
+      main-net:
 
 networks:
   main-net:

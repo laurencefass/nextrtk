@@ -9,7 +9,6 @@ import styles from "@styles/layout.module.css";
 import "@styles/globals.css";
 
 export default function RootLayout(props: React.PropsWithChildren) {
-  console.log("root layout re-rendered", process.env.SECRET_KEY);
   return (
     <Providers>
       <html lang="en">

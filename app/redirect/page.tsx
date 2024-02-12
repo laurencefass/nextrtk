@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
 
-const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 export default async function Page() {
     await sleep(2000);

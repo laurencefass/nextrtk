@@ -22,6 +22,7 @@
 .topLevelMenu > li {
   position: relative;
   margin: 10px 1vw;
+  padding-right: 5px;
   font-size: calc(10px + 1vw);
 }
 
@@ -35,9 +36,22 @@
   font-size: 20px;
 }
 
+ul.dropdown {
+  list-style-type: none;
+  padding: 1px !important;
+  /* border: 2px solid blue; */
+  min-width: 200px;
+}
+
+.dropdown li {
+  width: 100%;
+  /* border: 2px solid red; */
+}
+
 @media (max-width: 768px) {
   .dropdown {
     right: 0;
+    font-size: calc(10px + 1vw)
   }
 }
 

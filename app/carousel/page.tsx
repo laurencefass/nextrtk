@@ -1,7 +1,6 @@
 // MyPage.tsx
 import React from 'react';
-import ImageCarousel from './ImageCarousel';
-import { serializePageInfos } from 'next/dist/build/utils';
+import ImageCarousel from '@components/carousel/ImageCarousel';
 
 type ImageData = {
   id: string;
@@ -20,7 +19,7 @@ const MyPage: React.FC = async () => {
   const random = Math.floor(Math.random() * 1000);
   const response = await fetch('https://picsum.photos/v2/list?limit=6');
   const data = await response.json();
-  const images =  data.map((item: ImageData) => item.download_url);
+  const images = data.map((item: ImageData) => item.download_url);
 
   await sleep(5000);
 

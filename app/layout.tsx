@@ -16,7 +16,7 @@ export default function RootLayout(props: React.PropsWithChildren) {
           <section className={styles.container}>
             <Megamenu />
             <header className={styles.header}>
-              <img src="/logo.svg" className={styles.logo} alt="logo" />
+              <img src="/syntapse-logo.png" className={styles.logo} alt="logo" />
             </header>
 
             <main className={styles.main}>{props.children}</main>

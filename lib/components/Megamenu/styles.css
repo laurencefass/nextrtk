@@ -1,3 +1,16 @@
+.branding {
+  display: flex; align-items: center
+}
+
+.branding img {
+  width: 50px; margin-right: 20px;
+}
+
+@media (max-width: 768px) {
+  .branding div {
+    display: none;
+  }
+}
 .megaMenu * {
   text-decoration: none !important;
   color: #704cb6;

@@ -33,9 +33,12 @@ const MegaMenu: React.FC = () => {
     <div className="block-container">
       <nav className="megaMenu">
         <div className="grid-menu">
-          <div>
-            <h2>Syntapse + Next 14 + Redux</h2>
-            <h4>View the code on <a target="_blank" rel="noopener noreferrer" href="https://github.com/laurencefass/nextrtk/blob/main/README.md">github</a></h4>
+          <div className="branding">
+            <img style={{ width: "50px" }} src="/syntapse-logo.png" alt="logo" />
+            <div>
+              <h2>Syntapse + Next 14 + Redux</h2>
+              <h4>View the code on <a target="_blank" rel="noopener noreferrer" href="https://github.com/laurencefass/nextrtk/blob/main/README.md">github</a></h4>
+            </div>
           </div>
           <ul className="topLevelMenu">
             {Object.entries(siteMap as MenuData).map(([section, items]) => {

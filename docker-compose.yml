@@ -17,8 +17,8 @@ services:
     working_dir: /app
     # note on installing new packages: always install or do anything npm related
     # from inside the container as it is running a higher version than the host
-    command: tail -f /dev/null
-    # command: "npm run dev"
+    # command: tail -f /dev/null
+    command: "npm run dev"
     networks:
       main-net:
 

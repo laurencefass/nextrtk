@@ -25,6 +25,16 @@ const siteMap: MenuData = {
     title: "Verify state",
     url: "/verify",
   },
+  "parallel routes": {
+    root: {
+      title: "parallel root",
+      url: "/parallel",
+    },
+    settings: {
+      title: "parallel settings",
+      url: "/parallel/settings",
+    },
+  },
   "cache tests": {
     fetch: {
       title: "Cached fetch",

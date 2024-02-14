@@ -27,12 +27,16 @@ const siteMap: MenuData = {
   },
   "parallel routes": {
     root: {
-      title: "parallel root",
+      title: "root",
       url: "/parallel",
     },
     settings: {
-      title: "parallel settings",
+      title: "settings",
       url: "/parallel/settings",
+    },
+    configure: {
+      title: "configure",
+      url: "/parallel/configure",
     },
   },
   "cache tests": {

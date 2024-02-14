@@ -11,6 +11,15 @@ body {
   overflow-x: hidden;
 }
 
+
+.parallel-nav { 
+  display: flex;
+}
+
+.parallel-nav * {
+  padding: 10px;
+}
+
 /* simple dark theme
 
 html,

@@ -1,5 +1,5 @@
 export default async function Page() {
     return <>
-        <h1>Slot 2 default.tsx</h1>
+        <h1>Slot 1 default</h1>
     </>
 }

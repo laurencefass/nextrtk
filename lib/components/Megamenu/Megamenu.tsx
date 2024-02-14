@@ -2,11 +2,12 @@ import React from 'react';
 import './styles.css';
 import '@styles/grids.css';
 import siteMap, { MenuItem, MenuSection, MenuData } from './sitemap';
+import Link from 'next/link';
 
 // Render a single menu item (leaf)
 const renderLeafItem = (item: MenuItem) => (
   <li key={item.url}>
-    <a href={item.url}>{item.title}</a>
+    <Link href={item.url}>{item.title}</Link>
   </li>
 );
 
@@ -18,7 +19,7 @@ const renderNestedItems = (items: MenuSection | MenuItem['options'] | undefined)
     <ul className="dropdown">
       {Object.entries(items).map(([key, item]) => (
         <li key={key}>
-          <a href={item.url}>{item.title}</a>
+          <Link href={item.url}>{item.title}</Link>
           {item.options && <ul className="submenu">{renderNestedItems(item.options)}</ul>}
         </li>
       ))}

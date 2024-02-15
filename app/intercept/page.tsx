@@ -8,6 +8,5 @@ export default function Page() {
             <Link href="/intercept/content/2">Item 2</Link>
             <Link href="/intercept/content/3">Item 3</Link>
       </nav>
-
     </>
 }

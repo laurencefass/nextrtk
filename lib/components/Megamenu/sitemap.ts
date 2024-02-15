@@ -29,17 +29,17 @@ const siteMap: MenuData = {
     title: "Page Tabs",
     url: "/pagetab",
   },
-  intercepts: {
-    title:"Intercepted routes",
-    url: "/intercept",
-  },
   modal: {
     title: "Modal",
     url: "/modal",
   },
   "parallel routes": {
-    root: {
-      title: "root",
+    intercepts: {
+      title:"Intercepted routes",
+      url: "/intercept",
+    },
+      root: {
+      title: "Route layouts",
       url: "/parallel",
     },
     settings: {

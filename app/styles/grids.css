@@ -1,6 +1,6 @@
 .grid-menu {
   display: grid;
-  grid-template-columns: auto 1fr; /* Adjusted to 15% for the sidebar as per your code */
+  grid-template-columns: auto 50%; /* Adjusted to 15% for the sidebar as per your code */
   width: 100%; /* Ensures the grid container does not shrink below 800px */
 }
 
@@ -13,6 +13,7 @@
 .grid-menu > :nth-child(2) {
   text-align: right; /* Ensures content within the content area is left-aligned */
   height: 100%;
+  background: lightblue
 }
 
 .grid-menu .topLevelMenu {

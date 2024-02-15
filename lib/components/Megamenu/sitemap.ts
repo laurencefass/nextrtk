@@ -30,8 +30,8 @@ const siteMap: MenuData = {
     url: "/pagetab",
   },
   intercepts: {
-    title:"Intercepted modal",
-    url: "/intercept/content",
+    title:"Intercepted routes",
+    url: "/intercept",
   },
   modal: {
     title: "Modal",

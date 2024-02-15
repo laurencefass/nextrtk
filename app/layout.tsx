@@ -17,6 +17,7 @@ export default function RootLayout(props: React.PropsWithChildren) {
             <Megamenu />
             <header className={styles.header}>
               <img src="/syntapse-logo.png" className={styles.logo} alt="logo" />
+              <h4>View the code on <a target="_blank" rel="noopener noreferrer" href="https://github.com/laurencefass/nextrtk/blob/main/README.md">github</a></h4>
             </header>
 
             <main className={styles.main}>{props.children}</main>

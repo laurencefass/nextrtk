@@ -1,25 +1,20 @@
-import Link from 'next/link'
-import { Nav } from "./nav";
-
 import "@styles/globals.css"
 import ReactMarkdown from 'react-markdown';
 
 const markdownText = `
 # Default.tsx
-- This page is displayed when url path cannot be fully resolved by all parallel slots.
+- If present, this file will render when a slot cannot resolve the url path.
+- If not present, Next will return a 404 for the entire route.
+- default.js improves user feedback and helps to organise sub-routes
 
 ## Explanation
-- Slot 1 does not have a configure path but it can render a default.js for any missing paths
-- Slot 2 does not have a settings path but will return a 404 as it has no default.js 
-
-## Top tip
-- In most cases its a good idea to include a default.js file for all sub-paths in a parallel route
+- Slot 1 will render default.js. 
+- Slot 2 will return a 404 error 
 `
 
 
 export default async function Page() {
     return <>
         <ReactMarkdown className="text-container">{markdownText}</ReactMarkdown>
-        <Nav />
     </>
 }

@@ -1,15 +1,6 @@
 // MyPage.tsx
 import React from 'react';
-import ImageCarousel from '@components/carousel/ImageCarousel';
-
-type ImageData = {
-  id: string;
-  author: string;
-  width: number;
-  height: number;
-  url: string;
-  download_url: string;
-};
+import { ImageCarousel, ImageData } from '@components/carousel/ImageCarousel';
 
 const sleep = (ms: number) => new Promise(resolve => {
   setTimeout(resolve, ms);

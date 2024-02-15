@@ -25,6 +25,18 @@ const siteMap: MenuData = {
     title: "Verify state",
     url: "/verify",
   },
+  pagetab: {
+    title: "Page Tabs",
+    url: "/pagetab",
+  },
+  intercepts: {
+    title:"Intercepted modal",
+    url: "/intercept/content",
+  },
+  modal: {
+    title: "Modal",
+    url: "/modal",
+  },
   "parallel routes": {
     root: {
       title: "root",

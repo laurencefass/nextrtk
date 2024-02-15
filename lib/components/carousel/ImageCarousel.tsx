@@ -9,7 +9,16 @@ type ImageCarouselProps = {
   images: string[]; // Array of image URLs
 };
 
-const ImageCarousel: React.FC<ImageCarouselProps> = ({ images }) => {
+export type ImageData = {
+  id: string;
+  author: string;
+  width: number;
+  height: number;
+  url: string;
+  download_url: string;
+};
+
+export const ImageCarousel: React.FC<ImageCarouselProps> = ({ images }) => {
   const [activeIndex, setActiveIndex] = useState(0); // State to keep track of the current slide
 
   const selectSlide = (index: number) => {
@@ -47,4 +56,3 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ images }) => {
   );
 };
 
-export default ImageCarousel;

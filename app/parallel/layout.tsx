@@ -1,4 +1,5 @@
 import ReactMarkdown from "react-markdown"
+import { Nav } from "./nav";
 
 const markdownText = `
 # Parallel Routes
@@ -22,6 +23,7 @@ export default function Layout({
   return (
     <>
       <ReactMarkdown className="text-container">{markdownText}</ReactMarkdown>
+      <Nav />
       {children}
       {slot1}
       {slot2}

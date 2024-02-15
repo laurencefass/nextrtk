@@ -5,7 +5,7 @@
 }
 
 .grid-menu > :first-child {
-  padding: 20px;
+  padding: 1vmin;
   text-align: left; /* Ensures content within the sidebar is left-aligned */
   height: 100%;
 }

@@ -5,7 +5,7 @@ export function Nav() {
     return <>
         <div className="parallel-nav">
             <div>
-                <Link href="/parallel"><h2>Reload root page</h2></Link>
+                <Link href="/parallel"><h2>Reset route</h2></Link>
             </div>
             <div>
                 <h2>Soft (Next) Links</h2>

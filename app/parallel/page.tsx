@@ -1,11 +1,15 @@
-import Link from 'next/link'
-import { Nav } from "./nav";
-
 import "@styles/globals.css"
+import ReactMarkdown from "react-markdown"
+
+const markdownText = `
+# Page.tsx
+- This is the top level parent for parallel child slots
+- It will render provided all slots can resolve the url
+- If one or more slots cannot render, then default.js will render instead
+`
 
 export default async function Page() {
-    return <>
-        <h1>root Page.tsx</h1>
-        <Nav />
-    </>
+    return <div>
+        <ReactMarkdown className="text-container">{markdownText}</ReactMarkdown>
+    </div>
 }

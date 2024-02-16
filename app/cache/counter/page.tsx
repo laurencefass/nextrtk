@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 let counter = 0;
 
 // force dynamic to override default Next JS production max-age
-export const dynamic = 'auto'
+// export const dynamic = 'force-dynamic'
 export const revalidate = 5;
 
 setInterval(() => {

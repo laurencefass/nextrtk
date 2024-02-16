@@ -1,5 +1,4 @@
 // force dynamic to override default Next JS production max-age
-export const dynamic = 'force-dynamic'
 export const revalidate = 10;
 
 const getData = (ms: number) => new Promise<string>((resolve) => {

@@ -4,14 +4,14 @@
     "baseUrl": ".",
     "paths": { 
       "@/*": ["./*"], 
-      "@components": ["./lib/components"],
-      "@components/*": ["./lib/components/*"],
-      "@styles/*": ["./app/styles/*"],
-      "@slices/*": ["./lib/redux/slices/*"],
-      "@middleware/*": ["./lib/middleware/*"],
+      "@components": ["./lib/components"], // supports index.ts
+      "@components/*": ["./lib/components/*"], // append modules
+      "@styles/*": ["./app/styles/*"], // append css filename
+      "@slices/*": ["./lib/redux/slices/*"], // append modules
+      "@middleware/*": ["./lib/middleware/*"], // append modules
       "@middleware": ["./lib/middleware"],
-      "@utils": ["./app/utils"], // supports index.ts
-      "@utils/*": ["./app/utils/*"],
+      "@utils": ["./lib/utils"], // supports index.ts
+      "@utils/*": ["./lib/utils/*"], // append modules
     },
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],

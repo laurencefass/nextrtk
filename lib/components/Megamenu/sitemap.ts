@@ -25,14 +25,14 @@ const siteMap: MenuData = {
     title: "Verify state",
     url: "/verify",
   },
-  pagetab: {
-    title: "Page Tabs",
-    url: "/pagetab",
-  },
   "parallel routes": {
     intercepts: {
       title: "Intercepted routes",
       url: "/intercept",
+    },
+    sharetabs: {
+      title: "Shareable tabs",
+      url: "/sharetabs",
     },
     root: {
       title: "Route layouts",

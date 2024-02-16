@@ -1,10 +1,7 @@
 // MyPage.tsx
 import React from 'react';
 import { ImageCarousel, ImageData } from '@components/carousel/ImageCarousel';
-
-const sleep = (ms: number) => new Promise(resolve => {
-  setTimeout(resolve, ms);
-});
+import { sleep } from '@utils/common';
 
 const MyPage: React.FC = async () => {
   const random = Math.floor(Math.random() * 1000);

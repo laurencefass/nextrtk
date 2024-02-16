@@ -1,0 +1,25 @@
+.page-tab-container {
+  border: 2px solid lightgray;
+  min-width: 100%;
+  min-height: 500px;
+  padding: 20px;
+}
+
+.page-tabs {
+  display: flex;
+  margin-bottom: 20px;
+  border: 2px solid gray;
+  padding: 10px; /* Add padding to account for child margins visually */
+}
+
+.page-tabs * {
+  text-decoration: none !important;
+  background: lightgray;
+  padding: 10px;
+  margin: 5px; /* Margins will still work, but now inside the flex container */
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

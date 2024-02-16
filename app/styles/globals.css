@@ -30,20 +30,6 @@ p, div {
   color: white;
 } */
 
-.page-tab-container {
-  border: 2px solid lightgray;
-  min-width: 100%;
-  min-height: 500px;
-  padding: 20px;
-}
-
-.page-tabs * {
-  text-decoration: none !important;
-  background: lightgray;
-  padding: 10px;
-  margin: 5px;
-}
-
 html {
   min-width: 100vw;
 }

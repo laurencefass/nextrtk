@@ -1,7 +1,8 @@
-import Link from 'next/link'
 import "./styles.css"
-import { Nav } from './nav'
+import { PageTabs } from '@components/PageTabs/pagetabs';
 import ReactMarkdown from 'react-markdown'
+
+export const dynamic = 'force-dynamic';
 
 const text = `
 # Shareable Tabs using parallel routes
@@ -16,11 +17,13 @@ export default function Layout({ children, tabs, info }: {
   tabs: React.ReactNode,
   info: React.ReactNode,
 }) {
+  const tabLabels = ["Settings", "Configure", "Admin"];
+
   return <>
     <ReactMarkdown className="text-container">{text}</ReactMarkdown>
     <div>{info}</div>
     <div className="page-tab-container">
-      <Nav />
+      <PageTabs tabs={tabLabels} />
       <div className="page-tab-panel">
         <div>{tabs}</div>
       </div>

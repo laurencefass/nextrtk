@@ -3,6 +3,7 @@
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { getPaths } from '@utils/client'
+import { ImageCarousel } from '@/lib/components/carousel/ImageCarousel';
 
 function NavigationEvents() {
   const pathname = usePathname()
@@ -16,13 +17,14 @@ function NavigationEvents() {
   }, [pathname, searchParams])
 
   return <>
+    <h1>Article {slugs[2]}</h1>
     {slugs && <div>{JSON.stringify(slugs, null, 2)}</div>}
   </>
 }
 
 export function Content() {
   return <>
-    <h1>Article</h1>
     <NavigationEvents />
+    <ImageCarousel/>
   </>
 }

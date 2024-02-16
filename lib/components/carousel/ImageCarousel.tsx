@@ -1,12 +1,13 @@
 'use client'
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from 'next/image';
 import './styles.css'
+import { getImageUrls } from "@/lib/utils/common";
 
 // Define the props type for images
 type ImageCarouselProps = {
-  images: string[]; // Array of image URLs
+  images?: string[]; // Array of image URLs
 };
 
 export type ImageData = {
@@ -20,17 +21,29 @@ export type ImageData = {
 
 export const ImageCarousel: React.FC<ImageCarouselProps> = ({ images }) => {
   const [activeIndex, setActiveIndex] = useState(0); // State to keep track of the current slide
-
+  const [imageSet, setImageSet] = useState<Array<string>>([]);
+  
   const selectSlide = (index: number) => {
     setActiveIndex(index); // Update the active slide index
   };
 
+  useEffect(()=>{
+    (async () => {
+      const i = await getImageUrls(6)
+      setImageSet(i);
+    })();
+  });
+
+  if(!imageSet || imageSet.length === 0) {
+    return <h1>Loading images...</h1>
+  }
+
   return (
     <div className="carousel-container">
       <div className="active-slide">
-        {images.length > 0 && (
+        {imageSet.length > 0 && (
           <img
-            src={images[activeIndex]}
+            src={imageSet[activeIndex]}
             alt={`Slide ${activeIndex}`}
             width="100%"
             height={500}
@@ -38,7 +51,7 @@ export const ImageCarousel: React.FC<ImageCarouselProps> = ({ images }) => {
         )}
       </div>
       <div className="thumbnails">
-        {images.map((image, index) => (
+        {imageSet.map((image, index) => (
           <Image
             key={index}
             src={image}

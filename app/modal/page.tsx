@@ -12,7 +12,7 @@ export default async function Page() {
         <div>Close button will rewind to previous route url</div>
         <div>Back button will close the modal and forward will reopen</div>
         <br/>
-        <ImageCarousel images={images}/>
+        <ImageCarousel/>
     </Modal>
     </>
 }

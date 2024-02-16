@@ -50,16 +50,22 @@
   align-items: center;
 }
 
+.main {
+  margin-bottom: 20px;
+}
+
 .footer {
   grid-area: footer;
   font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrapmg;
 }
 
-.footer span {
+.footer * {
   margin-right: 10px;
+  font-size: calc(10px + 2vmin);
 }
 
 .nav {

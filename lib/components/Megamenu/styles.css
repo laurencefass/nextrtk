@@ -64,8 +64,12 @@ ul.dropdown {
 
 @media (max-width: 768px) {
   .dropdown {
-    right: 0;
+    right: 0px;
     font-size: calc(10px + 1vw);
+  }
+
+  .topLevelMenu > li {
+    right: 20px;
   }
 }
 

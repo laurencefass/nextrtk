@@ -54,8 +54,3 @@
   border: 10px solid rgb(46, 51, 51);
   overflow-y: auto;
 }
-
-.modal img {
-  object-fit: contain;
-  /* aspect-ratio: 16 / 9;  */
-}

@@ -35,7 +35,7 @@ const MegaMenu: React.FC = () => {
       <nav className="megaMenu">
         <div className="grid-menu">
           <div className="branding">
-            <img style={{ width: "50px" }} src="/syntapse-logo.png" alt="logo" />
+            <img style={{ width: "50px" }} src="/syntapse-logo-2.png" alt="logo" />
             <div>
               <h2>Syntapse + Next 14 + Redux</h2>
               <h4>View the code on <a target="_blank" rel="noopener noreferrer" href="https://github.com/laurencefass/nextrtk/blob/main/README.md">github</a></h4>

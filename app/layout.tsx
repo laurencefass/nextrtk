@@ -1,11 +1,13 @@
 /* Components */
 import { Providers } from "@/lib/redux/providers";
 import Megamenu from '@components/Megamenu/Megamenu';
+
 import 'dotenv/config';
 
 /* Instruments */
 import styles from "@styles/layout.module.css";
 import "@styles/globals.css";
+import NProgress from "./nprogress";
 
 export default function RootLayout(props: React.PropsWithChildren) {
   return (
@@ -18,9 +20,8 @@ export default function RootLayout(props: React.PropsWithChildren) {
               <img src="/syntapse-logo-2.png" className={styles.logo} alt="logo" />
               <h4>View the code on <a target="_blank" rel="noopener noreferrer" href="https://github.com/laurencefass/nextrtk/blob/main/README.md">github</a></h4>
             </header>
-
+            <NProgress />
             <main className={styles.main}>{props.children}</main>
-
             <footer className={styles.footer}>
               <span>Learn </span>
               <a

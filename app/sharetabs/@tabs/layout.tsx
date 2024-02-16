@@ -1,12 +1,10 @@
 import Link from 'next/link'
 import "@styles/globals.css"
 
-export default function Layout({ children, container }: { 
-    children: React.ReactNode,
-    container: React.ReactNode,
+export default function Layout({ children }: {
+  children: React.ReactNode,
 }) {
-    return <>
-      <div>@container layout</div>
-      {children}
-    </>
+  return <>
+    {children}
+  </>
 }

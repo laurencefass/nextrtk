@@ -66,7 +66,7 @@ export const InfiniteScroll: React.FC = () => {
   return (
     <div>
       {texts.map((article, index) => (
-        <article key={index} style={{ border: '1px solid #ccc', padding: '20px', margin: '10px 0', borderRadius: '5px' }}>
+        <article key={index} className="article">
           <div className="grid-container">
             <div className="sidebar">
               <h1>{article.sidebar.title}</h1>

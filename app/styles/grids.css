@@ -13,7 +13,7 @@
 .grid-menu > :nth-child(2) {
   text-align: right; /* Ensures content within the content area is left-aligned */
   height: 100%;
-  background: lightblue
+  background: lightblue;
 }
 
 .grid-menu .topLevelMenu {
@@ -25,18 +25,25 @@
   flex-wrap: wrap; /* Ensure items wrap if there's not enough space */
 }
 
-
 .grid-container {
-    display: grid;
-    grid-template-columns: 30% 1fr; /* 20% for the sidebar and the remainder for the content */
-    min-width: 800px;
+  display: grid;
+  grid-template-columns: 30% 1fr; /* 20% for the sidebar and the remainder for the content */
+  min-width: 800px;
+}
+
+/* Media query for screens smaller than or equal to 600px */
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: 1fr; /* 1-column layout for mobile screens */
+    min-width: 0; /* Remove min-width or set it to a suitable value for mobile devices */
   }
-  
-  .sidebar {
-    padding: 20px; /* Padding around the content */
-  }
-  
-  .content {
-    padding: 20px; /* Padding around the content */
-    background-color: #fff; /* White background for the content area */
-  }
+}
+
+.sidebar {
+  padding: 10px; /* Padding around the content */
+}
+
+.content {
+  padding: 10px; /* Padding around the content */
+  background-color: #fff; /* White background for the content area */
+}

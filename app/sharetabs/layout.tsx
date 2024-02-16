@@ -1,16 +1,23 @@
 import Link from 'next/link'
 import "./styles.css"
 import { Nav } from './nav'
+import ReactMarkdown from 'react-markdown'
 
+const text = `
+# Shareable Tabs using parallel routes
+See [ Next JS parallel routes](https://nextjs.org/docs/app/building-your-application/routing/parallel-routes) for a detailed explanation
+## Notes:
+- The browser address bar shows the current selection
+- The @info slot is included to observe what happens when routing within @tabs paths
+- The root automatically redirects to the first tab as an expected behaviour but this can be reprogrammed
+`
 export default function Layout({ children, tabs, info }: {
   children: React.ReactNode,
   tabs: React.ReactNode,
   info: React.ReactNode,
 }) {
   return <>
-    <h1>Shareable Tabs using parallel routes</h1>
-    <p>See <a href="https://nextjs.org/docs/app/building-your-application/routing/parallel-routes">Next JS parallel routes</a> for a detailed explanation</p>
-    <p>The @info slot is included to observe what happens when routing within @tabs paths</p>
+    <ReactMarkdown className="text-container">{text}</ReactMarkdown>
     <div>{info}</div>
     <div className="page-tab-container">
       <Nav />

@@ -1,35 +1,58 @@
-import React from 'react';
+'use client'
+
+import React, { useEffect, useState } from 'react';
 import './styles.css';
 import '@styles/grids.css';
 import siteMap, { MenuItem, MenuSection, MenuData } from './sitemap';
 import Link from 'next/link';
 
-// Render a single menu item (leaf)
-const renderLeafItem = (item: MenuItem) => (
-  <li key={item.url}>
-    <Link href={item.url}>{item.title}</Link>
-  </li>
-);
-
-// Render a section or a nested item with potential dropdowns
-const renderNestedItems = (items: MenuSection | MenuItem['options'] | undefined) => {
-  if (!items) return null; // Handle undefined items
-
-  return (
-    <ul className="dropdown">
-      {Object.entries(items).map(([key, item]) => (
-        <li key={key}>
-          <Link href={item.url}>{item.title}</Link>
-          {item.options && <ul className="submenu">{renderNestedItems(item.options)}</ul>}
-        </li>
-      ))}
-    </ul>
-  );
-};
-
-
 // Assuming siteMap is of type MenuData
 const MegaMenu: React.FC = () => {
+  // State to control the visibility of dropdowns
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  useEffect(() => {
+    console.log("dropdownOpen", dropdownOpen);
+  }, [dropdownOpen]);
+
+  // Function to toggle dropdown visibility
+  const closeDropdown = () => {
+    setDropdownOpen(false);
+  }
+
+  const onMouseEnter = () => {
+    setDropdownOpen(true);
+  }
+
+  const onMouseLeave = () => {
+    setDropdownOpen(false);
+  }
+
+  // Modify renderLeafItem to accept the closeDropdown function
+  const renderLeafItem = (item: MenuItem) => (
+    <li key={item.url}>
+      <Link href={item.url} onClick={closeDropdown}>{item.title}</Link>
+    </li>
+  );
+
+  // Pass closeDropdown to renderNestedItems as well, applying it to each Link
+  const renderNestedItems = (items: MenuSection | MenuItem['options'] | undefined) => {
+    if (!items) return null;
+    if (!dropdownOpen) {
+      return null;
+    }
+    return <>
+      <ul onMouseLeave={onMouseLeave} className="dropdown">
+        {Object.entries(items).map(([key, item]) => (
+          <li key={key}>
+            <Link href={item.url} onClick={closeDropdown}>{item.title}</Link>
+            {item.options && <ul className="submenu">{renderNestedItems(item.options)}</ul>}
+          </li>
+        ))}
+      </ul>
+    </>
+  };
+
   return (
     <div className="block-container">
       <nav className="megaMenu">
@@ -49,10 +72,9 @@ const MegaMenu: React.FC = () => {
               }
               // If it's a MenuSection, render the section with potential nested items
               return (
-                <li key={section}>
+                <li onMouseEnter={onMouseEnter} key={section}>
                   <span>{section.charAt(0).toUpperCase() + section.slice(1)}</span>
                   {renderNestedItems(items as MenuItem['options'])}
-
                 </li>
               );
             })}

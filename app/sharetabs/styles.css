@@ -8,8 +8,12 @@
 .page-tabs {
   display: flex;
   margin-bottom: 20px;
-  border: 2px solid gray;
+  border: 2px solid lightgray;
   padding: 10px; /* Add padding to account for child margins visually */
+}
+
+.tab-active {
+  border-bottom: 5px solid rgb(124, 98, 167);
 }
 
 .page-tabs * {

@@ -1,13 +1,12 @@
 /* Components */
 import { Providers } from "@/lib/redux/providers";
 import Megamenu from '@components/Megamenu/Megamenu';
+import NProgress from "./nprogress";
 
 import 'dotenv/config';
 
-/* Instruments */
 import styles from "@styles/layout.module.css";
 import "@styles/globals.css";
-import NProgress from "./nprogress";
 
 export default function RootLayout(props: React.PropsWithChildren) {
   return (

@@ -6,7 +6,7 @@
       "@/*": ["./*"], 
       "@components": ["./lib/components"], 
       "@components/*": ["./lib/components/*"], 
-      "@styles/*": ["./app/styles/*"], 
+      "@styles/*": ["./styles/*"], 
       "@slices/*": ["./lib/redux/slices/*"],
       "@middleware/*": ["./lib/middleware/*"],
       "@utils/*": ["./lib/utils/*"],

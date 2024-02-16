@@ -1,0 +1,59 @@
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(5px);
+  }
+}
+
+@keyframes modalFadeOut {
+  from {
+    opacity: 1;
+    backdrop-filter: blur(5px);
+  }
+  to {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+}
+
+.modal-backdrop {
+  /* Common styles */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal-backdrop.opening {
+  animation: modalFadeIn 1s forwards;
+}
+
+.modal-backdrop.closing {
+  animation: modalFadeOut 1s forwards;
+}
+
+.modal {
+  width: 90%; /* Width relative to the viewport width */
+  max-width: 800px;
+  min-height: 50%; /* Height relative to the viewport height */
+  background-color: white; /* Background color of the modal */
+  padding: 10px; /* Padding inside the modal */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Optional: Add shadow for better visibility */
+  z-index: 1001; /* Ensure the modal is above the backdrop */
+  border: 10px solid rgb(46, 51, 51);
+}
+
+.modal img {
+  object-fit: contain;
+  /* aspect-ratio: 16 / 9;  */
+}

@@ -29,16 +29,12 @@ const siteMap: MenuData = {
     title: "Page Tabs",
     url: "/pagetab",
   },
-  modal: {
-    title: "Modal",
-    url: "/modal",
-  },
   "parallel routes": {
     intercepts: {
-      title:"Intercepted routes",
+      title: "Intercepted routes",
       url: "/intercept",
     },
-      root: {
+    root: {
       title: "Route layouts",
       url: "/parallel",
     },
@@ -66,6 +62,10 @@ const siteMap: MenuData = {
     },
   },
   components: {
+    modal: {
+      title: "Modal",
+      url: "/modal",
+    },
     carousel: {
       title: "Image Carousel",
       url: "/carousel",

@@ -1,9 +1,0 @@
-/* src/App.css */
-.game {
-    position: relative;
-    width: calc(100vw - 20px);
-    box-sizing: border-box;
-    height: 50vh; 
-    border: 5px solid red;
-    background-color: #f0f0f0; /* Or any background */
-  }

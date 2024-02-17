@@ -8,6 +8,7 @@ import { getImageUrls } from "@/lib/utils/common";
 // Define the props type for images
 type ImageCarouselProps = {
   images?: string[]; // Array of image URLs
+  count?: number;
 };
 
 export type ImageData = {
@@ -19,19 +20,22 @@ export type ImageData = {
   download_url: string;
 };
 
-export const ImageCarousel: React.FC<ImageCarouselProps> = ({ images }) => {
-  const [activeIndex, setActiveIndex] = useState(0); // State to keep track of the current slide
-  const [imageSet, setImageSet] = useState<Array<string>>([]);
+export const ImageCarousel: React.FC<ImageCarouselProps> = ({ images, count }) => {
+  const [activeIndex, setActiveIndex] = useState(0); 
+  const [imageSet, setImageSet] = useState<Array<string>>(images ? images : []);
   
   const selectSlide = (index: number) => {
-    setActiveIndex(index); // Update the active slide index
+    setActiveIndex(index); 
   };
 
   useEffect(()=>{
-    (async () => {
-      const i = await getImageUrls(6)
-      setImageSet(i);
-    })();
+    if (!images || !images.length) {
+      (async () => {
+        const i = await getImageUrls(count ? count : 6)
+        if (i.length)
+          setImageSet(i);
+      })();  
+    }
   });
 
   if(!imageSet || imageSet.length === 0) {

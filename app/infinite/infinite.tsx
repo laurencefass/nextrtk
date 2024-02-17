@@ -2,7 +2,7 @@
 
 import { title } from 'process';
 import React, { useState, useEffect, useRef } from 'react';
-import { sentence, paragraph, lorem } from 'txtgen';
+import { sentence, paragraph, lorem, article } from 'txtgen';
 
 import '@styles/grids.css'
 
@@ -26,10 +26,10 @@ const fetchRandomWords = (): Promise<Article> => {
         title: lorem(3, 5),
         sidebar: {
           title: lorem(2, 4),
-          body: lorem(50, 75),
+          body: lorem(25, 50),
         },
         header: lorem(7, 12),
-        body: paragraph(20)
+        body: article(1)
       })
     }, 1000); // Delay of 1000ms (1 second)
   });
@@ -75,6 +75,10 @@ export const InfiniteScroll: React.FC = () => {
             <div className="content">
               <div className="title"><h1>{article.title}</h1></div>
               <div className="header"><h2>{article.header}</h2></div>
+              <img
+                src={`https://picsum.photos/seed/${index}/500/400`}
+                height={400}
+              />
               <div className="body">{article.body}</div>
             </div>
           </div>

@@ -36,7 +36,7 @@ export const ImageCarousel: React.FC<ImageCarouselProps> = ({ images, count }) =
           setImageSet(i);
       })();  
     }
-  });
+  }, []);
 
   if(!imageSet || imageSet.length === 0) {
     return <h1>Loading images...</h1>

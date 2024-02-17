@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { getPaths } from '@utils/client'
 import { ImageCarousel } from '@/lib/components/carousel/ImageCarousel';
 
-function NavigationEvents() {
+function Article() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const [url, setUrl] = useState<string>();
@@ -19,12 +19,16 @@ function NavigationEvents() {
   return <>
     <h1>Article {slugs[2]}</h1>
     {slugs && <div>{JSON.stringify(slugs, null, 2)}</div>}
-  </>
+    {slugs && <img
+      src={`https://picsum.photos/seed/${slugs[2]}/600/400`}
+      height={400}
+    />}
+    {/* <ImageCarousel/> */}
+    </>
 }
 
 export function Content() {
   return <>
-    <NavigationEvents />
-    <ImageCarousel/>
+    <Article />
   </>
 }

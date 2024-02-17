@@ -2,9 +2,11 @@ import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 
 const text = `# Intercepted routes
-- Links open a dialog and update the URL. Traversing browser history renders modals.
 - Intercepted routes make use of parallel routes and slots.
-- The same URL in a new tab or session will open the same content in main. It will re-render in main on router navigation.
+- These links open a modal and update the address bar.
+- Closing the modal updates the address bar to the route parent. 
+- Traversing back and forth through browser history renders modals.
+- Opening the URL in a new tab or window displays the content on the main page.
 `
 
 export default function Page() {0

@@ -2,18 +2,38 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": { 
-      "@/*": ["./*"], 
-      "@components": ["./lib/components"], 
-      "@components/*": ["./lib/components/*"], 
-      "@styles/*": ["./styles/*"], 
-      "@slices/*": ["./lib/redux/slices/*"],
-      "@middleware/*": ["./lib/middleware/*"],
-      "@utils/*": ["./lib/utils/*"],
-      "@middleware": ["./lib/middleware"], 
+    "paths": {
+      "@/*": [
+        "./*"
+      ],
+      "@components": [
+        "./lib/components"
+      ],
+      "@components/*": [
+        "./lib/components/*"
+      ],
+      "@styles/*": [
+        "./styles/*"
+      ],
+      "@slices/*": [
+        "./lib/redux/slices/*"
+      ],
+      "@middleware/*": [
+        "./lib/middleware/*"
+      ],
+      "@utils/*": [
+        "./lib/utils/*"
+      ],
+      "@middleware": [
+        "./lib/middleware"
+      ]
     },
     "target": "ESNext",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -26,8 +46,20 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "plugins": [{ "name": "next" }]
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next.prod/types/**/*.ts",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

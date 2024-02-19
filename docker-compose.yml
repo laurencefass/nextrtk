@@ -1,22 +1,44 @@
 version: "3"
 
+# execute all npm commands (including npm i) from INSIDE the 
+# container as it is running a higher version than docker host
+
 services:
-  node-app:
+  next.prod:
     image: node:18.17.0
-    hostname: nextrtk
-    container_name: nextrtk
+    hostname: next.prod
+    container_name: next.prod
     environment:
       # ${VAR_XXX} are required system env vars - add them to ~./bashrc
-      - VIRTUAL_HOST=nextrtk.${LETSENCRYPT_HOST}
-      - LETSENCRYPT_HOST=nextrtk.${LETSENCRYPT_HOST}
+      - VIRTUAL_HOST=nextprod.${LETSENCRYPT_HOST}
+      - LETSENCRYPT_HOST=nextprod.${LETSENCRYPT_HOST}
       - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
     expose:
       - "3000"
     volumes:
       - .:/app
+      - ./.next.prod:/app/.next
     working_dir: /app
-    # note on installing new packages: always install or do anything npm related
-    # from inside the container as it is running a higher version than the host
+    # command: tail -f /dev/null
+    command: "npm run start"
+    networks:
+      main-net:
+
+  next.dev:
+    image: node:18.17.0
+    hostname: next.dev
+    container_name: next.dev
+    environment:
+      # ${VAR_XXX} are required system env vars - add them to ~./bashrc
+      - VIRTUAL_HOST=nextdev.${LETSENCRYPT_HOST}
+      - LETSENCRYPT_HOST=nextdev.${LETSENCRYPT_HOST}
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+    expose:
+      - "3000"
+    volumes:
+      - .:/app
+      - ./.next.dev:/app/.next
+    working_dir: /app
     # command: tail -f /dev/null
     command: "npm run dev"
     networks:

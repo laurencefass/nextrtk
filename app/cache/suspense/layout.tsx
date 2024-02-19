@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Suspense } from "react"
 import ReactMarkdown from "react-markdown";
 
@@ -8,13 +9,14 @@ const text = `
 - Suspense boundary placeholder will only render every 5 seconds and not on each refresh
 `;
 
+
 export default function Layout(props: React.PropsWithChildren) {
+  console.log("rendering suspense layout");
   return <>
     <ReactMarkdown className="text-container">{text}</ReactMarkdown>
     <button><a href="/cache/suspense">Refresh route</a></button>
-    <Suspense fallback={<h1>Loading...</h1>}>
+    <Suspense key={Math.random()} fallback={<h1>Loading...</h1>}>
       {props.children}
     </Suspense>
-    {Math.random().toFixed(4)}
   </>
 }

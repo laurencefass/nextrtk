@@ -11,7 +11,7 @@ setInterval(() => {
 }, 1000)
 
 export default async function Server() {
-  console.log('Page component rendeded on the server');
+  console.log('Page component rendered on the server');
   let users = await readFromFile("users.json");
 
   return <>

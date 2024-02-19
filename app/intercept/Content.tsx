@@ -16,13 +16,16 @@ function Article() {
       setSlugs(getPaths(pathname))
   }, [pathname, searchParams])
 
+  if (!slugs || !slugs.length)
+    return null;
+
   return <>
     <h1>Article {slugs[2]}</h1>
-    {slugs && <div>{JSON.stringify(slugs, null, 2)}</div>}
-    {slugs && <img
+    {<div>{JSON.stringify(slugs, null, 2)}</div>}
+    <img
       src={`https://picsum.photos/seed/${slugs[2]}/600/400`}
       height={400}
-    />}
+    />
     {/* <ImageCarousel/> */}
     </>
 }

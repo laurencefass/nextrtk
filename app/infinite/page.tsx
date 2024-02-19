@@ -4,8 +4,7 @@ export default function Page() {
   return (
     <>
       <h1>Simple Infinite Scroll</h1>
-      <p>Included to test out the IntersectionObserver API. Dummy content generated on the fly</p>
-      <p>Loading data into a simple css grid layout to present as 'articles'.</p>
+      <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API">IntersectionObserver API </a>test. Set the number of articles to reload at each intersection</p>
       <InfiniteScroll />
     </>
   );

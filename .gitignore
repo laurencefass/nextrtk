@@ -11,10 +11,13 @@
 
 # next.js
 /.next/
+/.next.prod/
+/.next.dev/
 /out/
 
 # production
 /build
+core 
 
 # misc
 .DS_Store

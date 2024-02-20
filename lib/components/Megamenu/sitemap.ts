@@ -66,6 +66,10 @@ const siteMap: MenuData = {
       title: "Modal",
       url: "/modal",
     },
+    accordion: {
+      title: "Accordion",
+      url: "/accordion",
+    },
     carousel: {
       title: "Image Carousel",
       url: "/carousel",

@@ -52,6 +52,11 @@
   font-size: 20px;
 }
 
+.dropdown.align-right {
+  right: 0; /* Align to the right edge of its parent */
+  left: auto; /* Override any default left alignment */
+}
+
 ul.dropdown {
   list-style-type: none;
   padding: 1px !important;

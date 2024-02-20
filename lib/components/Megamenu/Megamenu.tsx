@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './styles.css';
 import '@styles/grids.css';
 import siteMap, { MenuItem, MenuSection, MenuData } from './sitemap';
@@ -35,22 +35,61 @@ const MegaMenu: React.FC = () => {
     </li>
   );
 
+
+  interface DropdownProps {
+    items: MenuItem['options'];
+  }
+
+  const Dropdown: React.FC<DropdownProps> = ({ items }) => {
+    const dropdownRef = useRef<HTMLUListElement>(null);
+    const [alignRight, setAlignRight] = useState(false);
+
+    useEffect(() => {
+      if (dropdownRef.current) {
+        const dropdownRect = dropdownRef.current.getBoundingClientRect();
+        const rightSpace = window.innerWidth - dropdownRect.right;
+        const shouldAlignRight = rightSpace < 200; // Adjust based on your dropdown width or specific needs
+        setAlignRight(shouldAlignRight);
+      }
+    }, []); // Empty dependency array means this runs once on mount
+
+    useEffect(() => {
+      // Function to calculate and set alignment
+      const checkAndSetAlignment = () => {
+        if (dropdownRef.current) {
+          const dropdownRect = dropdownRef.current.getBoundingClientRect();
+          const rightSpace = window.innerWidth - dropdownRect.right;
+          const shouldAlignRight = rightSpace < 200;
+          setAlignRight(shouldAlignRight);
+        }
+      };
+
+      checkAndSetAlignment();
+
+      // Re-check alignment whenever the dropdown is opened or the window is resized
+      window.addEventListener('resize', checkAndSetAlignment);
+      return () => window.removeEventListener('resize', checkAndSetAlignment);
+    }, [dropdownOpen]); // Assuming dropdownOpen state is lifted up or passed as a prop
+
+    return (
+      <ul ref={dropdownRef} className={`dropdown ${alignRight ? 'align-right' : ''}`}>
+        {Object.entries(items || {}).map(([key, item]) => (
+          <li key={key}>
+            <Link href={item.url}>{item.title}</Link>
+            {item.options && <Dropdown items={item.options} />}
+          </li>
+        ))}
+      </ul>
+    );
+  };
+
   // Pass closeDropdown to renderNestedItems as well, applying it to each Link
   const renderNestedItems = (items: MenuSection | MenuItem['options'] | undefined) => {
     if (!items) return null;
     if (!dropdownOpen) {
       return null;
     }
-    return <>
-      <ul onMouseLeave={onMouseLeave} className="dropdown">
-        {Object.entries(items).map(([key, item]) => (
-          <li key={key}>
-            <Link href={item.url} onClick={closeDropdown}>{item.title}</Link>
-            {item.options && <ul className="submenu">{renderNestedItems(item.options)}</ul>}
-          </li>
-        ))}
-      </ul>
-    </>
+    return <Dropdown items={items} />;
   };
 
   return (

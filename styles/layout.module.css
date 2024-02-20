@@ -5,7 +5,7 @@
     "header"
     "main"
     "footer";
-  grid-template-rows: auto auto 1fr 36px;
+  grid-template-rows: auto auto 1fr 40px;
   align-items: center;
   overflow-x: auto;
   box-sizing: border-box;

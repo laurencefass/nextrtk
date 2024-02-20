@@ -39,7 +39,7 @@
   position: relative;
   margin: 10px 1vw;
   padding-right: 5px;
-  font-size: calc(10px + 1vw);
+  font-size: calc(15px + 0.25vw);
 }
 
 .dropdown {

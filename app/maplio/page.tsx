@@ -1,7 +1,7 @@
+import Accordion from "@components/layout/Accordion/Accordion";
 import ReactMarkdown from "react-markdown";
 
 const markdownText = `
-# Maplio
 Maplio is a proof of concept platform for enabling multi-user realtime location based activities. It uses socket.io to tracks multiple users in realtime using session based boundaries.
 
 ### Origins
@@ -19,7 +19,10 @@ If "pacman in the park" and "IRL zombie survival" sound like potentially fun act
 
 export default function Deck() {
     return <>
-        <ReactMarkdown className="text-container">{markdownText}</ReactMarkdown>
+        <Accordion open={false} title="Maplio (click to read more)">
+            <ReactMarkdown className="text-container">{markdownText}</ReactMarkdown>
+        </Accordion>
+        <h2>Proof of concept for a hybrid geoaware mobile activity platform combining elements of Google navigator, Pokemon Go, Uber, and Whatsapp</h2>
         <a href="/deck.pdf" download><button>Download this file</button></a>
         <iframe style={{ height: "100vh" }} src="/deck.pdf" />
     </>

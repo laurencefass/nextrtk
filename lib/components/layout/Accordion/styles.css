@@ -1,20 +1,20 @@
 .accordion {
-    border: 1px solid #ccc;
-    min-width: 100%;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    border: 5px solid lightblue;
-  }
-  
-  .accordion-header {
-    min-width:100%;
-    padding: 10px;
-    background-color: #f7f7f7;
-    cursor: pointer;
-    border-bottom: 1px solid #eee;
-  }
-  
-  .accordion-content {
-    padding: 10px;
-    background-color: #fff;
-  }
+  border: 1px solid #ccc;
+  min-width: 100%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  border: 2px solid lightgray;
+}
+
+.accordion-header {
+  min-width: 100%;
+  padding: 10px;
+  background-color: #f7f7f7;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.accordion-content {
+  padding: 10px;
+  background-color: #fff;
+}

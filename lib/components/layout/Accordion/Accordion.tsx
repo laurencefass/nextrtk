@@ -6,10 +6,11 @@ import './styles.css'; // Assuming you'll create a separate CSS file
 interface AccordionProps {
   title: string;
   children: ReactNode;
+  open?: boolean
 }
 
-export const Accordion: React.FC<AccordionProps> = ({ title, children }) => {
-  const [isOpen, setIsOpen] = useState(false);
+export const Accordion: React.FC<AccordionProps> = ({ title, children, open = false }) => {
+  const [isOpen, setIsOpen] = useState(open);
 
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
@@ -18,7 +19,7 @@ export const Accordion: React.FC<AccordionProps> = ({ title, children }) => {
   return (
     <div className="accordion">
       <div className="accordion-header" onClick={toggleAccordion}>
-        <h2>{title}</h2>
+        <h1>{title}</h1>
       </div>
       {isOpen && <div className="accordion-content">{children}</div>}
     </div>

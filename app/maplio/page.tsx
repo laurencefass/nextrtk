@@ -1,4 +1,4 @@
-import Accordion from "@components/layout/Accordion/Accordion";
+import { Accordion } from "@components/layout/Accordion/Accordion";
 import ReactMarkdown from "react-markdown";
 
 const markdownText = `

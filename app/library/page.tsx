@@ -1,6 +1,6 @@
 import ArticleManager from '@components/Articles/Articles'
 import AuthorManager from '@components/Authors/Authors'
-import Accordion from '@components/layout/Accordion/Accordion'
+import { Accordion } from '@components/layout/Accordion/Accordion'
 
 import "@styles/globals.css"
 

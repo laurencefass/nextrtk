@@ -20,11 +20,16 @@ const siteMap: MenuData = {
   qrcode: {
     title: "QR code",
     url: "/qrcode",
-  },  
+  },
   login: {
-    title: "Login test",
+    title: "RTK Login test",
     url: "/login",
   },
+  auth: {
+    title: "cookie auth",
+    url: "/auth",
+  },
+
   verify: {
     title: "Verify state",
     url: "/verify",

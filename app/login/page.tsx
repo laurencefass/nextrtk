@@ -2,7 +2,7 @@ import ReactMarkdown from 'react-markdown';
 import Session from "./Session";
 
 const markdownText = `
-# User login and registration
+# RTK login
 
 Login, Logout and Registration are easily controlled using powerful primitives for complex state transitions.
 

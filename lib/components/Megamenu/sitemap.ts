@@ -17,6 +17,10 @@ const siteMap: MenuData = {
     title: "Home",
     url: "/",
   },
+  qrcode: {
+    title: "QR code",
+    url: "/qrcode",
+  },  
   login: {
     title: "Login test",
     url: "/login",

@@ -3,7 +3,7 @@ import { AccordionContainer, AccordionSection } from "@components/layout/Accordi
 export default function Page() {
     return <>
         <h1>React accordion</h1>
-        <h2>Extendable React component with no external libraries</h2>
+        <h2>Zero dependency extendable React component</h2>
         <h2>Accordion with single open section</h2>
         <AccordionContainer allowMultipleOpen={false}>
             <AccordionSection title="Section 1">

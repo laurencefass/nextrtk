@@ -8,6 +8,7 @@ export default async function Page() {
   
     return <>
     <Modal>
+        <h2>Zero dependency extendable React component</h2>
         <div>Modal content is passed in as props.children</div>
         <div>Close button will rewind to previous route url</div>
         <div>Back button will close the modal and forward will reopen</div>

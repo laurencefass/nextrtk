@@ -1,19 +1,11 @@
 import { redirect } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server";
 import { sleep } from "./lib/utils/common";
+import { validateCookieSessionKey } from "./lib/utils/server";
+import { cookies } from "next/headers";
 
 function extractSlugs(urlPath: string): string[] {
   return urlPath.split("/").filter((slug) => slug.length > 0);
-}
-
-function isAuthenticated(request: NextRequest) {
-  console.log("process.env.SESSION_KEY", process.env.SESSION_KEY);
-  let sessionKey = request.cookies.get("SESSION_KEY")?.value;
-  console.log("isAuthenticated.sessionKey", sessionKey);
-  if (sessionKey === process.env.SESSION_KEY) {
-    return true;
-  }
-  return false;
 }
 
 const slug = process.env.NODE_ENV === "development" ? "dev" : "prod";
@@ -35,17 +27,18 @@ export default async function middleware(request: NextRequest) {
     return response;
   }
 
-  if (request.nextUrl.pathname.startsWith("/auth")) {
+  if (request.nextUrl.pathname.startsWith("/test")) {
     return response;
   }
 
   console.log("middleware", request.url);
 
-  if (!isAuthenticated(request)) {
+  const cookieStore = cookies();
+  const key = cookieStore.get("SESSION_KEY");
+  if (!validateCookieSessionKey(key)) {
     const url = new URL(request.url);
-    console.log("authentication failed", `${siteUrl}/auth`);
-    await sleep(2000);
-    return NextResponse.redirect(`${siteUrl}/auth`);
+    console.log("user not logged in", `${url}`);
+    // return NextResponse.redirect(`${siteUrl}/test`);
   }
 
   // superceded by route segment cache constants

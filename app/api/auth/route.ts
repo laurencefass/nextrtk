@@ -2,16 +2,11 @@
 import { NextResponse } from "next/server";
 import { serialize } from "cookie";
 import { cookies, headers } from "next/headers";
-import { decrypt, encrypt } from "@/lib/utils/server";
-
-export var loggedIn: boolean = false;
-
-export const login = (value?: boolean) => {
-  if (value !== undefined) loggedIn = value;
-  return loggedIn;
-};
+import { decrypt, encrypt, validateCookieSessionKey } from "@/lib/utils/server";
 
 type Role = "admin" | "authenticated";
+
+export const dynamic = "force-dynamic";
 
 type User = {
   name: string;
@@ -26,8 +21,6 @@ const users: Array<User> = [
     role: "admin",
   },
 ];
-
-export const dynamic = "force-dynamic";
 
 function authorize(username: string, password: string): User | undefined {
   const user = users.find((user) => user.name === username);
@@ -51,18 +44,24 @@ export async function GET(req: Request) {
   const cookieStore = cookies();
 
   const key = cookieStore.get("SESSION_KEY");
-  console.log("key", key);
-  if (key?.value) {
-    const sessionKey: string = decrypt(key.value);
-    console.log("encrypted sessionKey", key?.value);
-    console.log("decrypted sessionKey", sessionKey);
-    if (key?.value && sessionKey === process.env.SESSION_KEY) {
-      return NextResponse.json({
-        status: 200,
-        data: "authorized",
-      });
-    }
+  if (validateCookieSessionKey(key)) {
+    return NextResponse.json({
+      status: 200,
+      data: "authorized",
+    });
   }
+
+  // console.log("key", key);
+  // if (key?.value) {
+  //   const sessionKey: string = decrypt(key.value);
+  //   if (key?.value && sessionKey === process.env.SESSION_KEY) {
+  //     return NextResponse.json({
+  //       status: 200,
+  //       data: "authorized",
+  //     });
+  //   }
+  // }
+
   return NextResponse.json({
     status: 401,
     data: "unauthorized",

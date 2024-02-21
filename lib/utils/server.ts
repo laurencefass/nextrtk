@@ -21,18 +21,22 @@ export const writeToFile = (filename: string, data: any) => {
   }
 };
 
-import {
-  randomBytes,
-  createCipheriv,
-  createDecipheriv,
-  CipherKey,
-} from "crypto";
-
 // Initialization vector should be 16 bytes for AES-256-CBC
 const IV_LENGTH: number = 16;
 const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY as string;
-const key = crypto.randomBytes(32);
-const iv = crypto.randomBytes(16);
+const key = Buffer.alloc(32, 1); // Creates a buffer of 32 bytes filled with 1's for AES-256
+const iv = Buffer.alloc(16, 2); // Creates a buffer of 16 bytes filled with 2's for the IV
+
+export function validateCookieSessionKey(key: any): boolean {
+  if (!key || key.length == 0) return false;
+
+  console.log("key", key);
+  if (key?.value) {
+    const sessionKey: string = decrypt(key.value);
+    if (key?.value && sessionKey === process.env.SESSION_KEY) return true;
+  }
+  return false;
+}
 
 //Encrypting text
 export function encrypt(text: string) {

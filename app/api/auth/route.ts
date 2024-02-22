@@ -35,9 +35,6 @@ function authenticate(type: string, username: string, password: string) {
 }
 
 export async function POST(req: Request, res: NextResponse) {
-  const cookieStore = cookies();
-  const headersList = headers();
-
   const { type, credentials } = await req.json();
 
   let user;
@@ -74,7 +71,6 @@ export async function POST(req: Request, res: NextResponse) {
         throw "unrecognised auth command";
     }
   } catch (error) {
-    console.log("error", error);
     return NextResponse.json({
       status: 401,
       data: "unauthorized",

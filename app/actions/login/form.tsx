@@ -68,11 +68,11 @@ export default function LoginForm() {
     return <>
         <h3>{message}</h3>
         <div style={{ display: "flex" }}>
-            name: <input onChange={onNameChange} type="text" id="username" name="username" required />
-            password: <input onChange={onPasswordChange} type="password" id="password" name="password" required />
-            <button onClick={() => onLogin(name, password)}>login</button>
-            <button onClick={() => onRegister(name, password)}>register</button>
-            <button onClick={() => onLogout()}>logout</button>
+            name: <input disabled={loggedIn} onChange={onNameChange} type="text" id="username" name="username" required />
+            password: <input disabled={loggedIn} onChange={onPasswordChange} type="password" id="password" name="password" required />
+            <button disabled={loggedIn} onClick={() => onLogin(name, password)}>login</button>
+            <button disabled={loggedIn} onClick={() => onRegister(name, password)}>register</button>
+            <button disabled={!loggedIn} onClick={() => onLogout()}>logout</button>
             <button onClick={() => onCheck()}>check</button>
         </div>
         <h3>login status: {loggedIn ? "logged in" : "logged out"}</h3>

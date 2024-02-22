@@ -28,7 +28,7 @@ export function getUserFromCookie(key: string) {
   const cookieStore = cookies();
   const cookie = cookieStore.get("SESSION_KEY");
   if (cookie) {
-    console.log("test page key", key);
+    console.log(" getUserFromCookie", key);
     return getUserFromToken(cookie.value);
   }
   return null;
@@ -36,7 +36,7 @@ export function getUserFromCookie(key: string) {
 
 export function getUserFromToken(token: string) {
   const user = users.find((user) => user.token === token);
-  if (!user) throw "session token not recognised";
+  // if (!user) throw "session token not recognised";
   return user;
 }
 

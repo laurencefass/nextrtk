@@ -21,7 +21,7 @@ export const Providers: React.FC<ProviderWithStateProps> = ({ children, initialS
   if (!storeRef.current) {
     // Create the store instance the first time this renders
     storeRef.current = makeStore();
-    if (initialState) {
+    if (process.env.NODE_ENV === "production" && initialState) {
       storeRef.current.dispatch(initialiseAppState(initialState))
     }
   }

@@ -113,8 +113,7 @@ const Auth = () => {
         type="text"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        placeholder="123 "
-        required
+        placeholder="123"
       />
       <input
         disabled={loggedIn}
@@ -122,7 +121,6 @@ const Auth = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         placeholder="123"
-        required
       />
       <button
         disabled={loggedIn}
@@ -147,6 +145,7 @@ const Auth = () => {
       >
         Check
       </button>
+
       <div style={{ marginTop: "20px" }}>
         <div style={{ marginBottom: "20px" }}>Log in and out and visit these pages for different actions</div>
         <button><a href="/auth/test">Test authorised page</a></button>

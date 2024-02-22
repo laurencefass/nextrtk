@@ -11,8 +11,7 @@ import {
 
 export const dynamic = "force-dynamic";
 
-// validate a session key
-export async function GET(req: Request) {
+function validate() {
   const user = getUserFromCookie("SESSION_KEY");
   if (user) {
     return NextResponse.json({
@@ -26,13 +25,23 @@ export async function GET(req: Request) {
   });
 }
 
+// validate a session key
+export async function GET(req: Request) {
+  return validate();
+}
+
+function authenticate(type: string, username: string, password: string) {
+  console.log("authenticate TBD");
+}
+
 export async function POST(req: Request, res: NextResponse) {
   const cookieStore = cookies();
   const headersList = headers();
 
   const { type, credentials } = await req.json();
-  console.log(type, credentials);
+
   let user;
+  console.log(type, credentials);
 
   try {
     switch (type) {

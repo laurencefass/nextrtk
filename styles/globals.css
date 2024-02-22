@@ -73,6 +73,11 @@ a {
   padding: 5px;
 }
 
+.spaced,
+.spaced > * {
+  margin: 10px;
+}
+
 .block-container > * {
   width: 100%;
   border: 2px solid rgb(204, 204, 204);

@@ -22,29 +22,29 @@ const siteMap: MenuData = {
     url: "/qrcode",
   },
   login: {
-    title: "RTK Login test",
+    title: "RTK Login",
     url: "/login",
   },
   auth: {
-    title: "cookie auth",
+    title: "cookie login",
     url: "/auth",
   },
 
   verify: {
-    title: "Verify state",
+    title: "verify state",
     url: "/verify",
   },
   "parallel routes": {
     intercepts: {
-      title: "Intercepted routes",
+      title: "intercepted routes",
       url: "/intercept",
     },
     sharetabs: {
-      title: "Shareable tabs",
+      title: "shareable tabs",
       url: "/sharetabs",
     },
     root: {
-      title: "Route layouts",
+      title: "route layouts",
       url: "/parallel",
     },
     settings: {
@@ -58,39 +58,39 @@ const siteMap: MenuData = {
   },
   "cache tests": {
     fetch: {
-      title: "Cached fetch",
+      title: "cached fetch",
       url: "/cache/fetch",
     },
     counter: {
-      title: "Cached counter",
+      title: "cached counter",
       url: "/cache/counter",
     },
     suspense: {
-      title: "Cached suspense",
+      title: "cached suspense",
       url: "/cache/suspense",
     },
   },
   components: {
     modal: {
-      title: "Modal",
+      title: "modal",
       url: "/modal",
     },
     accordion: {
-      title: "Accordion",
+      title: "accordion",
       url: "/accordion",
     },
     carousel: {
-      title: "Image Carousel",
+      title: "image Carousel",
       url: "/carousel",
     },
     infinite: {
-      title: "Infinite Scroll",
+      title: "infinite Scroll",
       url: "/infinite",
     },
   },
-  "Entity CRUD": {
+  "entity CRUD": {
     entity: {
-      title: "Simple CRUD",
+      title: "simple CRUD",
       url: "/users/client",
     },
     "rsc entity": {
@@ -98,11 +98,11 @@ const siteMap: MenuData = {
       url: "/users/server",
     },
     relational: {
-      title: "Relational CRUD",
+      title: "relational CRUD",
       url: "/library",
     },
   },
-  "TODO lists": {
+  "todo lists": {
     simple: {
       title: "simple todo",
       url: "/thunk/todo",

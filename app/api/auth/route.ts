@@ -16,8 +16,8 @@ type User = {
 
 const users: Array<User> = [
   {
-    name: "admin",
-    password: "admin",
+    name: "admin123",
+    password: "admin123",
     role: "admin",
   },
 ];
@@ -32,6 +32,7 @@ function authorize(username: string, password: string): User | undefined {
 function register(username: string, password: string) {
   const user = users.find((user) => user.name === username);
   if (user) throw "user already signed up";
+  if (users.length >= 10) throw "maximum 10 users allowed"
   users.push({
     name: username,
     password: password,

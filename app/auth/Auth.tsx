@@ -82,9 +82,9 @@ const Auth = () => {
   This provides a site wide login and registration facility. A browser cookie is set for authenticated sessions
   and is automatically included in every request. Next middleware checks for the cookie across all route requests
   ## Features
-  - Default user is admin/admin
-  - New users can be registered and login/out
-  - Basic flow checks for duplicate users and password mismatches
+  - Default user is admin123/admin123
+  - New users can be registered and login/out but will reset on page load
+  - Basic auth validation checks for duplicate users and password mismatches
   - The check button will check for authorisation and return a message
   - The cookie is encrypted/decrypted on the server
   - User data will reset on each page load
@@ -94,7 +94,7 @@ const Auth = () => {
     <ReactMarkdown className="text-container">{markdownText}</ReactMarkdown>
     <div className="bordered" style={{ padding: "40px 20px" }}>
       <h2>Login and Register</h2>
-      <div>{message}</div>
+      <h3>{message}</h3>
       <input
         disabled={loggedIn}
         type="text"

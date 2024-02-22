@@ -1,11 +1,21 @@
 'use client'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { login, logout, register, check } from "./actions"
 
 export default function LoginForm() {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
+    const [message, setMessage] = useState<string | undefined>("");
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        (async () => {
+            await check();
+            setLoading(false);
+        })();
+    }, []);
 
     const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value);
@@ -16,34 +26,56 @@ export default function LoginForm() {
     };
 
     async function onLogin(userName: string, password: string) {
-        await login(name, password)
+        try {
+            const message = await login(name, password)
+            console.log(message);
+            setLoggedIn(true);
+        } catch (e: any) {
+            const message = (e as Error).message;
+            setMessage(message);
+        }
     }
 
     async function onRegister(userName: string, password: string) {
-        await register(name, password)
+        try {
+            const message = await register(name, password)
+            console.log(message);
+            setMessage(message);
+        } catch (e: any) {
+            const message = (e as Error).message;
+            setMessage(message);
+        }
+
     }
 
     async function onLogout() {
-
+        let message = await logout();
+        console.log(message);
+        setLoggedIn(false);
+        setMessage(undefined);
     }
 
     async function onCheck() {
+        let message = await check();
+        console.log(message);
+        setMessage(message);
+    }
 
+    if (loading) {
+        return <h1>Loading...</h1>
     }
 
     return <>
+        <h3>{message}</h3>
         <div style={{ display: "flex" }}>
-            <form>
-                name: <input onChange={onNameChange} type="text" id="username" name="username" required />
-                password: <input onChange={onPasswordChange} type="password" id="password" name="password" required />
-                <button onClick={() => onLogin(name, password)}>login</button>
-                <button onClick={() => onRegister(name, password)}>register</button>
-            </form>
-            <form>
-                <button onClick={() => onLogout()}>logout</button>
-                <button onClick={() => onCheck()}>check</button>
-            </form>
+            name: <input onChange={onNameChange} type="text" id="username" name="username" required />
+            password: <input onChange={onPasswordChange} type="password" id="password" name="password" required />
+            <button onClick={() => onLogin(name, password)}>login</button>
+            <button onClick={() => onRegister(name, password)}>register</button>
+            <button onClick={() => onLogout()}>logout</button>
+            <button onClick={() => onCheck()}>check</button>
         </div>
+        <h3>login status: {loggedIn ? "logged in" : "logged out"}</h3>
     </>
 
 }

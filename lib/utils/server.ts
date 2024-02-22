@@ -28,9 +28,9 @@ const key = Buffer.alloc(32, 1); // Creates a buffer of 32 bytes filled with 1's
 const iv = Buffer.alloc(16, 2); // Creates a buffer of 16 bytes filled with 2's for the IV
 
 export function validateCookieSessionKey(key: any): boolean {
-  if (!key || key.length == 0) return false;
+  console.log("validateCookieSessionKey", key);
 
-  console.log("key", key);
+  if (!key || key.length == 0) return false;
   if (key?.value) {
     const sessionKey: string = decrypt(key.value);
     if (key?.value && sessionKey === process.env.SESSION_KEY) return true;

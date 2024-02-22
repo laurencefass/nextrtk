@@ -1,68 +1,25 @@
 /* Core */
 import { NextResponse } from "next/server";
-import { serialize } from "cookie";
 import { cookies, headers } from "next/headers";
-import { decrypt, encrypt, validateCookieSessionKey } from "@/lib/utils/server";
-
-type Role = "admin" | "authenticated";
+import { encrypt } from "@/lib/utils/server";
+import {
+  authorizeUser,
+  getUserFromToken,
+  getUserFromCookie,
+  registerUser,
+} from "@/lib/utils/users";
 
 export const dynamic = "force-dynamic";
 
-type User = {
-  name: string;
-  password: string;
-  role: Role;
-};
-
-const users: Array<User> = [
-  {
-    name: "admin123",
-    password: "admin123",
-    role: "admin",
-  },
-];
-
-function authorize(username: string, password: string): User | undefined {
-  const user = users.find((user) => user.name === username);
-  if (!user) throw "user not found";
-  if (user.password !== password) throw "password is incorrect";
-  return user;
-}
-
-function register(username: string, password: string) {
-  const user = users.find((user) => user.name === username);
-  if (user) throw "user already signed up";
-  if (users.length >= 10) throw "maximum 10 users allowed"
-  users.push({
-    name: username,
-    password: password,
-    role: "authenticated",
-  });
-}
-
+// validate a session key
 export async function GET(req: Request) {
-  const headersList = headers();
-  const cookieStore = cookies();
-
-  const key = cookieStore.get("SESSION_KEY");
-  if (validateCookieSessionKey(key)) {
+  const user = getUserFromCookie("SESSION_KEY");
+  if (user) {
     return NextResponse.json({
       status: 200,
       data: "authorized",
     });
   }
-
-  // console.log("key", key);
-  // if (key?.value) {
-  //   const sessionKey: string = decrypt(key.value);
-  //   if (key?.value && sessionKey === process.env.SESSION_KEY) {
-  //     return NextResponse.json({
-  //       status: 200,
-  //       data: "authorized",
-  //     });
-  //   }
-  // }
-
   return NextResponse.json({
     status: 401,
     data: "unauthorized",
@@ -75,26 +32,34 @@ export async function POST(req: Request, res: NextResponse) {
 
   const { type, credentials } = await req.json();
   console.log(type, credentials);
+  let user;
 
   try {
     switch (type) {
       case "login":
-        const authorized = authorize(
-          credentials.username,
-          credentials.password
-        );
-        // authorize will throw errors so no need to check result
-        const eSessionKey: string = encrypt(process.env.SESSION_KEY as string);
-        console.log("session key", process.env.SESSION_KEY);
-        console.log("encrypted session key", eSessionKey);
-        cookies().set("SESSION_KEY", eSessionKey);
+        user = authorizeUser(credentials.username, credentials.password);
+        if (user) {
+          // authorize will throw errors so no need to check result
+          user.token = encrypt(user.name + Date.now().toString());
+          console.log("logging in user", user.name, user.token);
+          cookies().set({
+            name: "SESSION_KEY",
+            value: user.token as string,
+            sameSite: true,
+            httpOnly: true,
+          });
+        }
         break;
       case "register":
         cookies().delete("SESSION_KEY");
-        register(credentials.username, credentials.password);
+        registerUser(credentials.username, credentials.password);
         break;
       case "logout":
-        cookies().delete("SESSION_KEY");
+        user = getUserFromCookie("SESSION_KEY");
+        if (user) {
+          console.log("logging out user", user.name, user.token);
+          cookies().delete("SESSION_KEY");
+        }
         break;
       default:
         throw "unrecognised auth command";

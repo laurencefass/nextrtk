@@ -1,8 +1,7 @@
 'use client'
-
-import { selectAppMessage } from '@/lib/redux';
 import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
+import { Accordion } from "@components/layout/Accordion/Accordion";
 
 const Auth = () => {
   const [username, setUsername] = useState('');
@@ -46,8 +45,12 @@ const Auth = () => {
       const result = await response.json();
       if (result.status === 200) {
         setMessage(undefined);
-        login === true && register === false && setLoggedIn(true);
-        login === false && setLoggedIn(false);
+        if (login === true && register === false) {
+          setLoggedIn(true);
+        }
+        if (login === false) {
+          setLoggedIn(false);
+        }
       }
       if (result.status !== 200) {
         setMessage(`${result.data}: ${result.reason}`);
@@ -60,16 +63,22 @@ const Auth = () => {
   };
 
   async function apiFetch(onClick: boolean = false) {
-    let response = await fetch("/api/auth");
-    let data = await response.json();
-    if (data.status === 200) {
-      setLoggedIn(true);
-      if (onClick)
-        setMessage(data.data);
-    } else {
-      setMessage(data.data);
+    try {
+      let response = await fetch("/api/auth");
+      let data = await response.json();
+      if (response.ok) {
+        if (data.status === 200) {
+          setLoggedIn(true);
+          if (onClick)
+            setMessage(data.data);
+        } else {
+          setMessage(data.data);
+        }
+        console.log(data);
+      }
+    } catch (error) {
+      console.log(error);
     }
-    console.log(data);
   }
 
   if (loading) {
@@ -77,30 +86,34 @@ const Auth = () => {
   }
 
   const markdownText = `
-  # Secure encrypted cookie authentication
-
-  This provides a site wide login and registration facility. A browser cookie is set for authenticated sessions
-  and is automatically included in every request. Next middleware checks for the cookie across all route requests
-  ## Features
-  - Default user is admin123/admin123
-  - New users can be registered and login/out but will reset on page load
+  ## A site wide login and registration form.
+  ### Features
+  - Default users are for testing are 123/123 (admin) and 456/456 (authenticated)
+  - New users can be registered and login/out but will reset to defaults on page load
   - Basic auth validation checks for duplicate users and password mismatches
   - The check button will check for authorisation and return a message
-  - The cookie is encrypted/decrypted on the server
-  - User data will reset on each page load
+  - The test link will load another page that conditionally renders anonymous and authenticated content
+
+
+  ### Cookie notes  
+  - Cookies are same site and http only to reduce chance of XSS attack.
+  - Cookies by their nature will persist across windows, tabs and sessions.
+  - A unique encypted session token is issued to each unique login and removed/renewed on logout
+  - There is no expiry on the session cookie so will persist until manually removed or the user logs out.
   `;
 
   return <>
-    <ReactMarkdown className="text-container">{markdownText}</ReactMarkdown>
+    <Accordion title="Secure cookie based Login and Authentication (click to read more)">
+      <ReactMarkdown className="text-container">{markdownText}</ReactMarkdown>
+    </Accordion>
     <div className="bordered" style={{ padding: "40px 20px" }}>
-      <h2>Login and Register</h2>
       <h3>{message}</h3>
       <input
         disabled={loggedIn}
         type="text"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        placeholder="Username"
+        placeholder="123 "
         required
       />
       <input
@@ -108,7 +121,7 @@ const Auth = () => {
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
+        placeholder="123"
         required
       />
       <button
@@ -134,6 +147,11 @@ const Auth = () => {
       >
         Check
       </button>
+      <div style={{ marginTop: "20px" }}>
+        <div style={{ marginBottom: "20px" }}>Log in and out and visit these pages for different actions</div>
+        <button><a href="/auth/test">Test authorised page</a></button>
+        <button><a href="/auth/redirect">Test page redirect</a></button>
+      </div>
       <h3>login status: {loggedIn ? "logged in" : "logged out"}</h3>
     </div>
   </>;

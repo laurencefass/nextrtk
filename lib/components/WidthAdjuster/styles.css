@@ -1,0 +1,29 @@
+main {
+    width: 100% !important;
+}
+
+/* Apply box-sizing to all elements for consistent sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+/* Container for the adjustable-width div and slider */
+.width-adjuster-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* The adjustable-width div, potentially containing an iframe */
+.adjustable-width-div {
+  border: 1px solid #ccc;
+  margin: 20px 0;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Style for the slider input */
+.slider-input {
+  width: 40%;
+}

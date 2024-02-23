@@ -17,19 +17,24 @@ const siteMap: MenuData = {
     title: "Home",
     url: "/",
   },
+  authenticate: {
+    actions: {
+      title: "cookie auth (actions)",
+      url: "/actions/login",
+    },
+    api: {
+      title: "cookie auth (api)",
+      url: "/auth",
+    },
+    login: {
+      title: "client only (rtk)",
+      url: "/login",
+    },
+  },
   qrcode: {
     title: "QR code",
     url: "/qrcode",
   },
-  login: {
-    title: "RTK Login",
-    url: "/login",
-  },
-  auth: {
-    title: "cookie login",
-    url: "/auth",
-  },
-
   verify: {
     title: "verify state",
     url: "/verify",

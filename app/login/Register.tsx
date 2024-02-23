@@ -24,7 +24,6 @@ export const Register: React.FC = () => {
 
     return (
         <div>
-            <h1>Register a new user</h1>
             {isRegistering && <h2>Registering user...</h2>}
             {isRegistered && <h2>User Registered. Goto login!</h2>}
             <form onSubmit={handleRegister}>

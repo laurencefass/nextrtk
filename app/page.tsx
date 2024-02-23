@@ -23,7 +23,7 @@ const markdownText = `
 
 export default function IndexPage() {
   return <>
-    <div>
+    <div className="content">
       <ReactMarkdown className="text-container">{markdownText}</ReactMarkdown>
     </div>
     <div className="bordered">

@@ -1,10 +1,10 @@
 import ReactMarkdown from "react-markdown";
 import TodoWidget from "./TodoList";
+import { Accordion } from "@/lib/components/layout/Accordion/Accordion";
 
 const markdown = `
 ## Wait! what's happening here? ...
 
-# Redux-Saga and the saga design pattern
 Redux-Saga is not a design pattern in itself; rather, it's a library used in conjunction with Redux for managing side effects in applications built using React or any other framework. However, Redux-Saga is inspired by and implements the Saga design pattern, which is indeed a design pattern used for managing and handling long-lived transactions and side effects in a more controlled manner.
 
 # Saga Design Pattern
@@ -27,11 +27,11 @@ In summary, while Redux-Saga is not a design pattern but a library, it implement
 
 export default function TodoListPage() {
   return (
-    <>
-      <TodoWidget />
-      <div>
+    <div className="content">
+      <Accordion title="Todo list using Redux-Saga and the saga design pattern">
         <ReactMarkdown className="text-container">{markdown}</ReactMarkdown>
-      </div>
-    </>
+      </Accordion>
+      <TodoWidget />
+    </div>
   );
 }

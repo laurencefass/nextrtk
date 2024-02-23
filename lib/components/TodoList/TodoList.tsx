@@ -1,9 +1,9 @@
 
 'use client'
 
-import { 
-  updateValue, 
-  addTask,   
+import {
+  updateValue,
+  addTask,
   useSelector,
   useDispatch,
   selectTodos,
@@ -13,7 +13,7 @@ import {
 import ListItem from "./List"
 import React from "react";
 
-import "@styles/globals.css";
+import "@styles/todo.css";
 
 const TodoList = () => {
   const value = useSelector(selectTodoTaskValue);
@@ -30,32 +30,25 @@ const TodoList = () => {
     }
   };
 
-  return <div className="todos">
-      <div style={{ border: '2px solid gray', padding: '10px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-        <input
-          type="text"
-          placeholder="Enter task"
-          value={value}
-          onChange={handleChange}
-          onKeyDown={handleKeyEnter}
-        />
-        <button onClick={() => dispatch(addTask())}>Add</button>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column",
-          marginTop: "20px"
-        }}
-      >
-        {todos.length ? (
-          todos.map((todo) => <ListItem key={todo.id} {...todo} />)
-        ) : (
-          <h3>No todos...</h3>
-        )}
-      </div>
+  return <>
+    <div>
+      <input
+        type="text"
+        placeholder="Enter task"
+        value={value}
+        onChange={handleChange}
+        onKeyDown={handleKeyEnter}
+      />
+      <button onClick={() => dispatch(addTask())}>Add</button>
     </div>
+    <ul className="todo-list">
+      {todos.length ? (
+        todos.map((todo) => <ListItem key={todo.id} {...todo} />)
+      ) : (
+        <h3>No todos...</h3>
+      )}
+    </ul>
+  </>
 };
 
 export default TodoList;

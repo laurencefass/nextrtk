@@ -11,6 +11,8 @@ import {
     listenerTodoSelector
 } from '@slices/listenerTodoSlice';
 
+import "@styles/todo.css"
+
 const TodoList = () => {
     const { todos, status } = useSelector(listenerTodoSelector);
     const dispatch = useDispatch();
@@ -28,10 +30,10 @@ const TodoList = () => {
     }
 
     return <>
-        <ul>
+        <ul className="todo-list">
             {status == 'adding' && <h2>Async add in progress...</h2>}
             {todos.map((todo: Todo) => (
-                <li key={todo.id}>
+                <li className="todo-list-item" key={todo.id}>
                     {todo.title}
                     <button onClick={() => onDeleteTodo(todo.id)}>Delete</button>
                 </li>
@@ -58,8 +60,6 @@ export const TodoWidget = () => {
 
     return (
         <div>
-            <h1>Todo List (with RTK action listeners)</h1>
-            <p>Thunk free asynchronous fetch and add actions with action state UI</p>
             <input
                 type="text"
                 value={input}

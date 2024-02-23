@@ -103,7 +103,7 @@ const Auth = () => {
   `;
 
   return <>
-    <Accordion title="Secure cookie based Login and Authentication (click to read more)">
+    <Accordion title="Secure cookie based Login and Authentication">
       <ReactMarkdown className="text-container">{markdownText}</ReactMarkdown>
     </Accordion>
     <div className="bordered" style={{ padding: "40px 20px" }}>

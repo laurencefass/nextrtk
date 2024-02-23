@@ -1,0 +1,13 @@
+.todo-list-item {
+  width: 100%;
+  border: 2px solid gray;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding: 5px;
+}
+
+ul.todo-list {
+  padding-left: 0;
+}

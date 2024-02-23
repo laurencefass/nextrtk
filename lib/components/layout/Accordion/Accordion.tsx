@@ -83,6 +83,7 @@ export const Accordion: React.FC<AccordionProps> = ({ title, children, open = fa
     <div className="accordion">
       <div className="accordion-header" onClick={toggleAccordion}>
         <h2>{title}</h2>
+        {!isOpen && <div>click to read more</div>}
       </div>
       {isOpen && <div className="accordion-content">{children}</div>}
     </div>

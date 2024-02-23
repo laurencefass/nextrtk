@@ -2,10 +2,9 @@
 
 import ReactMarkdown from "react-markdown";
 import { TodoWidget } from "./TodoList";
+import { Accordion } from "@/lib/components/layout/Accordion/Accordion";
 
 const markdown = `
-## Todo list using RTK native createListenerMiddleware
-
 Redux Listener Middleware is a direct alternative to Redux-Saga and Redux-Observable for managing effects in Redux apps.
 
 It [contains the primitives](https://github.com/reduxjs/redux-toolkit/blob/03eafd5236f16574935cdf1c5958e32ee8cf3fbe/packages/toolkit/src/listenerMiddleware/tests/effectScenarios.test.ts) to create throttles, debounces, and other Saga functionality. 
@@ -34,11 +33,11 @@ In practice, many applications can benefit from using both thunks and listeners,
 
 export default function TodoListPage() {
   return (
-    <>
-      <TodoWidget />
-      <div>
+    <div className="content">
+      <Accordion title="Todo list using RTK native createListenerMiddleware">
         <ReactMarkdown className="text-container">{markdown}</ReactMarkdown>
-      </div>
-    </>
+      </Accordion>
+      <TodoWidget />
+    </div>
   );
 }

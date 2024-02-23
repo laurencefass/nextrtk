@@ -1,6 +1,5 @@
 'use client'
 
-import { usePathname } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
 var QRCode = require('qrcode')
 
@@ -17,19 +16,19 @@ const QRCodeGenerator: React.FC<QRCodeGeneratorProps> = ({ url }) => {
       if (!url)
         return;
 
-        // Generate QR code and set the resulting image source
-        QRCode.toDataURL(url, { margin: 1, width: 400 })
-          .then((dataUrl: string) => {
-            setQrSrc(dataUrl);
-          })
-          .catch((error: any) => {
-            console.error('Error generating QR code', error);
-            setQrSrc('');
-          });
+      // Generate QR code and set the resulting image source
+      QRCode.toDataURL(url, { margin: 1, width: 400 })
+        .then((dataUrl: string) => {
+          setQrSrc(dataUrl);
+        })
+        .catch((error: any) => {
+          console.error('Error generating QR code', error);
+          setQrSrc('');
+        });
     } catch (error) {
       console.log(error);
     }
-}, [url]);
+  }, [url]);
 
   return (
     <div>
@@ -56,10 +55,10 @@ const QRCodePage = () => {
   }, []);
 
   return (
-    <div>
+    <div className="content">
       <h1>QR Code Generator</h1>
       <h4>Scan this QR code with your mobile to link back to this page</h4>
-      <p>QR codes can be generated for any URL and point to anything</p>
+      <p>QR codes can be generated for any URL and redirect to any route on your site. They can also be generated for individual users, and to access behind paywalls etc</p>
       {url && <QRCodeGenerator url={url} />}
     </div>
   );

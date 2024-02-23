@@ -25,7 +25,6 @@ export const Login: React.FC = () => {
 
     return (
         <div>
-            <h1>User login</h1>
             {isLoggingOut && <h2>Logging out...</h2>}
             {isLoggingIn && <h2>Logging in...</h2>}
             {session.message && <h1>{session.message}</h1>}

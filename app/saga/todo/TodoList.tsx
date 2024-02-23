@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addTodo, deleteTodo, sagaTodoSelector } from '@slices/sagaTodoSlice';
 
+import "@styles/todo.css";
+
 const TodoList: React.FC = () => {
     const { todos, status } = useSelector(sagaTodoSelector);
     const dispatch = useDispatch();
@@ -14,9 +16,9 @@ const TodoList: React.FC = () => {
 
     return <>
         {status == "adding" && <h2>async adding a todo</h2>}
-        <ul>
+        <ul className="todo-list">
             {todos.map((todo) => (
-                <li key={todo.id}>
+                <li className="todo-list-item" key={todo.id}>
                     {todo.title}
                     <button onClick={() => dispatch(deleteTodo(todo.id))}>Remove</button>
                 </li>
@@ -42,8 +44,6 @@ export const TodoWidget: React.FC = () => {
 
     return (
         <div>
-            <h1>Todo List (with Redux-Saga)</h1>
-            <p>Thunk free asynchronous fetch and add actions with action state UI</p>
             <div>
                 <input
                     type="text"

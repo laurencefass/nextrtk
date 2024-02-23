@@ -148,8 +148,8 @@ const Auth = () => {
 
       <div style={{ marginTop: "20px" }}>
         <div style={{ marginBottom: "20px" }}>Log in and out and visit these pages for different actions</div>
-        <button><a href="/auth/test">Test authorised page</a></button>
-        <button><a href="/auth/redirect">Test page redirect</a></button>
+        <button><a target="_blank" href="/auth/test">Test authorised page</a></button>
+        <button><a target="_blank" href="/auth/redirect">Test page redirect</a></button>
       </div>
       <h3>login status: {loggedIn ? "logged in" : "logged out"}</h3>
     </div>

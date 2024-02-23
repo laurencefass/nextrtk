@@ -29,6 +29,7 @@ export default function LoginForm() {
         try {
             const message = await login(name, password)
             console.log(message);
+            setMessage(undefined);
             setLoggedIn(true);
         } catch (e: any) {
             const message = (e as Error).message;
@@ -40,12 +41,11 @@ export default function LoginForm() {
         try {
             const message = await register(name, password)
             console.log(message);
-            setMessage(message);
+            setMessage(message);    
         } catch (e: any) {
             const message = (e as Error).message;
             setMessage(message);
         }
-
     }
 
     async function onLogout() {

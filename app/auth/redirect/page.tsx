@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import {
     getUserFromCookie,
-} from "@/lib/utils/users";
+} from "@/lib/utils/auth";
 import { redirect } from "next/navigation";
 import { sleep } from "@/lib/utils/common";
 

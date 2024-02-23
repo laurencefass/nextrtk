@@ -30,7 +30,6 @@ main > div {
 
 main .content {
   max-width: 800px !important;
-  /* align-self: center; */
 }
 
 h1 {

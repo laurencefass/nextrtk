@@ -3,8 +3,8 @@ import Auth from "@components/Auth/Auth";
 
 export default function Page() {
     return <>
-        {/* <Modal> */}
-        <Auth />
-        {/* </Modal> */}
+        <Modal>
+            <Auth />
+        </Modal>
     </>
 }

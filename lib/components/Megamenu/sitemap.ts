@@ -20,14 +20,18 @@ const siteMap: MenuData = {
   authenticate: {
     actions: {
       title: "cookie auth (actions)",
-      url: "/actions/login",
+      url: "/actions/cookie-login",
+    },
+    jwt: {
+      title: "jwt auth (actions)",
+      url: "/actions/jwt-login",
     },
     api: {
       title: "cookie auth (api)",
       url: "/auth",
     },
     login: {
-      title: "client only (rtk)",
+      title: "client only flow (rtk)",
       url: "/login",
     },
   },

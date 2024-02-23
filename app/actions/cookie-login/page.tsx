@@ -20,6 +20,8 @@ const markdownText = `
 - There is no expiry on the session cookie so will persist until manually removed or the user logs out.
 `;
 
+export const dynamic = "force-dynamic";
+
 export default function Page() {
     return <>
         <Accordion title="Server Action based login and authentication">

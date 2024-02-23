@@ -1,26 +1,28 @@
 const fs = require("fs");
 const crypto = require("crypto");
 
-export const readFromFile = (filename: string) => {
+export const readFromFile = <T = any>(filename: string): Array<T> | null => {
   try {
-    const jsonData = fs.readFileSync("files/" + filename, "utf8");
-    return JSON.parse(jsonData);
+    const jsonData = fs.readFileSync(`files/${filename}`, "utf8");
+    return JSON.parse(jsonData) as Array<T>;
   } catch (err) {
     console.error("Error reading from file:", err);
     return null;
   }
 };
 
-export const writeToFile = (filename: string, data: any) => {
+export const writeToFile = <T = any>(
+  filename: string,
+  data: Array<T>
+): void => {
   try {
     const jsonData = JSON.stringify(data, null, 2);
-    fs.writeFileSync("files/" + filename, jsonData, "utf8");
-    console.log("Data written to file", jsonData, filename);
+    fs.writeFileSync(`files/${filename}`, jsonData, "utf8");
+    console.log("Data written to file", filename);
   } catch (err) {
     console.error("Error writing to file:", err);
   }
 };
-
 // Initialization vector should be 16 bytes for AES-256-CBC
 const IV_LENGTH: number = 16;
 const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY as string;

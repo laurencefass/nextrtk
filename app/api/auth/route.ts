@@ -2,13 +2,13 @@
 import { NextResponse } from "next/server";
 import { cookies, headers } from "next/headers";
 import { encrypt } from "@/lib/utils/server";
-import { authenticate, validate } from "@/lib/utils/auth";
+import { authenticateCookie, validateCookie } from "@/lib/utils/auth";
 
 export const dynamic = "force-dynamic";
 
 // validate a session key
 export async function GET(req: Request) {
-  const user = validate();
+  const user = validateCookie();
   if (user) {
     return NextResponse.json({
       status: 200,
@@ -25,7 +25,7 @@ export async function POST(req: Request, res: NextResponse) {
   const { type, credentials } = await req.json();
 
   try {
-    authenticate(type, credentials?.username, credentials?.password);
+    authenticateCookie(type, credentials?.username, credentials?.password);
   } catch (error) {
     return NextResponse.json({
       status: 401,

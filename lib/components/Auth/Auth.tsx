@@ -106,16 +106,16 @@ const Auth = () => {
     <Accordion title="Secure cookie based Login and Authentication">
       <ReactMarkdown className="text-container">{markdownText}</ReactMarkdown>
     </Accordion>
-    <div className="bordered" style={{ padding: "40px 20px" }}>
+    <div style={{ padding: "40px 20px" }}>
       <h3>{message}</h3>
-      <input
+      username: <input
         disabled={loggedIn}
         type="text"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         placeholder="123"
       />
-      <input
+      password: <input
         disabled={loggedIn}
         type="password"
         value={password}
@@ -148,8 +148,8 @@ const Auth = () => {
 
       <div style={{ marginTop: "20px" }}>
         <div style={{ marginBottom: "20px" }}>Log in and out and visit these pages for different actions</div>
-        <button><a target="_blank" href="/auth/test">Test authorised page</a></button>
-        <button><a target="_blank" href="/auth/redirect">Test page redirect</a></button>
+        <button><a target="_blank" href="/authtest/test">Test authorised page</a></button>
+        <button><a target="_blank" href="/authtest/redirect">Test page redirect</a></button>
       </div>
       <h3>login status: {loggedIn ? "logged in" : "logged out"}</h3>
     </div>

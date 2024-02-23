@@ -1,7 +1,9 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import { login, logout, register, check } from "./actions"
+import { authenticate, check } from "./actions"
+
+export const dynamic = "force-dynamic";
 
 export default function LoginForm() {
     const [name, setName] = useState("");
@@ -12,8 +14,12 @@ export default function LoginForm() {
 
     useEffect(() => {
         (async () => {
-            await check();
+            let status = await check();
             setLoading(false);
+            console.log("status", status);
+            if (status == "authorized") {
+                setLoggedIn(true);
+            }
         })();
     }, []);
 
@@ -27,8 +33,7 @@ export default function LoginForm() {
 
     async function onLogin(userName: string, password: string) {
         try {
-            const message = await login(name, password)
-            console.log(message);
+            const message = await authenticate("login", name, password)
             setMessage(undefined);
             setLoggedIn(true);
         } catch (e: any) {
@@ -39,9 +44,9 @@ export default function LoginForm() {
 
     async function onRegister(userName: string, password: string) {
         try {
-            const message = await register(name, password)
+            const message = await authenticate("register", name, password)
             console.log(message);
-            setMessage(message);    
+            setMessage(message);
         } catch (e: any) {
             const message = (e as Error).message;
             setMessage(message);
@@ -49,7 +54,7 @@ export default function LoginForm() {
     }
 
     async function onLogout() {
-        let message = await logout();
+        let message = await authenticate("logout");
         console.log(message);
         setLoggedIn(false);
         setMessage(undefined);
@@ -67,13 +72,18 @@ export default function LoginForm() {
 
     return <>
         <h3>{message}</h3>
-        <div style={{ display: "flex" }}>
-            name: <input disabled={loggedIn} onChange={onNameChange} type="text" id="username" name="username" required />
+        <div >
+            username: <input disabled={loggedIn} onChange={onNameChange} type="text" id="username" name="username" required />
             password: <input disabled={loggedIn} onChange={onPasswordChange} type="password" id="password" name="password" required />
             <button disabled={loggedIn} onClick={() => onLogin(name, password)}>login</button>
-            <button disabled={loggedIn} onClick={() => onRegister(name, password)}>register</button>
             <button disabled={!loggedIn} onClick={() => onLogout()}>logout</button>
+            <button disabled={loggedIn} onClick={() => onRegister(name, password)}>register</button>
             <button onClick={() => onCheck()}>check</button>
+        </div>
+        <div style={{ marginTop: "20px" }}>
+            <div style={{ marginBottom: "20px" }}>Log in and out and visit these pages for different actions</div>
+            <button><a target="_blank" href="/authtest/test">Test authorised page</a></button>
+            <button><a target="_blank" href="/authtest/redirect">Test page redirect</a></button>
         </div>
         <h3>login status: {loggedIn ? "logged in" : "logged out"}</h3>
     </>

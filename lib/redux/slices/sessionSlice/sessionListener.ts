@@ -15,7 +15,7 @@ import {
 
 import { loginUserApi, logoutUserApi, registerUserApi } from "./api";
 
-console.log("sessionListener is executing correctly");
+// console.log("sessionListener is executing correctly");
 
 // Login listener
 listenerMiddleware.startListening({

@@ -15,7 +15,7 @@ export default async function Server() {
   let users = await readFromFile("users.json");
 
   return <>
-    <UserManager userList={users} />
+    {users && <UserManager userList={users} />}
     <div className="text-container">
       <h1>Other RSC tests</h1>
       <div className="block-container">

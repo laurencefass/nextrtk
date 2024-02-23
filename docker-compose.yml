@@ -18,6 +18,7 @@ services:
     volumes:
       - .:/app
       - ./.next.prod:/app/.next
+      - ./files.prod:/app/files
     working_dir: /app
     # command: tail -f /dev/null
     command: "npm run start"
@@ -38,6 +39,7 @@ services:
     volumes:
       - .:/app
       - ./.next.dev:/app/.next
+      - ./files.dev:/app/files
     working_dir: /app
     # command: tail -f /dev/null
     command: "npm run dev"

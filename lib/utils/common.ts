@@ -7,6 +7,8 @@ type ImageData = {
   download_url: string;
 };
 
+export const randomNumber = (maxLimit = 100) => Math.floor(Math.random() * maxLimit);
+
 export async function getImageUrls(length: number): Promise<Array<string>> {
   let urls: Array<string> = [];  
   for (let i=0; i < length; i++) {

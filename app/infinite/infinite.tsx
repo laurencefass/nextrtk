@@ -1,50 +1,27 @@
 "use client";
 
-import { title } from "process";
-import React, { useState, useEffect, useRef } from "react";
-import { sentence, paragraph, lorem, article } from "txtgen";
+import React, { useState, useEffect, useRef, ReactNode } from "react";
 
 import "@styles/grids.css";
 
-type Section = {
-  title?: string;
-  body?: string;
+export type Section = {
+  title?: string | ReactNode;
+  body?: string | ReactNode;
 };
 
-type Article = {
-  title: string;
-  header: string;
-  sidebar: Section;
-  body: string;
-};
-
-// Dummy fetch function
-const fetchArticles = (count: number): Promise<Array<Article>> => {
-  console.log("FetchArticles", count);
-  let articles: Array<Article> = [];
-  for (let i = 0; i < count; i++) {
-    articles.push({
-      title: lorem(3, 5),
-      sidebar: {
-        title: lorem(4, 6),
-        body: lorem(25, 50),
-      },
-      header: lorem(7, 12),
-      body: article(1),
-    })
-  }
-  console.log("articles", articles);
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(articles);
-    }, 1000);
-  });
+export type Article = {
+  title?: string | ReactNode;
+  header?: string | ReactNode;
+  sidebar?: Section;
+  body: string | ReactNode;
 };
 
 type NumberInputProps = {
   count: number | null;
   setCount: React.Dispatch<React.SetStateAction<number>>;
 };
+
+export const randomNumber = (maxLimit = 100) => Math.floor(Math.random() * maxLimit);
 
 // React component as closure
 const NumberInput: React.FC<NumberInputProps> = ({
@@ -53,6 +30,10 @@ const NumberInput: React.FC<NumberInputProps> = ({
 }) => {
   const [inputValue, setInputValue] = useState("");
 
+  useEffect(()=>{
+    setCount(1);
+  }, []);
+  
   // Handle input change
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const numericValue = Number(e.target.value);
@@ -78,7 +59,11 @@ const NumberInput: React.FC<NumberInputProps> = ({
   );
 };
 
-export const InfiniteScroll: React.FC = () => {
+type InfiniteScrollProps = {
+  fetchArticles: (count: number) => Promise<Array<Article>>;
+};
+
+export const InfiniteScroll: React.FC<InfiniteScrollProps> = ({fetchArticles}) => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const loaderRef = useRef<HTMLDivElement | null>(null);
@@ -118,22 +103,20 @@ export const InfiniteScroll: React.FC = () => {
       <NumberInput count={count} setCount={setCount} />
       {articles.map((article, index) => (
         <article key={index} className="article">
-          <div className="grid-container">
-            <div className="sidebar">
-              <h2>{article.sidebar.title}</h2>
-              <div>{article.sidebar.body}</div>
-            </div>
-            <div className="content">
-              <div className="title">
+          <div className={`grid-container ${article.sidebar && 'sidebar'}`}>
+            {article.sidebar && <>
+              <div className="grid-sidebar">
+                  <h2>{article.sidebar.title}</h2>
+                  <div>{article.sidebar.body}</div>
+              </div>
+            </>}
+            <div className="grid-content">
+              {article.title && <div className="title">
                 <h1>{article.title}</h1>
-              </div>
-              <div className="header">
+              </div>}
+              {article.header && <div className="header">
                 <h2>{article.header}</h2>
-              </div>
-              <img
-                src={`https://picsum.photos/seed/${index}/500/400`}
-                height={400}
-              />
+              </div>}
               <div className="body">{article.body}</div>
             </div>
           </div>

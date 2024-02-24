@@ -79,6 +79,16 @@ const siteMap: MenuData = {
       url: "/cache/suspense",
     },
   },
+  "infinite scrollers" : {
+    sidebar: {
+      title: "sidebar layout",
+      url: "/infinite/sidebar",
+    },
+    column: {
+      title: "single column",
+      url: "/infinite/column",
+    },  
+  },
   components: {
     modal: {
       title: "modal",
@@ -91,10 +101,6 @@ const siteMap: MenuData = {
     carousel: {
       title: "image Carousel",
       url: "/carousel",
-    },
-    infinite: {
-      title: "infinite Scroll",
-      url: "/infinite",
     },
   },
   "entity CRUD": {

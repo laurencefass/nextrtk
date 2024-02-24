@@ -1,3 +1,38 @@
+/* grid-component */
+
+.grid-component {
+  display: grid;
+  grid-template-columns: 40% 50%;
+  gap: 5%; /* Adjust the gap to ensure the total does not exceed 100% */
+  align-items: start; /* Align items at the start of the grid area */
+}
+
+@media (max-width: 768px) {
+  .grid-component {
+    grid-template-columns: 1fr;
+    min-width: 0;
+  }
+
+  .grid-component .image img {
+    width: 85vw;
+    object-fit: cover;
+  }
+  
+}
+
+.grid-comoonent .image
+.grid-component .content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-component .image {
+  padding-top: 2em;
+}
+
+/* grid-menu */
+
 .grid-menu {
   display: grid;
   grid-template-columns: auto 75%; /* Adjusted to 15% for the sidebar as per your code */
@@ -25,25 +60,45 @@
   flex-wrap: wrap; /* Ensure items wrap if there's not enough space */
 }
 
+
+/* grid-container */
+
 .grid-container {
   display: grid;
-  grid-template-columns: 30% 1fr; /* 20% for the sidebar and the remainder for the content */
+  grid-template-columns: 1fr;
   min-width: 800px;
 }
 
-/* Media query for screens smaller than or equal to 600px */
+.grid-container.sidebar {
+  grid-template-columns: 30% 1fr;
+}
+
 @media (max-width: 768px) {
   .grid-container {
-    grid-template-columns: 1fr; /* 1-column layout for mobile screens */
-    min-width: 0; /* Remove min-width or set it to a suitable value for mobile devices */
+    grid-template-columns: 1fr;
+    min-width: 0;
+  }
+
+  .grid-container.sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-container .grid-sidebar {
+    display: none;
+  }
+
+  .grid-container img {
+    float: left;
+    padding-right: 20px;
+    padding-bottom: 20px;
   }
 }
 
-.sidebar {
-  padding: 10px; /* Padding around the content */
+.grid-sidebar {
+  padding: 10px; 
 }
 
-.content {
-  padding: 10px; /* Padding around the content */
-  background-color: #fff; /* White background for the content area */
+.grid-content {
+  padding: 10px;
+  background-color: #fff; 
 }

@@ -18,7 +18,7 @@ const fetchArticles = async (count: number): Promise<Array<Article>> => {
         <img src={`https://picsum.photos/seed/${randomNumber(60)}/300/200`} height={200}/>
         <div>
           <h2>{lorem(3, 5)}</h2>
-          {lorem(50)}
+          <p>{lorem(50)}</p>
         </div>
         <br/>
         <a href="">read more...</a>

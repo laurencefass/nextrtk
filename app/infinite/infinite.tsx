@@ -33,7 +33,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
   useEffect(()=>{
     setCount(1);
   }, []);
-  
+
   // Handle input change
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const numericValue = Number(e.target.value);
@@ -103,7 +103,7 @@ export const InfiniteScroll: React.FC<InfiniteScrollProps> = ({fetchArticles}) =
       <NumberInput count={count} setCount={setCount} />
       {articles.map((article, index) => (
         <article key={index} className="article">
-          <div className={`grid-container ${article.sidebar && 'sidebar'}`}>
+          <div className={`grid-container ${article.sidebar ? 'sidebar' : 'column'}`}>
             {article.sidebar && <>
               <div className="grid-sidebar">
                   <h2>{article.sidebar.title}</h2>

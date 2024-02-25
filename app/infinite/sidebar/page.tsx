@@ -24,7 +24,7 @@ const fetchArticles = async (count: number): Promise<Array<Article>> => {
       header: lorem(7, 12),
       body: <>
         <img src={`https://picsum.photos/seed/${randomNumber(60)}/400/300`} height={400}/>
-        {article(1)}
+        <p>{article(1)}</p>
       </>
     })
   }
@@ -39,7 +39,7 @@ const fetchArticles = async (count: number): Promise<Array<Article>> => {
 
 export default function Page() {
   return <>
-      <h2>This page is fully responsive and will hide the sidebars at smaller widths</h2>
+      <h3>This layout is fully responsive and will hide the sidebars at smaller widths</h3>
       <InfiniteScroll fetchArticles={fetchArticles} />
     </>
 }

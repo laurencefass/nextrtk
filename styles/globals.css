@@ -6,6 +6,11 @@ body {
   font-family: system-ui, sans-serif;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  text-align: left;
+}
+
+
 html,
 body {
   overflow-x: hidden;
@@ -35,7 +40,11 @@ main .content {
 h1 {
   margin-block-start: 1vh;
   margin-block-end: 1vh;
-  font-size: calc(10px + 2vw) !important;
+  font-size: calc(20px + 1.5vw) !important;
+}
+
+h2 {
+  font-size: calc(10px + 1.5vw)
 }
 
 .highlight-on-hover:hover {
@@ -91,6 +100,7 @@ a {
   padding: 1vw;
   margin: 1vw 0;
   border-radius: 5px;
+  text-align: justify;
 }
 
 a {

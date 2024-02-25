@@ -11,7 +11,7 @@ type Options = {
 }
   
   export async function _fetch(options: Options): Promise<Array<Article>> {
-    const apiKey = "2edfa5cb6b084806abb3ffc252ad04ad";
+    const apiKey = process.env.NEWSAPI_KEY
     let url = "https://newsapi.org/v2/everything?apiKey=" + apiKey;
     
     // Dynamically construct the URL based on defined options

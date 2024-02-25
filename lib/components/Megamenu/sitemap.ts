@@ -39,6 +39,10 @@ const siteMap: MenuData = {
     title: "QR code",
     url: "/qrcode",
   },
+  api: {
+    title: "News API",
+    url: "/newsapi"
+  },
   verify: {
     title: "verify state",
     url: "/verify",

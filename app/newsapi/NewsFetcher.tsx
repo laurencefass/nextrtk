@@ -30,8 +30,11 @@ export const NewsFetcher: React.FC = () => {
     setLoading(true);
     setError(null);
     try {
-      const articles = await _fetch({ country, page, pageSize, q, language });
-      setArticles(articles);
+      const data = await _fetch({ country, page, pageSize, q, language });
+      if (data.articles)
+        setArticles(data.articles);
+      if (data.message)
+        alert(data.message)
     } catch (error: any) {
       setError(error.message);
     } finally {

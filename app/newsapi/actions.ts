@@ -10,8 +10,16 @@ type Options = {
     language?: string,
 }
   
-  export async function _fetch(options: Options): Promise<Array<Article>> {
-    const apiKey = process.env.NEWSAPI_KEY
+type ApiResponse = {
+  status: string;
+  totalResults: number;
+  articles: Article[];
+  message?: string;
+};
+
+  export async function _fetch(options: Options): Promise<ApiResponse> {
+    const apiKey = process.env.NEWS_API_KEY
+    console.log("apiKey", process.env.NEWS_API_KEY)
     let url = "https://newsapi.org/v2/everything?apiKey=" + apiKey;
     
     // Dynamically construct the URL based on defined options
@@ -23,8 +31,7 @@ type Options = {
   
     console.log("fetch url", url);
     const response = await fetch(url);
-    if (!response.ok) throw new Error('Failed to fetch');
     const data = await response.json();
     console.log(data);
-    return data.articles;
+    return data;
   }

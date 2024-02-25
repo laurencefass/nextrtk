@@ -13,6 +13,7 @@ services:
       - VIRTUAL_HOST=nextprod.${LETSENCRYPT_HOST}
       - LETSENCRYPT_HOST=nextprod.${LETSENCRYPT_HOST}
       - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+      - NEWSAPI_KEY=${NEWS_API_KEY}
     expose:
       - "3000"
     volumes:
@@ -34,6 +35,7 @@ services:
       - VIRTUAL_HOST=nextdev.${LETSENCRYPT_HOST}
       - LETSENCRYPT_HOST=nextdev.${LETSENCRYPT_HOST}
       - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+      - NEWSAPI_KEY=${NEWS_API_KEY}
     expose:
       - "3000"
     volumes:

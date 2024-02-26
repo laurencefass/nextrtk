@@ -117,3 +117,56 @@ ul.dropdown {
 .dropdown li a {
   pointer-events: auto;
 }
+
+.main-menu ul {
+  list-style-type: none;
+  padding: 0px;
+  padding-left: 5px;
+  margin: 0px;
+}
+
+.main-memu a {
+  text-decoration: none !important;
+}
+
+.main-menu .accordion-content {
+  padding: 0px;
+}
+
+.menu-link {
+  border: 5px solid lightgray;
+  margin-bottom: 10px;
+  padding: 1px;
+  padding-left: 10px;
+  border-radius: 20px;
+}
+
+.hamburger-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  position: absolute;
+  top: 2vw;
+  right: 5vw;
+  font-size: 30px;
+  background: gray;
+  border-radius:10%;
+  width: 50px;
+  height: 50px;
+  color: white;
+  font-weight: bold;
+}
+
+.hamburger-menu .menu-content {
+  overflow: hidden;
+  transition: max-height 0.25s ease-in-out;
+  max-height: 0; /* Start with max-height 0 to ensure it's hidden initially */
+}
+
+.hamburger-menu .menu-content.open {
+  max-height: 150vh; 
+}
+
+.hamburger-menu .menu-content.closed {
+  max-height: 0;
+}

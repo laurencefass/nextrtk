@@ -5,11 +5,33 @@ import './styles.css';
 import '@styles/grids.css';
 import siteMap, { MenuItem, MenuSection, MenuData } from './sitemap';
 import Link from 'next/link';
+import { AccordionContainer, AccordionSection } from '../layout/Accordion/Accordion';
+import { HamburgerMenu } from "./Hamburger";
 
-// Assuming siteMap is of type MenuData
+const useScreenWidth = () => {
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+    window.addEventListener('resize', handleResize);
+    // Cleanup function to remove the event listener
+    return () => window.removeEventListener('resize', handleResize);
+  }, []); // Empty dependency array means this effect runs only on mount and unmount
+  return screenWidth;
+};
+
 const MegaMenu: React.FC = () => {
+  // return <_MegaMenu/>
+  return  <HamburgerMenu>
+    <_MegaMenu />
+  </HamburgerMenu>
+}
+
+const _MegaMenu: React.FC = () => {
   // State to control the visibility of dropdowns
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const width = useScreenWidth();
 
   useEffect(() => {
     console.log("dropdownOpen", dropdownOpen);
@@ -71,7 +93,7 @@ const MegaMenu: React.FC = () => {
       return () => window.removeEventListener('resize', checkAndSetAlignment);
     }, [dropdownOpen]); // Assuming dropdownOpen state is lifted up or passed as a prop
 
-    return (
+    return <>
       <ul ref={dropdownRef} className={`dropdown ${alignRight ? 'align-right' : ''}`}>
         {Object.entries(items || {}).map(([key, item]) => (
           <li key={key}>
@@ -80,7 +102,7 @@ const MegaMenu: React.FC = () => {
           </li>
         ))}
       </ul>
-    );
+    </>
   };
 
   // Pass closeDropdown to renderNestedItems as well, applying it to each Link
@@ -92,8 +114,44 @@ const MegaMenu: React.FC = () => {
     return <Dropdown items={items} />;
   };
 
+  if (width < 768) {
+    return <div className="main-menu">
+        <AccordionContainer>
+        {Object.entries(siteMap as MenuData).map(([section, itemOrSection]) => {
+          // Check if it's a direct MenuItem
+          if (typeof itemOrSection === 'object' && 'url' in itemOrSection) {
+            // It's a MenuItem, render a single Link
+            return (
+              // <AccordionSection key={section} title={itemOrSection.title as string}>
+                <div className="menu-link"><h2>
+                  <Link href={itemOrSection.url as string}>{itemOrSection.title as string}</Link>
+                </h2></div>
+              // </AccordionSection>
+            );
+          } else {
+            // It's a MenuSection, render nested MenuItems
+            return (
+              <AccordionSection key={section} title={section}>
+                <ul>
+                  {Object.entries(itemOrSection as MenuSection).map(([key, { title, url }]) => (
+                    <li key={key}>
+                      {/* Ensure url is always a string */}
+                      <Link href={url}>{title}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </AccordionSection>
+            );
+          }
+        })}
+      </AccordionContainer>
+    </div>
+  }
+  
+  
   return (
     <div className="block-container">
+      <div>width = {width}</div>
       <nav className="megaMenu">
         <div className="grid-menu">
           <div className="branding">

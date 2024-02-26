@@ -1,26 +1,17 @@
 'use server'
 
-import { Article } from "./NewsFetcher";
+import { sleep } from "@/lib/utils/common";
+import { ApiResponse, Options  } from "./types";
 
-type Options = {
-    country?: string,
-    page?: number, 
-    pageSize?: number,
-    q?: string
-    language?: string,
-}
-  
-type ApiResponse = {
-  status: string;
-  totalResults: number;
-  articles: Article[];
-  message?: string;
-};
+export async function _fetch(options: Options): Promise<ApiResponse> {
+    await sleep(1000);
 
-  export async function _fetch(options: Options): Promise<ApiResponse> {
+    if (!options.searchType)
+      options.searchType = "everything";
+
     const apiKey = process.env.NEWS_API_KEY
     console.log("apiKey", process.env.NEWS_API_KEY)
-    let url = "https://newsapi.org/v2/everything?apiKey=" + apiKey;
+    let url = `https://newsapi.org/v2/${options.searchType}?apiKey=` + apiKey;
     
     // Dynamically construct the URL based on defined options
     Object.entries(options).forEach(([key, value]) => {

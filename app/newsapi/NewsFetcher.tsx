@@ -1,38 +1,43 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { _fetch } from "./actions";
+import { SearchType, Article} from "./types";
 import LanguageSelector, { Language } from "./LanguageSelector";
 
-export type Article = {
-  title: string;
-  author: string;
-  source: {
-    id: any;
-    name: string;
-  };
-  publishedAt: string;
-  url: string;
-  urlToImage: string;
-};
 
-export const NewsFetcher: React.FC = () => {
+interface NewsFetcherProps {
+  initialArticles?: Array<Article>;
+}
+
+export const NewsFetcher: React.FC<NewsFetcherProps>  = ({initialArticles}) => {
   const [country, setCountry] = useState<string|undefined>(undefined);
   const [page, setPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(10);
-  const [q, setQuery] = useState<string|undefined>(undefined);
+  const [q, setQuery] = useState<string|undefined>("pokemon");
   const [articles, setArticles] = useState<Array<Article>>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [language, setLanguage] = useState<Language>("en");
+  const [searchType, setSearchType] = useState<SearchType>("everything");
 
+  useEffect(()=>{
+    if (initialArticles) {
+      setArticles(initialArticles);
+    } else {
+      fetchNews();
+    }
+  }, [])
+  
+  
   const fetchNews = async () => {
     setLoading(true);
     setError(null);
     try {
-      const data = await _fetch({ country, page, pageSize, q, language });
+      const data = await _fetch({ country, page, pageSize, q, language, searchType });
       if (data.articles)
         setArticles(data.articles);
+        setPage(page => page+1);
       if (data.message)
         alert(data.message)
     } catch (error: any) {
@@ -46,11 +51,15 @@ export const NewsFetcher: React.FC = () => {
     setLanguage(selectedLanguage);
     console.log(`Language changed to: ${selectedLanguage}`);
   };
-
+    
   return (
     <div>
       <div>
-          <LanguageSelector setLanguage={handleLanguageChange} />
+        searchType: <select value={searchType} onChange={(e) => setSearchType(e.target.value as SearchType)}>
+          <option value="everything">everything</option>
+          <option value="top-headlines">top headlines</option>
+        </select>
+        <LanguageSelector setLanguage={handleLanguageChange} />
         <span>
           country:{" "}
           <input
@@ -91,9 +100,9 @@ export const NewsFetcher: React.FC = () => {
         </span>
       </div>
       <button onClick={fetchNews}>Fetch News</button>
-      {loading && <p>Loading...</p>}
+      {loading && <h2 style={{height: "25vh"}}>Loading News Feed...</h2>}
       {error && <p>Error: {error}</p>}
-      <ul>
+      {!loading && <ul>
         {articles.map((article, index) => (
           <li key={index}>
             <a href={article.url} target="_blank" rel="noopener noreferrer">
@@ -104,7 +113,7 @@ export const NewsFetcher: React.FC = () => {
             {article.urlToImage && <img src={article.urlToImage} height={300}/>}
           </li>
         ))}
-      </ul>
+      </ul>}
     </div>
   );
 };

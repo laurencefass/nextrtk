@@ -1,18 +1,39 @@
-import ReactMarkdown from "react-markdown";
 import { NewsFetcher } from "./NewsFetcher";
+import { Article, Options } from "./types";
+import { _fetch } from "./actions";
 
-const text  = `
-# News fetcher
-- A simple UI for fetching data from an authenticated [News API](https://newsapi.org/)
-- Requests are authorised with a News API registered API_KEY. [read more](https://newsapi.org/docs/authentication)
-- The News API will refuse requests from the browser so requests are made from a server action called directly from a client component
-- Fetched data is hydrated back into the client component without the client needed to know the API key.
-`
-export default function Page() {
-    return <>
-    <ReactMarkdown>{text}</ReactMarkdown><br/>
+
+const fetchNews = async (options: Options) : Promise<Array<Article>> => {
+    let articles: Array<Article> = [];
+    let { country, page, pageSize, q,language, searchType} = options;
+    try {
+      const data = await _fetch({ country, page, pageSize, q, language, searchType });
+      if (data.articles)
+        articles = data.articles as Array<Article>;
+      if (data.message)
+        console.log(data.message)
+    } catch (error: any) {
+      console.log(error.message);
+    }
+    return articles;
+  };
+
+export default async function Page() {
+    const options: Options = {
+        country: undefined,
+        page: 1, 
+        pageSize: 10,
+        q: "any",
+        language: "en",
+        searchType: "everything"
+    }
+  
+    const articles = await fetchNews(options);
+    console.log("articles", articles)
+  
+  return <>
     <div className="bordered">
-        <NewsFetcher />
+        {articles && articles.length && <NewsFetcher initialArticles = {articles}/>}
     </div>
     </>
 }

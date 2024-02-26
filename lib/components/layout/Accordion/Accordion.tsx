@@ -28,12 +28,16 @@ export const AccordionSection: React.FC<AccordionSectionProps & { isOpen?: boole
   onClick = () => { },
 }) => {
   return (
-    <div className="accordion">
-      <div className="accordion-header" onClick={onClick}>
-        <h2>{title}</h2>
-      </div>
-      {isOpen && <div className="accordion-content">{children}</div>}
-    </div>
+    <Accordion title={title} open={isOpen}>
+      {children}
+    </Accordion>
+    // </Accordion>
+    // <div className="accordion">
+    //   <div className="accordion-header" onClick={onClick}>
+    //     <h2>{title}</h2>
+    //   </div>
+    //   {isOpen && <div className="accordion-content">{children}</div>}
+    // </div>
   );
 };
 
@@ -72,6 +76,7 @@ export const AccordionContainer: React.FC<AccordionContainerProps> = ({ children
 
 // original single accordion
 
+// Assuming AccordionProps is defined elsewhere
 export const Accordion: React.FC<AccordionProps> = ({ title, children, open = false }) => {
   const [isOpen, setIsOpen] = useState(open);
 
@@ -81,11 +86,11 @@ export const Accordion: React.FC<AccordionProps> = ({ title, children, open = fa
 
   return (
     <div className="accordion">
-      <div className="accordion-header" onClick={toggleAccordion}>
+      <div className={`accordion-header ${isOpen ? 'open' : ''}`} onClick={toggleAccordion}>
         <h2>{title}</h2>
         {!isOpen && <div>click to read more</div>}
       </div>
-      {isOpen && <div className="accordion-content">{children}</div>}
+      <div className={`accordion-content ${isOpen ? 'open' : ''}`}>{children}</div>
     </div>
   );
 };

@@ -18,12 +18,12 @@ If "pacman in the park" and "IRL zombie survival" sound like potentially fun act
 `
 
 export default function Deck() {
-    return <div className="content">
+    return <div className="content wide">
         <Accordion open={false} title="Maplio (click to read more)">
             <ReactMarkdown className="text-container">{markdownText}</ReactMarkdown>
         </Accordion>
         <h2>Proof of concept for a hybrid geoaware mobile activity platform combining elements of Google navigator, Pokemon Go, Uber, and Whatsapp</h2>
         <a href="/deck.pdf" download><button>Download this file</button></a>
-        <iframe style={{ height: "100vh" }} src="/deck.pdf" />
+        <iframe style={{ width: "100%", height: "100vh" }} src="/deck.pdf" />
     </div>
 }

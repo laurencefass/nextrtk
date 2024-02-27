@@ -38,7 +38,7 @@
 .grid-menu {
   display: grid;
   grid-template-columns: auto 60%; /* Adjusted to 15% for the sidebar as per your code */
-  width: 100%; /* Ensures the grid container does not shrink below 800px */
+  width: 98%; /* Ensures the grid container does not shrink below 800px */
 }
 
 .grid-menu > :first-child {
@@ -50,7 +50,7 @@
 .grid-menu > :nth-child(2) {
   text-align: right; /* Ensures content within the content area is left-aligned */
   height: 100%;
-  border: 5px solid lightgray;
+  border: 2.5px solid lightgray;
   border-radius: 20px;
 }
 

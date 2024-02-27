@@ -155,15 +155,21 @@ ul.dropdown {
 }
 
 .menu-link {
-  border: 5px solid lightgray;
+  border: 2.5px solid lightgray;
   margin-bottom: 10px;
   padding: 1px;
   padding-left: 10px;
-  border-radius: 20px;
 }
 
 .menu-content h2 {
-  margin: 0px;
+  margin: 5px;
+}
+
+.main-menu .accordion-container .menu-link,
+.main-menu .accordion-container .accordion-header {
+  border: 2.5px solid lightgray;
+  border-radius: 10px;
+  margin: 5px;
 }
 
 .menu-content .accordion-header .arrow {

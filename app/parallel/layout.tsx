@@ -21,12 +21,12 @@ export default function Layout({
   slot2: React.ReactNode
 }) {
   return (
-    <>
+    <div className="content">
       <ReactMarkdown className="text-container">{markdownText}</ReactMarkdown>
       <Nav />
       {children}
       {slot1}
       {slot2}
-    </>
+    </div>
   )
 }

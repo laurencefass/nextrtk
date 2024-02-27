@@ -1,0 +1,17 @@
+.parallel-nav {
+  display: flex;
+  justify-content: space-evenly;
+  min-width: 100%;
+}
+.parallel-nav > * {
+  width: 100%;
+}
+.parallel-nav * {
+  padding-right: 10px;
+}
+
+@media (max-width: 768px) {
+  .parallel-nav {
+    flex-direction: column;
+  }
+}

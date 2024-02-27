@@ -52,8 +52,8 @@ function registerUser(username?: string, password?: string) {
   let users = readFromFile<User>(AUTH_JSON);
   if (users) {
     const user = users?.find((user) => user.name === username);
-    if (user) throw "user already signed up";
-    if (users.length >= 5) throw "maximum 5 users allowed";
+    if (user) throw "user already registered";
+    if (users.length >= 5) throw "a maximum of 5 users allowed (demo only)";
   } else {
     users = [];
   }

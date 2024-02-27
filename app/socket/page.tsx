@@ -15,12 +15,11 @@ const SOCKET_PATH = "/socketio";
 const env = process.env.NODE_ENV === "development" ? "dev" : "prod";
 const BASE_SERVER_URL = `https://next${env}.syntapse.co.uk`;
 
-function ReduxStateConsumer() {
+export function ReduxCounterConsumer() {
     const counter = useSelector(selectSocketCounter);
-    return <>
-        <h3>Redux Socket Counter Consumer</h3>
-        {counter}
-    </>
+    return <div className="bordered">
+        <h3>Redux Socket Counter Consumer: {counter}</h3>
+    </div>
 }
 
 export default function SocketController() {
@@ -122,7 +121,7 @@ export default function SocketController() {
             <button onClick={() => handleButtonClick('/api/socket/reset')}>Counter Reset</button>
             <button onClick={() => handleSocketPing()}>Ping</button>
         </div>
-        <h1>server status: {status}</h1>
-        <ReduxStateConsumer />
+        <h2>server status: {status}</h2>
+        <ReduxCounterConsumer />
     </>
 };

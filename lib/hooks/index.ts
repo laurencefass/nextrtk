@@ -1,18 +1,28 @@
-"use client";
-
 import { useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export const useScreenWidth = () => {
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  // Initialize screenWidth with 0 or a reasonable default for SSR
+  const [screenWidth, setScreenWidth] = useState(0);
+
   useEffect(() => {
+    // Define a function to update the screenWidth state
     const handleResize = () => {
       setScreenWidth(window.innerWidth);
     };
-    window.addEventListener("resize", handleResize);
-    // Cleanup function to remove the event listener
-    return () => window.removeEventListener("resize", handleResize);
-  }, []); // Empty dependency array means this effect runs only on mount and unmount
+
+    // Ensure code runs only on the client-side
+    if (typeof window !== "undefined") {
+      // Immediately update screenWidth based on the current window size
+      handleResize();
+      // Add event listener for subsequent resize events
+      window.addEventListener("resize", handleResize);
+
+      // Cleanup function to remove the event listener on component unmount
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, []); // Empty dependency array means this runs once on mount
+
   return screenWidth;
 };
 

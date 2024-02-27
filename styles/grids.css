@@ -17,11 +17,9 @@
     width: 85vw;
     object-fit: cover;
   }
-  
 }
 
-.grid-comoonent .image
-.grid-component .content {
+.grid-comoonent .image .grid-component .content {
   display: flex;
   align-items: center;
 }
@@ -39,7 +37,7 @@
 
 .grid-menu {
   display: grid;
-  grid-template-columns: auto 50%; /* Adjusted to 15% for the sidebar as per your code */
+  grid-template-columns: auto 60%; /* Adjusted to 15% for the sidebar as per your code */
   width: 100%; /* Ensures the grid container does not shrink below 800px */
 }
 
@@ -65,6 +63,11 @@
   flex-wrap: wrap; /* Ensure items wrap if there's not enough space */
 }
 
+@media (max-width: 768px) {
+  .grid-menu {
+    grid-template-columns: auto 90%; /* Adjusted to 15% for the sidebar as per your code */
+  }
+}
 
 /* grid-container */
 
@@ -104,12 +107,12 @@
 }
 
 .grid-sidebar {
-  padding: 10px; 
+  padding: 10px;
 }
 
 .grid-content {
   padding: 10px;
-  background-color: #fff; 
+  background-color: #fff;
 }
 
 .grid-container h2,

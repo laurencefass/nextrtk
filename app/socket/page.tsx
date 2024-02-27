@@ -9,28 +9,29 @@ import {
     useDispatch,
     selectSocketCounter,
     setCounter,
-  } from "@/lib/redux";
+} from "@/lib/redux";
 
 const SOCKET_PATH = "/socketio";
-const BASE_SERVER_URL = "https://nextrtk.syntapse.co.uk";
+const env = process.env.NODE_ENV === "development" ? "dev" : "prod";
+const BASE_SERVER_URL = `https://next${env}.syntapse.co.uk`;
 
 function ReduxStateConsumer() {
     const counter = useSelector(selectSocketCounter);
     return <>
         <h3>Redux Socket Counter Consumer</h3>
-        { counter }
+        {counter}
     </>
 }
 
 export default function SocketController() {
     const [status, setStatus] = useState("initialising...");
-    const socket =  useRef<Socket | null>(null);
+    const socket = useRef<Socket | null>(null);
     const dispatch = useDispatch();
     const counter = useSelector(selectSocketCounter);
- 
-    const serverFetch = async (url:string) => {
+
+    const serverFetch = async (url: string) => {
         try {
-            let response = await(fetch(url));
+            let response = await (fetch(url));
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
@@ -43,53 +44,53 @@ export default function SocketController() {
         }
     }
 
-    const handleButtonClick = async (url:string) => {
+    const handleButtonClick = async (url: string) => {
         await serverFetch(url);
     };
 
     const handleSocketPing = () => {
         if (socket.current) {
-            socket.current.emit('socket.ping', {data: "ping"}, (response: any) => {
+            socket.current.emit('socket.ping', { data: "ping" }, (response: any) => {
                 console.log('Response from server:', response);
                 setStatus(response.data);
-            });    
+            });
         } else {
             setStatus("noop: socket not connected");
         }
     }
 
-    useEffect(()=> {
+    useEffect(() => {
         console.log("useEffect.status", status)
-        switch(status) {
+        switch (status) {
             case "counter started":
             case "socket on":
                 if (!socket.current) {
                     socket.current = io(BASE_SERVER_URL, { path: SOCKET_PATH })
 
-                    socket.current.on('socket.counter', (message:any) => {
+                    socket.current.on('socket.counter', (message: any) => {
                         console.log("socket.counter", message.value);
                         // setCount(count => message.value);
                         dispatch(setCounter(message.value));
-                    });    
-                    socket.current.on('socket.pong', (message:any) => {
+                    });
+                    socket.current.on('socket.pong', (message: any) => {
                         console.log("socket.pong", message);
                         setStatus(status => message.data);
-                    }); 
-                    socket.current.on('socket.status', (message:any) => {
+                    });
+                    socket.current.on('socket.status', (message: any) => {
                         console.log("socket.status", message);
-                        setTimeout(()=> {                        
+                        setTimeout(() => {
                             setStatus(status => message.status);
                         }, 500)
-                    });    
+                    });
                 }
                 break;
             case "socket off":
                 if (socket.current) {
                     socket.current.off('counter');
                     socket.current.disconnect();
-                    socket.current = null;    
+                    socket.current = null;
                 }
-                break;   
+                break;
             default: break;
         }
     }, [status]);
@@ -111,9 +112,8 @@ export default function SocketController() {
 
     return <>
         <div>
-            <h1>Socket Controller</h1>
-            <h2>counter: { counter } </h2>
-        </div>                
+            <h2>counter: {counter} </h2>
+        </div>
         <div>
             <button onClick={() => handleButtonClick('/api/socket/on')}>Socket On</button>
             <button onClick={() => handleButtonClick('/api/socket/off')}>Socket Off</button>

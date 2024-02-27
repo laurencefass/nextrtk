@@ -25,6 +25,10 @@ const siteMap: MenuData = {
     title: "News API",
     url: "/newsapi",
   },
+  sockets: {
+    title: "test sockets",
+    url: "/socket",
+  },
   verify: {
     title: "verify state",
     url: "/verify",

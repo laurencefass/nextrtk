@@ -1,6 +1,6 @@
 /* Components */
 import { Providers } from "@/lib/redux/providers";
-import Megamenu from '@components/Megamenu/Megamenu';
+import Megamenu from '@/lib/components/Navmenu/Megamenu';
 import NProgress from "./nprogress";
 
 import 'dotenv/config';
@@ -8,6 +8,7 @@ import 'dotenv/config';
 import styles from "@styles/layout.module.css";
 import "@styles/globals.css";
 import { AppStateSubscriber } from "./AppState";
+import { Suspense } from "react";
 
 interface FooterLinkProps {
   url: string;
@@ -34,7 +35,9 @@ export default function RootLayout(props: React.PropsWithChildren) {
       <html lang="en">
         <body>
           <section className={styles.container}>
-            <Megamenu />
+            <Suspense fallback="loading">
+              <Megamenu />
+            </Suspense>
             <header className={styles.header}>
               {/* <img src="/syntapse-logo-2.png" className={styles.logo} alt="logo" /> */}
               <h4>View the code on <a target="_blank" rel="noopener noreferrer" href="https://github.com/laurencefass/nextrtk/blob/main/README.md">github</a></h4>

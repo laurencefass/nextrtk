@@ -1,59 +1,15 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react';
-import './styles.css';
-import '@styles/grids.css';
-import siteMap, { MenuItem, MenuSection, MenuData } from './sitemap';
 import Link from 'next/link';
-import { AccordionContainer, AccordionSection } from '../layout/Accordion/Accordion';
+import React, { useEffect, useRef, useState } from 'react';
+import siteMap, { MenuItem, MenuSection, MenuData } from './sitemap';
 import { HamburgerMenu } from "./Hamburger";
 import useRouteChange, { useScreenWidth } from '@/lib/hooks';
 
-const MegaMenu: React.FC = () => {
-  const width = useScreenWidth();
-  if (width < 600)
-    return <HamburgerMenu>
-      <MobileMenu />
-    </HamburgerMenu>
-  return <DesktopMenu />
-}
+import './styles.css';
+import '@styles/grids.css';
 
-const MobileMenu: React.FC = () => {
-  return <div className="main-menu">
-    <AccordionContainer>
-      {Object.entries(siteMap as MenuData).map(([section, itemOrSection]) => {
-        // Check if it's a direct MenuItem
-        if (typeof itemOrSection === 'object' && 'url' in itemOrSection) {
-          // It's a MenuItem, render a single Link
-          return (
-            // <AccordionSection key={section} title={itemOrSection.title as string}>
-            <div className="menu-link"><h2>
-              <Link href={itemOrSection.url as string}>{itemOrSection.title as string}</Link>
-            </h2></div>
-            // </AccordionSection>
-          );
-        } else {
-          // It's a MenuSection, render nested MenuItems
-          return (
-            <AccordionSection key={section} title={section}>
-              <ul>
-                {Object.entries(itemOrSection as MenuSection).map(([key, { title, url }]) => (
-                  <li key={key}>
-                    {/* Ensure url is always a string */}
-                    <Link href={url}>{title}</Link>
-                  </li>
-                ))}
-              </ul>
-            </AccordionSection>
-          );
-        }
-      })}
-    </AccordionContainer>
-  </div>
-}
-
-
-const DesktopMenu: React.FC = () => {
+export const DesktopMenu: React.FC = () => {
   // State to control the visibility of dropdowns
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -178,5 +134,3 @@ function Branding() {
     </div>
   </>
 }
-
-export default MegaMenu;

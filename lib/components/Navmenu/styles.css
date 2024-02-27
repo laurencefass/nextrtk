@@ -3,6 +3,26 @@
   align-items: center;
 }
 
+.brand-icon {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  opacity: 1; /* Make the element fully visible by default */
+  visibility: visible; /* Make the element visible by default */
+  transition: opacity 1000ms, visibility 1000ms; /* Animate opacity and visibility changes */
+}
+
+.brand-icon.closed {
+  opacity: 0; /* Make the element fully transparent */
+  visibility: hidden; /* Hide the element after the transition */
+  transition: opacity 500ms, visibility 500ms 500ms; /* Delay hiding the visibility to match the opacity transition */
+}
+
+.brand-icon img {
+  height: 40px;
+  width: 40px;
+}
+
 .branding img {
   width: 50px;
   margin-right: 20px;
@@ -19,6 +39,7 @@
   color: #704cb6;
   font-weight: bold;
 }
+
 .megaMenu h1 {
   margin-top: 0px;
 }
@@ -49,7 +70,7 @@
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  font-size: 20px;
+  font-size: calc(10px + 0.5vw);
   border-radius: 20px;
 }
 
@@ -141,18 +162,26 @@ ul.dropdown {
   border-radius: 20px;
 }
 
+.menu-content h2 {
+  margin: 0px;
+}
+
+.menu-content .accordion-header .arrow {
+  top: 5px !important;
+}
+
 .hamburger-icon {
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 30px;
-  background: gray;
-  border-radius: 10%;
-  width: 50px;
-  height: 50px;
+  top: 8px;
+  right: 8px;
+  font-size: 20px;
+  background: #704cb6;
+  border-radius: 15px;
+  width: 40px;
+  height: 40px;
   color: white;
   font-weight: bold;
 }

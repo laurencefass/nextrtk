@@ -22,7 +22,12 @@ export const HamburgerMenu: React.FC<Props> = ({ children }) => {
 
   return (
     <div className="hamburger-menu">
-      <div className="hamburger-icon" onClick={toggleMenu}>☰</div>
+      <div className="hamburger-icon" onClick={toggleMenu}>
+        ☰
+      </div>
+      <div className={`brand-icon ${!isOpen ? 'open' : 'closed'}`}>
+        <img src="/syntapse-logo-2.png" />
+      </div>
       <div className={`menu-content ${isOpen ? 'open' : 'closed'}`}>
         {children}
       </div>

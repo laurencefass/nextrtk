@@ -26,15 +26,32 @@ export const AccordionContainer: React.FC<AccordionContainerProps> = ({ children
   // State now holds an array of indices for open sections
   const [openSections, setOpenSections] = useState<number[]>([]);
 
+  const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
+
   const handleSectionClick = (index: number) => {
+    if (isTransitioning) return; // Prevent any clicks during transitions
+
+    setIsTransitioning(true); // Start transition
+
     if (allowMultipleOpen) {
-      // For multiple open sections, add or remove the clicked section from the array
       setOpenSections(openSections.includes(index)
-        ? openSections.filter(i => i !== index) // Remove if already open
-        : [...openSections, index]); // Add if not already open
+        ? openSections.filter(i => i !== index)
+        : [...openSections, index]);
+      setIsTransitioning(false); // End transition
     } else {
-      // For single open section, open the clicked section and close others
-      setOpenSections(openSections.includes(index) ? [] : [index]);
+      if (openSections.includes(index)) {
+        // If clicked section is already open, close it.
+        setOpenSections([]);
+        setIsTransitioning(false); // End transition
+      } else {
+        // Close currently open sections first
+        setOpenSections([]); // This ensures a close animation if any
+        setTimeout(() => {
+          // Then open the clicked section
+          setOpenSections([index]);
+          setIsTransitioning(false); // End transition
+        }, 300); // Adjust timeout according to your close animation duration
+      }
     }
   };
 
@@ -51,7 +68,7 @@ export const AccordionContainer: React.FC<AccordionContainerProps> = ({ children
     return child;
   }) ?? []; // Fallback to an empty array if children is null
 
-  return <div>{processedChildren}</div>;
+  return <div className="accordion-container">{processedChildren}</div>;
 };
 
 
@@ -63,16 +80,6 @@ export const AccordionSection: React.FC<AccordionSectionProps & { isOpen?: boole
   onClick = () => { },
 }) => {
   return <AccordionBody title={title} children={children} open={isOpen} onClick={onClick} />
-
-  return <>
-    <div className={`accordion-header ${isOpen ? 'open' : ''}`} onClick={onClick}>
-      <h2>{title}</h2>
-      <div className={`arrow ${isOpen ? 'up' : 'down'}`}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill-rule="evenodd" clip-rule="evenodd"><path d="M24 12c0 6.623-5.377 12-12 12s-12-5.377-12-12 5.377-12 12-12 12 5.377 12 12zm-1 0c0 6.071-4.929 11-11 11s-11-4.929-11-11 4.929-11 11-11 11 4.929 11 11zm-11.5-4.828l-3.763 4.608-.737-.679 5-6.101 5 6.112-.753.666-3.747-4.604v11.826h-1v-11.828z" /></svg>
-      </div>
-    </div>
-    <div className={`accordion-content ${isOpen ? 'open' : ''}`}>{children}</div>
-  </>
 };
 
 

@@ -34,9 +34,14 @@ export default function LoginForm() {
     async function onLogin(userName: string, password: string) {
         try {
             const message = await authenticate("login", name, password)
-            setMessage(undefined);
-            setLoggedIn(true);
+            console.log("onLogin", message);
+            if (message === "logged in") {
+                setLoggedIn(true);
+            } else {
+                setMessage(message);
+            }
         } catch (e: any) {
+            console.log(e);
             const message = (e as Error).message;
             setMessage(message);
         }
@@ -45,8 +50,9 @@ export default function LoginForm() {
     async function onRegister(userName: string, password: string) {
         try {
             const message = await authenticate("register", name, password)
-            console.log(message);
-            setMessage(message);
+            if (message !== "userRegistered") {
+                setMessage(message);
+            }
         } catch (e: any) {
             const message = (e as Error).message;
             setMessage(message);

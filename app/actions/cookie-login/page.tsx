@@ -3,8 +3,6 @@ import ReactMarkdown from "react-markdown";
 import LoginForm from "./form";
 
 const markdownText = `
-## A site wide login and registration form using server actions.
-
 ### Features
 - Default users are for testing are 123/123 (admin) and 456/456 (authenticated)
 - New users can be registered and login/out but will reset to defaults on page load

@@ -3,8 +3,6 @@ import ReactMarkdown from "react-markdown";
 import LoginForm from "./form";
 
 const markdownText = `
-## A site wide login and registration form using server actions and Javascript Web Tokens
-
 ### Features
 - This is designed to work exactly as the (standard session token implementation)[/actions/login]
 - The JWT is also stored in a cookie and has all the same security benefits however there is no server side token lookup

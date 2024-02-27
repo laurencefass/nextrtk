@@ -11,16 +11,23 @@ export async function authenticate(
   username?: string,
   password?: string
 ) {
-  authenticateJWT(type, username, password);
-  switch (type) {
-    case "login":
-      return "logged in";
-    case "logout":
-      return "logged out";
-    case "register":
-      return "user registered";
+  try {
+    authenticateJWT(type, username, password);
+    switch (type) {
+      case "login":
+        return "logged in";
+      case "logout":
+        return "logged out";
+      case "register":
+        return "user registered";
+      default:
+        return "unrecognised authenticated type";
+        break;
+    }
+  } catch (error: any) {
+    console.log("catch error", error);
+    return error;
   }
-  return "unrecognised authenticated type";
 }
 
 export async function check() {

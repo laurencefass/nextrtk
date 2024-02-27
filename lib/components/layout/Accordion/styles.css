@@ -11,7 +11,7 @@
 
 .accordion-content.open {
   max-height: 500px; /* Adjust as needed */
-  transition: max-height 0.3s ease-in;
+  transition: max-height 0.1s ease-in;
 }
 
 .accordion-header {
@@ -29,48 +29,38 @@
 
 .accordion-header .arrow {
   position: absolute;
-  font-size: calc(12px + 1.25vw);
+  font-size: calc(15px + 0.75vw);
   right: 4%;
-  top: 30%;
+  top: 25%;
   color: gray;
+  font-weight: 900;
   transition: transform 0.5s;
-  /* transform: rotate(0deg) scale(1.25); */
 }
-
-/* Rotate 180 degrees clockwise on open */
-/* .accordion-header.open .arrow {
-  transform: rotate(180deg) scale(1.25);
-} */
-
-/* Continue rotating 180 degrees clockwise (total 540 degrees) on close */
-/* .accordion-header.close .arrow {
-  transform: rotate(360deg) scale(1.25);
-} */
 
 /* Open State */
 .accordion-header.open .arrow {
-  animation: rotate-open 0.5s forwards;
+  animation: rotate-open 0.25s forwards;
 }
 
 @keyframes rotate-open {
   from {
-    transform: rotate(0deg) scale(1.25);
+    transform: rotate(0deg);
   }
   to {
-    transform: rotate(180deg) scale(1.25);
+    transform: rotate(180deg);
   }
 }
 
 /* Close State */
 .accordion-header.close .arrow {
-  animation: rotate-close 0.5s forwards;
+  animation: rotate-close 0.25s forwards;
 }
 
 @keyframes rotate-close {
   0% {
-    transform: rotate(180deg) scale(1.25);
+    transform: rotate(180deg);
   }
   100% {
-    transform: rotate(360deg) scale(1.25);
+    transform: rotate(360deg);
   }
 }

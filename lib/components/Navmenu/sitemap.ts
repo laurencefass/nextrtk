@@ -106,6 +106,10 @@ const siteMap: MenuData = {
       title: "image Carousel",
       url: "/carousel",
     },
+    useTransition: {
+      title: "tab transitions",
+      url: "/usetransition",
+    },
   },
   "entity CRUD": {
     entity: {

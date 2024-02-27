@@ -36,7 +36,7 @@ export const Nav = () => {
       <Navlink href='/users/server' label='RSC CRUD' />
       <Navlink href='/library' label='Library CRUD' />
       <Navlink href='/verify' label='Verify state' />
-      <Navlink href='/megamenu' label='Megamenu' />
+      {/* <Navlink href='/megamenu' label='Megamenu' /> */}
     </nav>
   );
 };

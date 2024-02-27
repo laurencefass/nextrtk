@@ -7,31 +7,59 @@ import siteMap, { MenuItem, MenuSection, MenuData } from './sitemap';
 import Link from 'next/link';
 import { AccordionContainer, AccordionSection } from '../layout/Accordion/Accordion';
 import { HamburgerMenu } from "./Hamburger";
-
-const useScreenWidth = () => {
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth);
-    };
-    window.addEventListener('resize', handleResize);
-    // Cleanup function to remove the event listener
-    return () => window.removeEventListener('resize', handleResize);
-  }, []); // Empty dependency array means this effect runs only on mount and unmount
-  return screenWidth;
-};
+import useRouteChange, { useScreenWidth } from '@/lib/hooks';
 
 const MegaMenu: React.FC = () => {
-  // return <_MegaMenu/>
-  return  <HamburgerMenu>
-    <_MegaMenu />
-  </HamburgerMenu>
+  const width = useScreenWidth();
+  if (width < 600)
+    return <HamburgerMenu>
+      <MobileMenu />
+    </HamburgerMenu>
+  return <DesktopMenu />
 }
 
-const _MegaMenu: React.FC = () => {
+const MobileMenu: React.FC = () => {
+  return <div className="main-menu">
+    <AccordionContainer>
+      {Object.entries(siteMap as MenuData).map(([section, itemOrSection]) => {
+        // Check if it's a direct MenuItem
+        if (typeof itemOrSection === 'object' && 'url' in itemOrSection) {
+          // It's a MenuItem, render a single Link
+          return (
+            // <AccordionSection key={section} title={itemOrSection.title as string}>
+            <div className="menu-link"><h2>
+              <Link href={itemOrSection.url as string}>{itemOrSection.title as string}</Link>
+            </h2></div>
+            // </AccordionSection>
+          );
+        } else {
+          // It's a MenuSection, render nested MenuItems
+          return (
+            <AccordionSection key={section} title={section}>
+              <ul>
+                {Object.entries(itemOrSection as MenuSection).map(([key, { title, url }]) => (
+                  <li key={key}>
+                    {/* Ensure url is always a string */}
+                    <Link href={url}>{title}</Link>
+                  </li>
+                ))}
+              </ul>
+            </AccordionSection>
+          );
+        }
+      })}
+    </AccordionContainer>
+  </div>
+}
+
+
+const DesktopMenu: React.FC = () => {
   // State to control the visibility of dropdowns
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const width = useScreenWidth();
+
+  useRouteChange(() => {
+    setDropdownOpen(false);
+  })
 
   useEffect(() => {
     console.log("dropdownOpen", dropdownOpen);
@@ -114,63 +142,18 @@ const _MegaMenu: React.FC = () => {
     return <Dropdown items={items} />;
   };
 
-  if (width < 768) {
-    return <div className="main-menu">
-        <AccordionContainer>
-        {Object.entries(siteMap as MenuData).map(([section, itemOrSection]) => {
-          // Check if it's a direct MenuItem
-          if (typeof itemOrSection === 'object' && 'url' in itemOrSection) {
-            // It's a MenuItem, render a single Link
-            return (
-              // <AccordionSection key={section} title={itemOrSection.title as string}>
-                <div className="menu-link"><h2>
-                  <Link href={itemOrSection.url as string}>{itemOrSection.title as string}</Link>
-                </h2></div>
-              // </AccordionSection>
-            );
-          } else {
-            // It's a MenuSection, render nested MenuItems
-            return (
-              <AccordionSection key={section} title={section}>
-                <ul>
-                  {Object.entries(itemOrSection as MenuSection).map(([key, { title, url }]) => (
-                    <li key={key}>
-                      {/* Ensure url is always a string */}
-                      <Link href={url}>{title}</Link>
-                    </li>
-                  ))}
-                </ul>
-              </AccordionSection>
-            );
-          }
-        })}
-      </AccordionContainer>
-    </div>
-  }
-  
-  
   return (
     <div className="block-container">
-      <div>width = {width}</div>
       <nav className="megaMenu">
         <div className="grid-menu">
-          <div className="branding">
-            <img style={{ width: "50px" }} src="/syntapse-logo-2.png" alt="logo" />
-            <div>
-              <h2>Syntapse + Next 14 + Redux</h2>
-              <h4>Tests, demos and experiments</h4>
-              <h4>View the code on <a target="_blank" rel="noopener noreferrer" href="https://github.com/laurencefass/nextrtk/blob/main/README.md">github</a></h4>
-            </div>
-          </div>
+          <Branding />
           <ul className="topLevelMenu">
             {Object.entries(siteMap as MenuData).map(([section, items]) => {
-              // Check if the item is a direct MenuItem (leaf)
               if ((items as MenuItem).url && (items as MenuItem).title) {
                 return renderLeafItem(items as MenuItem);
               }
-              // If it's a MenuSection, render the section with potential nested items
               return (
-                <li onMouseEnter={onMouseEnter} key={section}>
+                <li onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} key={section}>
                   <span>{section.charAt(0).toUpperCase() + section.slice(1)}</span>
                   {renderNestedItems(items as MenuItem['options'])}
                 </li>
@@ -183,5 +166,17 @@ const _MegaMenu: React.FC = () => {
   );
 };
 
+function Branding() {
+  return <>
+    <div className="branding">
+      <img style={{ width: "50px" }} src="/syntapse-logo-2.png" alt="logo" />
+      <div>
+        <h2>Syntapse + Next 14 + Redux</h2>
+        <h4>Tests, demos and experiments</h4>
+        <h4>View the code on <a target="_blank" rel="noopener noreferrer" href="https://github.com/laurencefass/nextrtk/blob/main/README.md">github</a></h4>
+      </div>
+    </div>
+  </>
+}
 
 export default MegaMenu;

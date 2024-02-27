@@ -17,6 +17,18 @@ const siteMap: MenuData = {
     title: "Home",
     url: "/",
   },
+  qrcode: {
+    title: "QR code",
+    url: "/qrcode",
+  },
+  api: {
+    title: "News API",
+    url: "/newsapi",
+  },
+  verify: {
+    title: "verify state",
+    url: "/verify",
+  },
   authenticate: {
     actions: {
       title: "cookie auth (actions)",
@@ -34,18 +46,6 @@ const siteMap: MenuData = {
       title: "client only flow (rtk)",
       url: "/login",
     },
-  },
-  qrcode: {
-    title: "QR code",
-    url: "/qrcode",
-  },
-  api: {
-    title: "News API",
-    url: "/newsapi"
-  },
-  verify: {
-    title: "verify state",
-    url: "/verify",
   },
   "parallel routes": {
     intercepts: {
@@ -83,7 +83,7 @@ const siteMap: MenuData = {
       url: "/cache/suspense",
     },
   },
-  "infinite scrollers" : {
+  "infinite scrollers": {
     sidebar: {
       title: "sidebar layout",
       url: "/infinite/sidebar",
@@ -91,7 +91,7 @@ const siteMap: MenuData = {
     column: {
       title: "single column",
       url: "/infinite/column",
-    },  
+    },
   },
   components: {
     modal: {

@@ -3,25 +3,25 @@
   overflow: hidden;
   transition: max-height 0.3s ease-out;
   background-color: #fff;
-  padding: 0 10px;
+}
+
+.accordion-content a {
+  margin: 10px;
 }
 
 .accordion-content.open {
   max-height: 500px; /* Adjust as needed */
-  padding: 10px;
   transition: max-height 0.3s ease-in;
 }
 
 .accordion-header {
-  position:relative;
-  /* background: rgb(233, 230, 230); */
+  position: relative;
   border: 5px solid lightgray;
   margin-bottom: 10px;
   padding: 1px;
   padding-left: 10px;
   border-radius: 20px;
 }
-
 
 .accordion-header h2 {
   width: 80%;
@@ -32,13 +32,45 @@
   font-size: calc(12px + 1.25vw);
   right: 4%;
   top: 30%;
-  transition: transform 0.5s ease;
+  color: gray;
+  transition: transform 0.5s;
+  /* transform: rotate(0deg) scale(1.25); */
 }
 
-.accordion-header .arrow.up {
-  transform: rotate(0deg) scale(1.25);
-}
-
-.accordion-header .arrow.down {
+/* Rotate 180 degrees clockwise on open */
+/* .accordion-header.open .arrow {
   transform: rotate(180deg) scale(1.25);
+} */
+
+/* Continue rotating 180 degrees clockwise (total 540 degrees) on close */
+/* .accordion-header.close .arrow {
+  transform: rotate(360deg) scale(1.25);
+} */
+
+/* Open State */
+.accordion-header.open .arrow {
+  animation: rotate-open 0.5s forwards;
+}
+
+@keyframes rotate-open {
+  from {
+    transform: rotate(0deg) scale(1.25);
+  }
+  to {
+    transform: rotate(180deg) scale(1.25);
+  }
+}
+
+/* Close State */
+.accordion-header.close .arrow {
+  animation: rotate-close 0.5s forwards;
+}
+
+@keyframes rotate-close {
+  0% {
+    transform: rotate(180deg) scale(1.25);
+  }
+  100% {
+    transform: rotate(360deg) scale(1.25);
+  }
 }

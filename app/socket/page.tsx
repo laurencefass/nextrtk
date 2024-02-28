@@ -15,7 +15,7 @@ const SOCKET_PATH = "/socketio";
 const env = process.env.NODE_ENV === "development" ? "dev" : "prod";
 const BASE_SERVER_URL = `https://next${env}.syntapse.co.uk`;
 
-export function ReduxCounterConsumer() {
+function ReduxCounterConsumer() {
     const counter = useSelector(selectSocketCounter);
     return <div className="bordered">
         <h3>Redux Socket Counter Consumer: {counter}</h3>

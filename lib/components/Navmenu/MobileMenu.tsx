@@ -11,7 +11,7 @@ export const MobileMenu: React.FC = () => {
                     // It's a MenuItem, render a single Link
                     return (
                         // <AccordionSection key={section} title={itemOrSection.title as string}>
-                        <div className="menu-link"><h2>
+                        <div key={section} className="menu-link"><h2>
                             <Link href={itemOrSection.url as string}>{itemOrSection.title as string}</Link>
                         </h2></div>
                         // </AccordionSection>

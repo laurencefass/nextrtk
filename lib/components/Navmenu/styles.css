@@ -150,6 +150,10 @@ ul.dropdown {
   text-decoration: none !important;
 }
 
+.main-menu li {
+  margin-bottom: 5px;
+}
+
 .main-menu .accordion-content {
   padding: 0px;
 }

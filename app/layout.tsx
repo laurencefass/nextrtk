@@ -1,14 +1,14 @@
 /* Components */
 import { Providers } from "@/lib/redux/providers";
-import Megamenu from '@/lib/components/Navmenu/Megamenu';
+import Megamenu from '@components/Navmenu/Megamenu';
 import NProgress from "./nprogress";
 
 import 'dotenv/config';
 
 import styles from "@styles/layout.module.css";
 import "@styles/globals.css";
-import { AppStateSubscriber } from "./AppState";
 import { Suspense } from "react";
+import { Header } from "./Header";
 
 interface FooterLinkProps {
   url: string;
@@ -38,11 +38,7 @@ export default function RootLayout(props: React.PropsWithChildren) {
             <Suspense fallback="loading">
               <Megamenu />
             </Suspense>
-            <header className={styles.header}>
-              {/* <img src="/syntapse-logo-2.png" className={styles.logo} alt="logo" /> */}
-              <h4>View the code on <a target="_blank" rel="noopener noreferrer" href="https://github.com/laurencefass/nextrtk/blob/main/README.md">github</a></h4>
-              <AppStateSubscriber />
-            </header>
+            <Header />
             <NProgress />
             <main className={styles.main}>{props.children}</main>
             <footer className={styles.footer}>
@@ -50,7 +46,7 @@ export default function RootLayout(props: React.PropsWithChildren) {
               <FooterLink url="https://reactjs.org/" label="React" />
               <FooterLink url="https://redux.js.org/" label="Redux" />
               <FooterLink url="https://redux-toolkit.js.org" label="Redux Toolkit" />
-              <span>and </span>
+              <span>and</span>
               <FooterLink url="https://react-redux.js.org/" label="React Redux" />
             </footer>
           </section>

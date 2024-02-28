@@ -60,7 +60,7 @@ export const AccordionContainer: React.FC<AccordionContainerProps> = ({ children
       // Determine if the current section is open
       const isOpen = openSections.includes(index);
       return cloneElement(child as ReactElement<any>, {
-        isOpen,
+        open: isOpen,
         onClick: () => handleSectionClick(index),
         key: index,
       });
@@ -73,13 +73,13 @@ export const AccordionContainer: React.FC<AccordionContainerProps> = ({ children
 
 
 // This component now expects an extra prop for internal use but it's not part of AccordionSectionProps
-export const AccordionSection: React.FC<AccordionSectionProps & { isOpen?: boolean; onClick?: () => void }> = ({
+export const AccordionSection: React.FC<AccordionSectionProps & { open?: boolean; onClick?: () => void }> = ({
   title,
   children,
-  isOpen = false,
+  open = false,
   onClick = () => { },
 }) => {
-  return <AccordionBody title={title} children={children} open={isOpen} onClick={onClick} />
+  return <AccordionBody title={title} children={children} open={open} onClick={onClick} />
 };
 
 

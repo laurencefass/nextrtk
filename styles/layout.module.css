@@ -64,8 +64,8 @@
 }
 
 .footer * {
-  margin-right: 10px;
-  font-size: calc(10px + 2vmin);
+  margin-right: 5px;
+  font-size: calc(10px + 1.2vmin);
 }
 
 .nav {

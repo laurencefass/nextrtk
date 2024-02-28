@@ -114,6 +114,10 @@ a {
   text-decoration: none;
 }
 
+header h4 {
+  font-size: calc(12px + 0.6vw);
+}
+
 * {
   box-sizing: border-box;
 }

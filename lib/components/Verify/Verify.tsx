@@ -7,7 +7,7 @@ import {
   useSelector,
 } from "@/lib/redux";
 import { UserList } from "../Users/Users";
-import { ReduxCounterConsumer } from "@/app/socket/page";
+// import { ReduxCounterConsumer } from "@/app/socket/page";
 
 function TodoList() {
   const todos = useSelector(selectTodos)
@@ -34,6 +34,6 @@ export const Verify = () => {
     <h3>This page verifies that Redux state is persisted across page route navigations.</h3>
     <TodoList />
     <UserList />
-    <ReduxCounterConsumer />
+    {/* <ReduxCounterConsumer /> */}
   </>
 };

@@ -14,6 +14,7 @@ services:
       - LETSENCRYPT_HOST=nextprod.${LETSENCRYPT_HOST}
       - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
       - NEWS_API_KEY=${NEWS_API_KEY}
+      - NODE_TLS_REJECT_UNAUTHORIZED=0 # to address issue with cms.syntapse having a self signed certificate
     expose:
       - "3000"
     volumes:
@@ -36,6 +37,7 @@ services:
       - LETSENCRYPT_HOST=nextdev.${LETSENCRYPT_HOST}
       - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
       - NEWS_API_KEY=${NEWS_API_KEY}
+      - NODE_TLS_REJECT_UNAUTHORIZED=0 # to address issue with cms.syntapse having a self signed certificate
     expose:
       - "3000"
     volumes:

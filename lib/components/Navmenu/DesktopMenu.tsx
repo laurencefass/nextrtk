@@ -18,7 +18,7 @@ export const DesktopMenu: React.FC = () => {
   })
 
   useEffect(() => {
-    console.log("dropdownOpen", dropdownOpen);
+    // console.log("dropdownOpen", dropdownOpen);
   }, [dropdownOpen]);
 
   // Function to toggle dropdown visibility

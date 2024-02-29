@@ -12,7 +12,7 @@ export const HamburgerMenu: React.FC<Props> = ({ children }) => {
 
   // Use the custom hook and provide a callback to close the menu
   useRouteChange(() => {
-    console.log("route changed!")
+    // console.log("route changed!")
     setIsOpen(false);
   });
 

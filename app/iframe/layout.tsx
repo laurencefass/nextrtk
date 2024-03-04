@@ -1,6 +1,5 @@
-export default function RootLayout(props: React.PropsWithChildren) {
+export default function Layout(props: React.PropsWithChildren) {
     return <>
         {props.children}
     </>
-  }
-  
+}

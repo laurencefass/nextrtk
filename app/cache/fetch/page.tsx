@@ -8,12 +8,17 @@ const text = `
 - For this experiment to work, the endpoint at /api/counter has to be set to 'force-dynamic' to avoid any automatic cache
 `;
 
+export const dynamic = "force-dynamic";
+
 export default async function Page() {
-    const data = await fetch('https://nextprod.syntapse.co.uk/api/counter', {
+    const env = process.env.NODE_ENV === "development" ? "dev" : "prod"
+    const res = await fetch(`https://next${env}.syntapse.co.uk/api/counter`, {
         next: { revalidate: 5 },
     });
-    const counter = await data.json();
-    console.log("counter", counter);
+    if (!res.ok) {
+        throw new Error(`Server responded with status: ${res.status}`);
+    }
+    const counter = await res.json();
     return <>
         <ReactMarkdown className="text-container">{text}</ReactMarkdown>
         <button><a href="/cache/fetch">Refresh route</a></button>

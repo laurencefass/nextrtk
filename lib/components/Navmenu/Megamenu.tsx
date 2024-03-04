@@ -11,10 +11,12 @@ import '@styles/grids.css';
 
 const MegaMenu: React.FC = () => {
   const width = useScreenWidth();
-  if (width < 600)
-    return <HamburgerMenu>
-      <MobileMenu />
-    </HamburgerMenu>
+  if (width > 0 && width < 600)
+    return <>
+      <HamburgerMenu>
+        <MobileMenu />
+      </HamburgerMenu>
+    </>
   return <DesktopMenu />
 }
 

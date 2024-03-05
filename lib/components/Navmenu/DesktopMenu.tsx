@@ -8,6 +8,7 @@ import useRouteChange, { useScreenWidth } from '@/lib/hooks';
 
 import './styles.css';
 import '@styles/grids.css';
+import SecureLink from '../html';
 
 export const DesktopMenu: React.FC = () => {
   // State to control the visibility of dropdowns
@@ -127,7 +128,7 @@ function Branding() {
     <div className="branding">
       <img style={{ width: "50px" }} src="/syntapse-logo-2.png" alt="logo" />
       <div>
-        <h2>Syntapse + Next 14 + Redux</h2>
+        <h2><SecureLink href="https://syntapse.co.uk">Syntapse</SecureLink> + Next 14 + Redux</h2>
         <h4>Tests, demos and experiments</h4>
         <h4>View the code on <a target="_blank" rel="noopener noreferrer" href="https://github.com/laurencefass/nextrtk/blob/main/README.md">github</a></h4>
       </div>

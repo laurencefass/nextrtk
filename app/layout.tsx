@@ -1,6 +1,6 @@
 /* Components */
 import { Providers } from "@/lib/redux/providers";
-import Megamenu from '@components/Navmenu/Megamenu';
+import NavMenu from '@components/Navmenu/NavMenu';
 import NProgress from "./nprogress";
 
 import 'dotenv/config';
@@ -36,7 +36,7 @@ export default function RootLayout(props: React.PropsWithChildren) {
         <body>
           <section className={styles.container}>
             <Suspense fallback="loading">
-              <Megamenu />
+              <NavMenu />
             </Suspense>
             <Header />
             <NProgress />

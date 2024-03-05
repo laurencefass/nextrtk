@@ -9,7 +9,7 @@ import { DesktopMenu } from './DesktopMenu';
 import './styles.css';
 import '@styles/grids.css';
 
-const MegaMenu: React.FC = () => {
+const NavMenu: React.FC = () => {
   const width = useScreenWidth();
   if (width > 0 && width < 600)
     return <>
@@ -20,4 +20,4 @@ const MegaMenu: React.FC = () => {
   return <DesktopMenu />
 }
 
-export default MegaMenu;
+export default NavMenu;

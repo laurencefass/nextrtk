@@ -6,8 +6,8 @@ import { HamburgerMenu } from "./Hamburger";
 import { MobileMenu } from './MobileMenu';
 import { DesktopMenu } from './DesktopMenu';
 
-import './styles.css';
-import '@styles/grids.css';
+import './styles.scss';
+import '@styles/grids.scss';
 
 const NavMenu: React.FC = () => {
   const width = useScreenWidth();

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, ReactNode } from "react";
 
-import "@styles/grids.css";
+import "@styles/grids.scss";
 
 export type Section = {
   title?: string | ReactNode;
@@ -30,7 +30,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
 }) => {
   const [inputValue, setInputValue] = useState("");
 
-  useEffect(()=>{
+  useEffect(() => {
     setCount(1);
   }, []);
 
@@ -39,8 +39,12 @@ const NumberInput: React.FC<NumberInputProps> = ({
     const numericValue = Number(e.target.value);
     if (!isNaN(numericValue)) {
       // Check if the conversion is successful
-      if (numericValue <= 5)
+      if (numericValue <= 10)
         setCount(numericValue);
+      else {
+        alert("max value is 10");
+        setCount(1);
+      }
     } else {
       alert("Please enter a valid number");
     }
@@ -63,7 +67,7 @@ type InfiniteScrollProps = {
   fetchArticles: (count: number) => Promise<Array<Article>>;
 };
 
-export const InfiniteScroll: React.FC<InfiniteScrollProps> = ({fetchArticles}) => {
+export const InfiniteScroll: React.FC<InfiniteScrollProps> = ({ fetchArticles }) => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const loaderRef = useRef<HTMLDivElement | null>(null);
@@ -83,6 +87,7 @@ export const InfiniteScroll: React.FC<InfiniteScrollProps> = ({fetchArticles}) =
       (entries) => {
         const firstEntry = entries[0];
         if (firstEntry.isIntersecting) {
+          console.log("count", count);
           fetchAndAppendArticles(count); // Use the current count to fetch articles
         }
       },
@@ -106,8 +111,8 @@ export const InfiniteScroll: React.FC<InfiniteScrollProps> = ({fetchArticles}) =
           <div className={`grid-container ${article.sidebar ? 'sidebar' : 'column'}`}>
             {article.sidebar && <>
               <div className="grid-sidebar">
-                  <h2>{article.sidebar.title}</h2>
-                  <div>{article.sidebar.body}</div>
+                <h2>{article.sidebar.title}</h2>
+                <div>{article.sidebar.body}</div>
               </div>
             </>}
             <div className="grid-content">

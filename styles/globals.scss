@@ -4,6 +4,13 @@ body {
   padding: 0;
   margin: 0 !important;
   font-family: system-ui, sans-serif;
+  overflow-x: hidden;
+  min-width: 100vw;
+
+  .content img {
+    width: 100%;
+    border-radius: 20px;
+  }  
 }
 
 h1,
@@ -13,15 +20,6 @@ h4,
 h5,
 h6 {
   text-align: left;
-}
-
-html,
-body {
-  overflow-x: hidden;
-}
-
-html {
-  min-width: 100vw;
 }
 
 main,
@@ -42,11 +40,6 @@ main .content.wide {
 p,
 li {
   text-align: justify;
-}
-
-main .content img {
-  width: 100%;
-  border-radius: 20px;
 }
 
 .pending {

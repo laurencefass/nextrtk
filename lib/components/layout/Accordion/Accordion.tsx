@@ -1,7 +1,7 @@
 'use client'
 
 import React, { ReactElement, ReactNode, cloneElement, useState } from 'react';
-import './styles.css'; // Assuming you'll create a separate CSS file
+import './styles.scss'; // Assuming you'll create a separate CSS file
 
 
 interface AccordionProps {

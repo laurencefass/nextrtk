@@ -6,8 +6,8 @@ import siteMap, { MenuItem, MenuSection, MenuData } from './sitemap';
 import { HamburgerMenu } from "./Hamburger";
 import useRouteChange, { useScreenWidth } from '@/lib/hooks';
 
-import './styles.css';
-import '@styles/grids.css';
+import './styles.scss';
+import '@styles/grids.scss';
 import SecureLink from '../html';
 
 export const DesktopMenu: React.FC = () => {

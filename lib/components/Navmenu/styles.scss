@@ -1,36 +1,36 @@
 .branding {
   display: flex;
   align-items: center;
+
+  img {
+    min-width: 80px;
+    margin-right: 20px;
+  }
+
+  @media (max-width: 768px) {
+    & div {
+      display: none;
+    }
+  }
 }
 
 .brand-icon {
   position: absolute;
   left: 10px;
   top: 10px;
-  opacity: 1; /* Make the element fully visible by default */
-  visibility: visible; /* Make the element visible by default */
-  transition: opacity 1000ms, visibility 1000ms; /* Animate opacity and visibility changes */
-}
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 500ms, visibility 500ms;
 
-.brand-icon.closed {
-  opacity: 0; /* Make the element fully transparent */
-  visibility: hidden; /* Hide the element after the transition */
-  transition: opacity 500ms, visibility 500ms 500ms; /* Delay hiding the visibility to match the opacity transition */
-}
+  &.closed {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 500ms, visibility 500ms 500ms;
+  }
 
-.brand-icon img {
-  height: 40px;
-  width: 40px;
-}
-
-.branding img {
-  width: 50px;
-  margin-right: 20px;
-}
-
-@media (max-width: 768px) {
-  .branding div {
-    display: none;
+  img {
+    height: 50px;
+    width: 50px;
   }
 }
 
@@ -180,40 +180,45 @@ ul.dropdown {
   top: 5px !important;
 }
 
-.hamburger-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  font-size: 20px;
-  background: #704cb6;
-  border-radius: 15px;
-  width: 40px;
-  height: 40px;
-  color: white;
-  font-weight: bold;
-}
+.hamburger-menu {
+  .hamburger-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 20px;
+    background: #704cb6;
+    border-radius: 15px;
+    width: 40px;
+    height: 40px;
+    color: white;
+    font-weight: bold;
+  }
 
-.hamburger-menu .menu-content {
-  overflow: hidden;
-  transition: max-height 0.25s ease-in-out;
-  max-height: 0; /* Start with max-height 0 to ensure it's hidden initially */
-}
+  .menu-content {
+    overflow: hidden;
+    transition: max-height 0.25s ease-in-out;
+    max-height: 0; /* Start with max-height 0 to ensure it's hidden initially */
+  }
 
-.hamburger-menu .menu-content.open {
-  max-height: 150vh;
-}
+  .menu-content.open {
+    max-height: 150vh;
+  }
 
-.hamburger-menu .menu-content.closed {
-  max-height: 0;
-}
+  .menu-content.closed {
+    max-height: 0;
+  }
 
-.hamburger-menu a {
-  text-decoration: none !important;
-}
+  a {
+    text-decoration: none !important;
+  }
 
-.hamburger-menu .accordion-content ul {
-  margin-bottom: 20px;
+  .accordion-container {
+    max-width: 96vw;
+  }
+  .accordion-content ul {
+    margin-bottom: 20px;
+  }
 }

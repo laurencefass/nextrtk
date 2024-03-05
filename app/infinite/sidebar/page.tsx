@@ -23,7 +23,7 @@ const fetchArticles = async (count: number): Promise<Array<Article>> => {
       },
       header: lorem(7, 12),
       body: <>
-        <img src={`https://picsum.photos/seed/${randomNumber(60)}/400/300`} height={400}/>
+        <img src={`https://picsum.photos/seed/${randomNumber(60)}/400/300`} height={400} />
         <p>{article(1)}</p>
       </>
     })
@@ -39,7 +39,8 @@ const fetchArticles = async (count: number): Promise<Array<Article>> => {
 
 export default function Page() {
   return <>
-      <h3>This layout is fully responsive and will hide the sidebars at smaller widths</h3>
-      <InfiniteScroll fetchArticles={fetchArticles} />
-    </>
+    <h3>This layout is fully responsive and will hide the sidebars at smaller widths</h3>
+    <h3>Set the number of articles to reload on read more (at the intersection) default = 1, max = 10</h3>
+    <InfiniteScroll fetchArticles={fetchArticles} />
+  </>
 }

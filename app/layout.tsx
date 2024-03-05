@@ -6,7 +6,7 @@ import NProgress from "./nprogress";
 import 'dotenv/config';
 
 import styles from "@styles/layout.module.css";
-import "@styles/globals.css";
+import "@styles/globals.scss";
 import { Suspense } from "react";
 import { Header } from "./Header";
 

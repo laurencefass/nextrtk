@@ -2,7 +2,7 @@ import ArticleManager from '@components/Articles/Articles'
 import AuthorManager from '@components/Authors/Authors'
 import { Accordion } from '@components/layout/Accordion/Accordion'
 
-import "@styles/globals.css"
+import "@styles/globals.scss"
 
 export default function Library() {
   return <div className="block-container">

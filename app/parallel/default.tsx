@@ -1,4 +1,4 @@
-import "@styles/globals.css"
+import "@styles/globals.scss"
 import ReactMarkdown from 'react-markdown';
 
 const markdownText = `

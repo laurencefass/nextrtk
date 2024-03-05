@@ -18,7 +18,7 @@ import {
     selectArticles,
     fetchArticles
 } from "@/lib/redux"; // Ensure these actions and selector are properly defined for authors
-import "@styles/globals.css"
+import "@styles/globals.scss"
 
 const Header = () => {
     return <>
@@ -67,21 +67,21 @@ export const AuthorList: React.FC<AuthorListProps> = ({ onSelectAuthor }) => {
 
     if (saving) {
         return <>
-            <Header/>
+            <Header />
             <p>Saving...</p>
         </>
     }
 
     if (loading) {
         return <>
-            <Header/>
+            <Header />
             <p>Loading...</p>
         </>
     }
 
     return (
         <div>
-            <Header/>
+            <Header />
             <div>
                 {/* <pre>
                     <h1>Articles</h1>
@@ -93,8 +93,8 @@ export const AuthorList: React.FC<AuthorListProps> = ({ onSelectAuthor }) => {
                     Object.values(entities).map((author) => (
                         <div
                             className="block-item highlight-on-hover"
-                            key={author.id} 
-                            style={{ cursor: 'pointer' }} 
+                            key={author.id}
+                            style={{ cursor: 'pointer' }}
                             onClick={() => onSelectAuthor(author)}
                         >
                             <h3>{author.name} ({author.id})</h3>
@@ -123,15 +123,15 @@ const AuthorCRUD: React.FC<AuthorCRUDProps> = ({ selectedAuthor }) => {
 
     useEffect(() => {
         if (selectedAuthor) {
-          setAuthorId(selectedAuthor.id);
-          setName(selectedAuthor.name);
+            setAuthorId(selectedAuthor.id);
+            setName(selectedAuthor.name);
         }
-      }, [selectedAuthor]);
+    }, [selectedAuthor]);
 
     const handleFetchAuthors = () => {
-        dispatch(fetchAuthors());    
+        dispatch(fetchAuthors());
     }
-    
+
     const handleSelectAuthor = () => {
         const author = authors[authorId];
         if (author) {
@@ -154,7 +154,7 @@ const AuthorCRUD: React.FC<AuthorCRUDProps> = ({ selectedAuthor }) => {
     };
 
     const handleUpdateAuthor = () => {
-        dispatch(updateAuthor({ id: authorId, changes: { name }}));
+        dispatch(updateAuthor({ id: authorId, changes: { name } }));
         resetForm();
     };
 
@@ -201,13 +201,13 @@ const AuthorManager = () => {
     const [selectedAuthor, setSelectedAuthor] = useState<Author | null>(null);
 
     const handleSelectAuthor = useCallback((author: Author) => {
-      setSelectedAuthor(author);
+        setSelectedAuthor(author);
     }, []);
-    
+
     return (
         <div>
             <AuthorCRUD selectedAuthor={selectedAuthor} />
-            <AuthorList onSelectAuthor={handleSelectAuthor}/>
+            <AuthorList onSelectAuthor={handleSelectAuthor} />
         </div>
     );
 };

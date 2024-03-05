@@ -17,7 +17,7 @@ import {
     selectArticleEntities,
     selectAuthorEntities,
 } from "@/lib/redux"; // Update imports to match articles' actions and selectors
-import "@styles/globals.css"
+import "@styles/globals.scss"
 
 const Header = () => {
     return <>
@@ -29,15 +29,15 @@ const Header = () => {
 interface ArticleListProps {
     onSelectArticle: (article: Article) => void;
 }
-  
+
 export const ArticlesTest = () => {
     const articles = useSelector(selectAllArticles);
     const entities = useSelector(selectArticleEntities);
     return <>
         <h1>Article Array</h1>
-        <pre>{ JSON.stringify(articles, null, 2) }</pre>
+        <pre>{JSON.stringify(articles, null, 2)}</pre>
         <h1>Article lookup</h1>
-        <pre>{ JSON.stringify(entities, null, 2) }</pre>
+        <pre>{JSON.stringify(entities, null, 2)}</pre>
     </>
 }
 
@@ -48,36 +48,36 @@ export const ArticleList: React.FC<ArticleListProps> = ({ onSelectArticle }) => 
 
     if (saving) {
         return <>
-            <Header/>
+            <Header />
             <p>Saving...</p>
         </>
     }
 
     if (!entities || loading) {
         return <>
-            <Header/>
+            <Header />
             <p>Loading...</p>
         </>
     }
 
     return (
         <div>
-            <Header/>
+            <Header />
             <div>
                 {Object.keys(entities).length === 0 ? (
                     <p>No articles available</p>
                 ) : (
                     Object.values(entities).map((article) => (
-                        <div 
+                        <div
                             className="block-item highlight-on-hover"
-                            key={article.id} 
+                            key={article.id}
                             onClick={() => onSelectArticle(article)}
                             style={{ cursor: 'pointer' }}
                         >
-                          <div> title: {article.title}</div>
-                          <div> article id: {article.id}</div> 
-                          <div> author: {authors[article.authorId]?.name || "Unknown Author"}</div>
-                          <div> content: {article.content}</div> 
+                            <div> title: {article.title}</div>
+                            <div> article id: {article.id}</div>
+                            <div> author: {authors[article.authorId]?.name || "Unknown Author"}</div>
+                            <div> content: {article.content}</div>
                         </div>
                     ))
                 )}
@@ -113,13 +113,13 @@ const ArticleCRUD: React.FC<ArticleCRUDProps> = ({ selectedArticle }) => {
 
     useEffect(() => {
         if (selectedArticle) {
-          // Update local state with selectedArticle details
-          setArticleId(selectedArticle.id);
-          setAuthorId(selectedArticle.authorId);
-          setTitle(selectedArticle.title);
-          setContent(selectedArticle.content);
+            // Update local state with selectedArticle details
+            setArticleId(selectedArticle.id);
+            setAuthorId(selectedArticle.authorId);
+            setTitle(selectedArticle.title);
+            setContent(selectedArticle.content);
         }
-      }, [selectedArticle]);
+    }, [selectedArticle]);
 
     useEffect(() => {
         dispatch(fetchArticles());
@@ -127,7 +127,7 @@ const ArticleCRUD: React.FC<ArticleCRUDProps> = ({ selectedArticle }) => {
     }, []);
 
     const handleFetchArticles = () => {
-        dispatch(fetchArticles());    
+        dispatch(fetchArticles());
     }
 
     const handleSaveChanges = () => {
@@ -141,7 +141,7 @@ const ArticleCRUD: React.FC<ArticleCRUDProps> = ({ selectedArticle }) => {
     };
 
     const handleUpdateArticle = () => {
-        dispatch(updateArticle({ id: articleId, changes: { authorId, title, content }}));
+        dispatch(updateArticle({ id: articleId, changes: { authorId, title, content } }));
         resetForm();
     };
 
@@ -212,11 +212,11 @@ const __ArticleCRUD = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchArticles()); 
+        dispatch(fetchArticles());
     }, []);
 
     const handleFetchArticles = () => {
-        dispatch(fetchArticles());    
+        dispatch(fetchArticles());
     }
 
     const handleSelectArticle = () => {
@@ -242,7 +242,7 @@ const __ArticleCRUD = () => {
     };
 
     const handleUpdateArticle = () => {
-        dispatch(updateArticle({ id: articleId, changes: { title, content }})); // Updated action
+        dispatch(updateArticle({ id: articleId, changes: { title, content } })); // Updated action
         resetForm();
     };
 
@@ -304,17 +304,17 @@ const __ArticleCRUD = () => {
 
 const ArticleManager = () => {
     const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
-  
+
     const handleSelectArticle = useCallback((article: Article) => {
-      setSelectedArticle(article);
+        setSelectedArticle(article);
     }, []);
-  
+
     return (
-      <div>
-        <ArticleCRUD selectedArticle={selectedArticle} />
-        <ArticleList onSelectArticle={handleSelectArticle} />
-        {/* <ArticlesTest /> */}
-      </div>
+        <div>
+            <ArticleCRUD selectedArticle={selectedArticle} />
+            <ArticleList onSelectArticle={handleSelectArticle} />
+            {/* <ArticlesTest /> */}
+        </div>
     );
-  };
+};
 export default ArticleManager;

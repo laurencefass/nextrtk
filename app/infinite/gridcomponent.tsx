@@ -1,9 +1,9 @@
 import React from 'react';
-import "@styles/grids.css";
+import "@styles/grids.scss";
 
 type GridComponentProps = {
-    children: React.ReactNode;
-  };
+  children: React.ReactNode;
+};
 
 export const GridComponent: React.FC<GridComponentProps> = ({ children }) => {
   // Assuming the first child is always an image and should take 30% width.

@@ -1,15 +1,16 @@
 /* Components */
 import { Counter } from "@components/Counter/Counter";
 import ReactMarkdown from 'react-markdown';
+import Image from 'next/image'
 
-const markdownText = `
-  # Welcome!
+const intro = `
+This is a collection of pages and components constructed to understand and familiarise with the newest APIs for 
+React, Next JS and Redux Toolkit to serve as a stable, predictable foundation for building highly scalable apps 
+with complex state model requirements. Top level pages are delivered as React Server Components and data is fetched 
+directly from endpoints and server actions providing a very secure, robust, typesafe, server based data access layer.
+`
 
-  This is a collection of pages and components constructed to understand and familiarise with the newest APIs for 
-  React, Next JS and Redux Toolkit to serve as a stable, predictable foundation for building highly scalable apps 
-  with complex state model requirements. Top level pages are delivered as React Server Components and data is fetched 
-  directly from endpoints and server actions providing a very secure, robust, typesafe, server based data access layer.
-
+const notes = `
   ### Notes 
   
   - This site is [modified to work with Next](https://redux-toolkit.js.org/usage/nextjs) and Redux HMR. Without recommended mods Redux state will reset on every HMR code change. Its also configured to initialise common app state on the server. 
@@ -28,7 +29,10 @@ const markdownText = `
 export default function IndexPage() {
   return <>
     <div className="content">
-      <ReactMarkdown className="text-container">{markdownText}</ReactMarkdown>
+      <h2>Syntapse Next14 Monorepo Playground</h2>
+      <ReactMarkdown>{intro}</ReactMarkdown>
+      <img src="/syntapse-icons.png" alt="title picture" />
+      <ReactMarkdown>{notes}</ReactMarkdown>
     </div>
     <div className="bordered">
       <Counter />

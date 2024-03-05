@@ -21,7 +21,16 @@ const notes = `
   - It includes some of the newest Next API features including parallel and intercepted routes and tests for cacheing pages and endpoints
   - Where layout components have been used these have been designed and coded using as few dependencies as possible to fully explore the new React APIs e.g. the tabbed container has an option to incorporate useTransitiions.
   ***
-  Naturally we'll start with a counter component. All the code is available on github.   The counter on this page is the default reference example for RTK -  a simple component including thunks for 
+  ## Docker development notes
+  - All Syntapse apps, sites and servers are run from docker containers and publised on the internet via secure proxies.
+  - Docker can SIGNIFICANTLY streamline development of multiple apps and packages with the correct configuration.
+  - For example: this site is running both production and development builds concurrently from a single codebase.
+  - This site is being developed alongside a package monorepo to [test imports](/imports) from a variety of bundlers
+  - By using careful docker configuration packages and sites can be developed together and updated in realtime.
+  - Packages can be exported as required, but can also run in companion containers to keep a streamlined development process
+  
+  ## Redux Toolkit Counter Demo
+  Naturally we'll start with a counter component. All the code is available on github.   The counter on this page is the default reference example for RTK - a simple component including thunks for 
   asynchronous operations. The [verify](/verify) page will demonstrate that client state is persisted across 
   routes. Have a click around and enjoy!
   `;

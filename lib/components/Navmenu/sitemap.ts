@@ -33,6 +33,10 @@ const siteMap: MenuData = {
     title: "verify state",
     url: "/verify",
   },
+  import: {
+    title: "import tests",
+    url: "/imports",
+  },
   authenticate: {
     actions: {
       title: "cookie auth (actions)",

@@ -9,7 +9,6 @@ function extractSlugs(urlPath: string): string[] {
 }
 
 const slug = process.env.NODE_ENV === "development" ? "dev" : "prod";
-// const siteUrl = `https://next${slug}.syntapse.co.uk`;
 const siteUrl = "https://localhost:3000";
 
 export default async function middleware(request: NextRequest) {

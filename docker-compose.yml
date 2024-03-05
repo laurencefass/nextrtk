@@ -22,6 +22,16 @@ services:
       - .:/app
       - ./.next.prod:/app/.next
       - ./files.prod:/app/files
+
+      - ../package-mono/packages/react-rollup/dist:/app/node_modules/react-rollup
+      - ../package-mono/packages/react-babel/dist:/app/node_modules/react-babel
+      - ../package-mono/packages/react-ts/dist:/app/node_modules/react-ts
+      - ../package-mono/packages/esbuild-ts/dist:/app/node_modules/esbuild-ts
+
+      - ../package-mono/node_modules:/app/node_modules/react-rollup/node_modules
+      - ../package-mono/node_modules:/app/node_modules/react-babel/node_modules
+      - ../package-mono/node_modules:/app/node_modules/react-ts/node_modules
+      - ../package-mono/node_modules:/app/node_modules/esbuild-ts/node_modules
     working_dir: /app
     # command: tail -f /dev/null
     command: "npm run start"
@@ -46,6 +56,16 @@ services:
       - .:/app
       - ./.next.dev:/app/.next
       - ./files.dev:/app/files
+      
+      - ../package-mono/packages/react-rollup/dist:/app/node_modules/react-rollup
+      - ../package-mono/packages/react-babel/dist:/app/node_modules/react-babel
+      - ../package-mono/packages/react-ts/dist:/app/node_modules/react-ts
+      - ../package-mono/packages/esbuild-ts/dist:/app/node_modules/esbuild-ts
+
+      - ../package-mono/node_modules:/app/node_modules/react-rollup/node_modules
+      - ../package-mono/node_modules:/app/node_modules/react-babel/node_modules
+      - ../package-mono/node_modules:/app/node_modules/react-ts/node_modules
+      - ../package-mono/node_modules:/app/node_modules/esbuild-ts/node_modules
     working_dir: /app
     # command: tail -f /dev/null
     command: "npm run dev"

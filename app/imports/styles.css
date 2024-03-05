@@ -1,0 +1,18 @@
+.accordion-container {
+  border: 2px solid lightgray;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  width: 1200px;
+  /* border: 2px solid lightgray; */
+  border-radius: 20px;
+  padding: 20px;
+  height: auto;
+}

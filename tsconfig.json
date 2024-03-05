@@ -2,6 +2,25 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "baseUrl": ".",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "target": "ESNext",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "ESNEXT",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "paths": {
       "@/*": [
         "./*"
@@ -26,31 +45,32 @@
       ],
       "@middleware": [
         "./lib/middleware"
+      ],
+      "react-rollup/*": [
+        "../package-mono/packages/react-rollup/dist/*"
+      ],
+      "react-rollup": [
+        "../package-mono/packages/react-rollup/dist/index"
+      ],
+      "react-babel/*": [
+        "../package-mono/packages/react-babel/dist/*"
+      ],
+      "react-babel": [
+        "../package-mono/packages/react-babel/dist/index"
+      ],
+      "react-ts/*": [
+        "../package-mono/packages/react-ts/dist/*"
+      ],
+      "react-ts": [
+        "../package-mono/packages/react-ts/dist/index"
+      ],
+      "esbuild-ts/*": [
+        "../package-mono/packages/esbuild-ts/dist/*"
+      ],
+      "esbuild-ts": [
+        "../package-mono/packages/esbuild-ts/dist/index"
       ]
-    },
-    "target": "ESNext",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "ESNEXT",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
+    }
   },
   "include": [
     "next-env.d.ts",

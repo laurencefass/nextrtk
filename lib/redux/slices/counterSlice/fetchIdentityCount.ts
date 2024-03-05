@@ -1,10 +1,9 @@
-const host = 'https://nextrtk.syntapse.co.uk'
-// const host = 'http://localhost:3000'
-// const host = 'http://127.0.0.1:3000'
-const url = `${host}/api/identity-count`
+const env = process.env.NODE_ENV === "development" ? "dev" : "prod";
+const BASE_SERVER_URL = `https://next${env}.syntapse.co.uk`;
+const url = `${BASE_SERVER_URL}/api/identity-count`;
 
 export const fetchIdentityCount = async (
-  amount = 1,
+  amount = 1
 ): Promise<{ data: number }> => {
   const response = await fetch(url, {
     method: "POST",

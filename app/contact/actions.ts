@@ -14,8 +14,6 @@ export async function randomServerAction() {
 }
 
 export async function getCmsUrl(): Promise<string> {
-  // return "https://maplio.syntapse.co.uk";
-
   console.log("getCmsUrl", process.env.CMS_URL);
   return process.env.CMS_URL || "";
 }

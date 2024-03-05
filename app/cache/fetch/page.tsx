@@ -10,9 +10,11 @@ const text = `
 
 export const dynamic = "force-dynamic";
 
+const env = process.env.NODE_ENV === "development" ? "dev" : "prod";
+const BASE_SERVER_URL = `https://next${env}.syntapse.co.uk`;
+
 export default async function Page() {
-    const env = process.env.NODE_ENV === "development" ? "dev" : "prod"
-    const res = await fetch(`https://next${env}.syntapse.co.uk/api/counter`, {
+    const res = await fetch(`${BASE_SERVER_URL}/api/counter`, {
         next: { revalidate: 5 },
     });
     if (!res.ok) {

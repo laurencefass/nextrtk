@@ -39,6 +39,16 @@ main .content.wide {
   max-width: 1200px !important;
 }
 
+p,
+li {
+  text-align: justify;
+}
+
+main .content img {
+  width: 100%;
+  border-radius: 20px;
+}
+
 .pending {
   width: 800px;
 }
@@ -129,17 +139,16 @@ h1 {
 
 img {
   object-fit: contain;
-  /* aspect-ratio: 16 / 9;  */
 }
 
-@media (max-width: 768px) {
-  img {
+/* @media (max-width: 768px) {
+  .grid-content img {
     max-height: 30vh;
   }
-}
+} */
 
-@media (max-width: 600px) {
-  img {
+/* @media (max-width: 600px) {
+  .grid-content img {
     max-height: 20vh;
   }
-}
+} */

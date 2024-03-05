@@ -29,14 +29,16 @@ export function ClientComponent() {
   })
   return (
     <div>
-      <h1>React Component tests</h1>
+      <h2>React Component tests</h2>
       <MyBabelComponent />
       <MyTypescriptComponent />
       <MyRollupComponent />
-      <h1>Function tests</h1>
+      <hr />
+      <h2>Function tests</h2>
       <h2>Functional package built with esbuild + ts, greeting: {helloWorld()}</h2>
       {width && <h2>imported hook (useScreenWidth): {width}</h2>}
-      <h1>Imported reusable layout components</h1>
+      <hr />
+      <h2>Imported reusable layout components</h2>
       <Modal>
         <h1>Modal content works!</h1>
       </Modal>

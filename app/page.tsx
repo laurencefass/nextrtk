@@ -20,7 +20,7 @@ const notes = `
   - It includes demos for secure encrypted authentication using cookies and jwts, using both actions and endpoints.
   - It includes some of the newest Next API features including parallel and intercepted routes and tests for cacheing pages and endpoints
   - Where layout components have been used these have been designed and coded using as few dependencies as possible to fully explore the new React APIs e.g. the tabbed container has an option to incorporate useTransitiions.
-
+  ***
   Naturally we'll start with a counter component. All the code is available on github.   The counter on this page is the default reference example for RTK -  a simple component including thunks for 
   asynchronous operations. The [verify](/verify) page will demonstrate that client state is persisted across 
   routes. Have a click around and enjoy!

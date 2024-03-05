@@ -21,6 +21,7 @@ export default function Home() {
     return (
         <main className="content">
             <ReactMarkdown>{text}</ReactMarkdown>
+            <hr />
             <ClientComponent />
         </main>
     )

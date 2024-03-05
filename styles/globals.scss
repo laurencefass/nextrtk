@@ -10,7 +10,24 @@ body {
   .content img {
     width: 100%;
     border-radius: 20px;
-  }  
+  }
+}
+
+main,
+main > div {
+  max-width: 100vw !important;
+  border-radius: 20px;
+}
+
+main {
+  .content {
+    max-width: 800px !important;
+  }
+
+  .content.wide {
+    width: 100%;
+    max-width: 1200px !important;
+  }
 }
 
 h1,
@@ -20,21 +37,6 @@ h4,
 h5,
 h6 {
   text-align: left;
-}
-
-main,
-main > div {
-  max-width: 100vw !important;
-  border-radius: 20px;
-}
-
-main .content {
-  max-width: 800px !important;
-}
-
-main .content.wide {
-  width: 100%;
-  max-width: 1200px !important;
 }
 
 p,
@@ -70,12 +72,13 @@ input {
 
 h1,
 h2,
-h3 {
+h3,
+h4,
+a {
   color: #704cb6 !important;
 }
 
 a {
-  color: #704cb6 !important;
   text-decoration: underline !important;
   font-weight: bold;
 }
@@ -123,11 +126,6 @@ header h4 {
 
 * {
   box-sizing: border-box;
-}
-
-h1 {
-  color: rgb(112, 76, 182);
-  font-size: 40px;
 }
 
 img {

@@ -29,7 +29,7 @@ const notes = `
 export default function IndexPage() {
   return <>
     <div className="content">
-      <h2>Syntapse Next14 Monorepo Playground</h2>
+      <h2>Syntapse Next14 Redux Playground</h2>
       <ReactMarkdown>{intro}</ReactMarkdown>
       <img src="/syntapse-icons.png" alt="title picture" />
       <ReactMarkdown>{notes}</ReactMarkdown>

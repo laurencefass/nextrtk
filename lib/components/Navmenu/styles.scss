@@ -74,6 +74,9 @@
   border-radius: 20px;
 }
 
+.dropdown li a {
+  text-align: left;
+}
 .dropdown.align-right {
   right: 0; /* Align to the right edge of its parent */
   left: auto; /* Override any default left alignment */

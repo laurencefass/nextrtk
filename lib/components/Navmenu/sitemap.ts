@@ -17,25 +17,9 @@ const siteMap: MenuData = {
     title: "Home",
     url: "/",
   },
-  qrcode: {
-    title: "QR code",
-    url: "/qrcode",
-  },
-  api: {
-    title: "News API",
-    url: "/newsapi",
-  },
-  sockets: {
-    title: "test sockets",
-    url: "/socket",
-  },
   verify: {
-    title: "verify state",
+    title: "Verify state",
     url: "/verify",
-  },
-  import: {
-    title: "import tests",
-    url: "/imports",
   },
   authenticate: {
     actions: {
@@ -147,9 +131,27 @@ const siteMap: MenuData = {
       url: "/listener/todo",
     },
   },
-  maplio: {
-    title: "maplio",
-    url: "/maplio",
+  "misc items": {
+    import: {
+      title: "import tests",
+      url: "/imports",
+    },
+    sockets: {
+      title: "test sockets",
+      url: "/socket",
+    },
+    qrcode: {
+      title: "QR code",
+      url: "/qrcode",
+    },
+    api: {
+      title: "News API",
+      url: "/newsapi",
+    },
+    maplio: {
+      title: "maplio",
+      url: "/maplio",
+    },
   },
 };
 

@@ -9,11 +9,31 @@ import styles from "@styles/layout.module.css";
 import "@styles/globals.scss";
 import { Suspense } from "react";
 import { Header } from "./Header";
+import { Metadata } from "next";
 
 interface FooterLinkProps {
   url: string;
   label: string;
 }
+
+const env = process.env.NODE_ENV === "development" ? "dev" : "prod";
+const BASE_SERVER_URL = `https://next${env}.syntapse.co.uk`;
+
+export const metadata: Metadata = {
+  title: 'Syntapse Ltd',
+  description: 'Syntapse Next14 Redux Playground',
+  openGraph: {
+    type: "website",
+    url: BASE_SERVER_URL,
+    title: "Syntapse",
+    description: 'Syntapse Next14 Redux Playground',
+    siteName: BASE_SERVER_URL,
+    images: [{
+      url: `${BASE_SERVER_URL}/syntapse-logo-2.png`,
+    }],
+
+  }
+};
 
 const FooterLink: React.FC<FooterLinkProps> = ({ url, label }) => {
   return <span>
